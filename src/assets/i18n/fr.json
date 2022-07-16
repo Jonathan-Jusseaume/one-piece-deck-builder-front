@@ -8,5 +8,7 @@
   "Search": "Rechercher des cartes",
   "SearchButton": "Rechercher",
   "SelectAll": "Sélectionner tout",
+  "TagFilterPlaceHolder": "Tag",
+  "TypeFilterPlaceHolder": "Type",
   "UnselectAll": "Désélectionner tout"
 }

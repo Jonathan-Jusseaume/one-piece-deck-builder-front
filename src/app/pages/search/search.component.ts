@@ -4,6 +4,8 @@ import {ColorService} from "../../shared/service/color.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {LanguageService} from "../../shared/service/language.service";
 import {TranslateService} from "@ngx-translate/core";
+import {TagService} from "../../shared/service/tag.service";
+import {TypeService} from "../../shared/service/type.service";
 
 @Component({
     selector: 'opdb-search',
@@ -15,12 +17,17 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     private subscriptions: Subscription[] = [];
     public colors: Color[];
+    public tags: Tag[];
+    public types: Type[];
     public dropdownSettings: any;
     public searchForm: FormGroup;
     public colorPlaceHolder: string;
+    public tagPlaceHolder: string;
+    public typePlaceHolder: string;
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
-                private _translateService: TranslateService) {
+                private _translateService: TranslateService, private _tagService: TagService,
+                private _typeService: TypeService) {
     }
 
     ngOnInit() {
@@ -30,9 +37,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     initComponents() {
-        this._translateService.get(['SelectAll', 'UnselectAll', 'ColorFilterPlaceHolder', 'SearchButton'])
+        this._translateService.get(['SelectAll', 'UnselectAll', 'ColorFilterPlaceHolder', 'SearchButton',
+            'TagFilterPlaceHolder', 'TypeFilterPlaceHolder'])
             .subscribe(translations => {
                 this.colorPlaceHolder = translations['ColorFilterPlaceHolder'];
+                this.tagPlaceHolder = translations['TagFilterPlaceHolder'];
+                this.typePlaceHolder = translations['TypeFilterPlaceHolder'];
                 this.dropdownSettings = {
                     singleSelection: false,
                     idField: 'id',
@@ -46,8 +56,16 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.subscriptions.push(this._colorService.list().subscribe(colors => {
             this.colors = colors;
         }))
+        this.subscriptions.push(this._tagService.list().subscribe(tags => {
+            this.tags = tags;
+        }))
+        this.subscriptions.push(this._typeService.list().subscribe(types => {
+            this.types = types;
+        }))
         this.searchForm = this.fb.group({
-            colors: []
+            colors: [],
+            tags: [],
+            types: []
         });
     }
 

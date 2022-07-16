@@ -8,16 +8,47 @@
                         <p class="category">{{'FilterInformation' | translate}}</p>
                     </div>
                     <form class="content" [formGroup]="searchForm" (submit)="launchSearch()">
-                        <ng-multiselect-dropdown *ngIf="colors && dropdownSettings"
-                                                 name="colors"
-                                                 [settings]="dropdownSettings"
-                                                 [placeholder]="colorPlaceHolder"
-                                                 [data]="colors"
-                                                 formControlName="colors">
-                        </ng-multiselect-dropdown>
-                        <button type="submit" class="btn btn-info btn-fill center-block">
-                            {{'SearchButton' | translate}}
-                        </button>
+                        <div class="row px-1">
+                            <div class="col-md-4 col-12">
+                                <div class="form-group">
+                                    <ng-multiselect-dropdown *ngIf="types && dropdownSettings"
+                                                             name="types"
+                                                             [settings]="dropdownSettings"
+                                                             [placeholder]="typePlaceHolder"
+                                                             [data]="types"
+                                                             formControlName="types">
+                                    </ng-multiselect-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <div class="form-group">
+                                    <ng-multiselect-dropdown *ngIf="colors && dropdownSettings"
+                                                             name="colors"
+                                                             [settings]="dropdownSettings"
+                                                             [placeholder]="colorPlaceHolder"
+                                                             [data]="colors"
+                                                             formControlName="colors">
+                                    </ng-multiselect-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-12">
+                                <div class="form-group">
+                                    <ng-multiselect-dropdown *ngIf="tags && dropdownSettings"
+                                                             name="tags"
+                                                             [settings]="dropdownSettings"
+                                                             [placeholder]="tagPlaceHolder"
+                                                             [data]="tags"
+                                                             formControlName="tags">
+                                    </ng-multiselect-dropdown>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row px-1">
+                            <button type="submit" class="btn btn-info btn-fill center-block">
+                                {{'SearchButton' | translate}}
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

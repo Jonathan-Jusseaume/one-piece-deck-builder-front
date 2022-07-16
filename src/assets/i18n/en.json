@@ -8,5 +8,7 @@
   "Search": "Search cards",
   "SearchButton": "Search",
   "SelectAll": "Select All",
+  "TagFilterPlaceHolder": "Tag",
+  "TypeFilterPlaceHolder": "Type",
   "UnselectAll": "Unselect All"
 }
