@@ -1,5 +1,7 @@
 {
-  "ColorFilterPlaceHolder": "Colors",
+  "ColorFilterPlaceHolder": "Color",
+  "Connection": "Connect with Google",
+  "Disconnection": "Log out",
   "English": "English",
   "French": "French",
   "FilterTitle": "Filters",

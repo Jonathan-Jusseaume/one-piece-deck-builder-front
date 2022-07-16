@@ -10,7 +10,7 @@
     <ul class="nav responsive-nav">
         <li *ngIf="isMobileMenu()">
             <a href="">
-                <p>Account</p>
+                <p>{{'Connection' | translate}}</p>
             </a>
         </li>
         <li class="dropdown" *ngIf="isMobileMenu()">
@@ -25,7 +25,7 @@
         </li>
         <li *ngIf="isMobileMenu()">
             <a>
-                <p>Log out</p>
+                <p>{{'Disconnection' | translate}}</p>
             </a>
         </li>
         <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>
