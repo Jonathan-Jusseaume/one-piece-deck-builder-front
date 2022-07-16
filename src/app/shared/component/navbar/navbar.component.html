@@ -1,0 +1,46 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{getTitle() | translate}}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <p class="hidden-lg hidden-md">{{getTitle() | translate}}</p>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        Account
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{'LanguageChoice' | translate}}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li (click)="changeLanguage('en')"><a href="#">{{'English' | translate}}</a></li>
+                        <li (click)="changeLanguage('fr')"><a href="#">{{'French' | translate}}</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        Log out
+                    </a>
+                </li>
+                <li class="separator hidden-lg hidden-md"></li>
+            </ul>
+        </div>
+    </div>
+</nav>
