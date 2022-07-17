@@ -6,6 +6,8 @@ import {LanguageService} from "../../shared/service/language.service";
 import {TranslateService} from "@ngx-translate/core";
 import {TagService} from "../../shared/service/tag.service";
 import {TypeService} from "../../shared/service/type.service";
+import {CardService} from "../../shared/service/card.service";
+const FILTER_PAG_REGEX = /[^0-9]/g;
 
 @Component({
     selector: 'opdb-search',
@@ -24,10 +26,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     public colorPlaceHolder: string;
     public tagPlaceHolder: string;
     public typePlaceHolder: string;
+    public searchResult: Page<Card>;
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
-                private _typeService: TypeService) {
+                private _typeService: TypeService, private _cardService: CardService) {
     }
 
     ngOnInit() {
@@ -70,8 +73,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     launchSearch() {
-        console.log('Search');
-        console.log(this.searchForm);
+        this.subscriptions.push(
+            this._cardService.search(this.searchForm.value).subscribe(result => {
+                this.searchResult = result;
+            })
+        );
     }
 
     ngOnDestroy(): void {

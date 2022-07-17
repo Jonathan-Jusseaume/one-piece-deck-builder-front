@@ -20,6 +20,9 @@ import {IconsComponent} from "./pages/icons/icons.component";
 import {LbdChartComponent} from "./pages/lbd/lbd-chart/lbd-chart.component";
 import {SearchComponent} from "./pages/search/search.component";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import { CardResultsComponent } from './shared/component/card-results/card-results.component';
+import {NgxPaginationModule} from "ngx-pagination";
+import { CardComponent } from './shared/component/card/card.component';
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -41,7 +44,8 @@ export function httpTranslateLoader(http: HttpClient) {
         }),
         NguiMapModule,
         NgMultiSelectDropDownModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxPaginationModule
     ],
     declarations: [
         AppComponent,
@@ -52,7 +56,9 @@ export function httpTranslateLoader(http: HttpClient) {
         DashboardComponent,
         IconsComponent,
         LbdChartComponent,
-        SearchComponent
+        SearchComponent,
+        CardResultsComponent,
+        CardComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

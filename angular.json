@@ -147,14 +147,14 @@
       }
     }
   },
-  "defaultProject": "lbd-free-angular-cli",
+  "defaultProject": "one-piece-deck-builder",
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "app",
+      "prefix": "opdb",
       "style": "scss"
     },
     "@schematics/angular:directive": {
-      "prefix": "app"
+      "prefix": "opdb"
     }
   },
   "cli": {

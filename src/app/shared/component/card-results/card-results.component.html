@@ -1,0 +1,26 @@
+<div class="row" *ngIf="cardResult">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">{{cardResult.totalElements}} {{'FilterTitle' | translate}}</h4>
+                <p class="category">{{'FilterInformation' | translate}}</p>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <opdb-card class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6"
+                               *ngFor="let card of cardResult.content | paginate : {
+                               itemsPerPage: cardResult.numberOfElements,
+                               currentPage: cardResult.number,
+                               totalItems: cardResult.totalElements}" [card]="card">
+                    </opdb-card>
+                </div>
+                <div class="row justify-content-center d-flex">
+                    <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
