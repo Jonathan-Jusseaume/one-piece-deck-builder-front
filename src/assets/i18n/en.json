@@ -1,5 +1,6 @@
 {
   "CardFound": "cards found",
+  "ClearButton": "Reset",
   "ColorFilterPlaceHolder": "Color",
   "Connection": "Connect with Google",
   "Disconnection": "Log out",
@@ -7,8 +8,10 @@
   "French": "French",
   "FilterTitle": "Filters",
   "FilterInformation": "Select filters and press the button \"Search\" in order to launch the search",
+  "Github": "Github of the website",
   "LanguageChoice": "Change Language",
   "Next": "Next",
+  "OfficialWebSite": "Official Website",
   "Previous": "Previous",
   "Search": "Search cards",
   "SearchButton": "Search",

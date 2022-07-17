@@ -42,6 +42,15 @@
 .d-flex {
   display: flex;
 }
-.justify-content-center  {
+
+.justify-content-center {
   justify-content: center;
 }
+
+.actions {
+  justify-content: center;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+

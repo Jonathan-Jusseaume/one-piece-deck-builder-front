@@ -13,6 +13,8 @@ export class CardResultsComponent implements OnInit {
 
   @Output()
   public pageChanged: EventEmitter<number> = new EventEmitter<number>();
+  public previousString: string = 'Previous';
+  public nextString: string = 'Next';
 
   constructor(private _translateService: TranslateService) { }
 

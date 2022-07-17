@@ -65,15 +65,16 @@
   }
 
   .logo-img {
-    width: 30px;
-    display: inline-block;
-    max-height: 30px;
-    margin-right: 10px;
+    width: 100%;
+    padding: 10px;
+    display: flex!important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
     img {
-      width: 35px;
-      top: 11px;
-      position: absolute;
+      width: 60px;
     }
   }
 

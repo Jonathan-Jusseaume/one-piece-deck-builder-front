@@ -20,54 +20,6 @@ export const ROUTES: RouteInfo[] = [
         class: '',
         color: 'red',
         backgroundImage: 'assets/img/luffy.jpg'
-    },
-    {
-        path: '/user',
-        title: 'User Profile',
-        icon: 'pe-7s-user',
-        class: '',
-        color: 'green',
-        backgroundImage: 'assets/img/zoro.jpg'
-    },
-    {
-        path: '/table',
-        title: 'Table List',
-        icon: 'pe-7s-note2',
-        class: '',
-        color: 'red',
-        backgroundImage: 'assets/img/luffy.jpg'
-    },
-    {
-        path: '/typography',
-        title: 'Typography',
-        icon: 'pe-7s-news-paper',
-        class: '',
-        color: 'red',
-        backgroundImage: 'assets/img/luffy.jpg'
-    },
-    {
-        path: '/icons',
-        title: 'Icons',
-        icon: 'pe-7s-science',
-        class: '',
-        color: 'red',
-        backgroundImage: 'assets/img/luffy.jpg'
-    },
-    {
-        path: '/maps',
-        title: 'Maps',
-        icon: 'pe-7s-map-marker',
-        class: '',
-        color: 'red',
-        backgroundImage: 'assets/img/luffy.jpg'
-    },
-    {
-        path: '/notifications',
-        title: 'Notifications',
-        icon: 'pe-7s-bell',
-        class: '',
-        color: 'red',
-        backgroundImage: 'assets/img/luffy.jpg'
     }
 ];
 

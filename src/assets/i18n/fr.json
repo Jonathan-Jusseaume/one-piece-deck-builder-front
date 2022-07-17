@@ -1,5 +1,6 @@
 {
   "CardFound": "cartes trouvés",
+  "ClearButton": "Réinitialiser",
   "ColorFilterPlaceHolder": "Couleur",
   "Connection": "Connexion avec Google",
   "Disconnection": "Se déconnecter",
@@ -7,9 +8,11 @@
   "French": "Français",
   "FilterTitle": "Filtres",
   "FilterInformation": "Séléctionnez des filtres et appuyez sur le bouton \"Rechercher\" pour lancer la recherche",
+  "Github": "Github du site",
   "LanguageChoice": "Changer de langue",
   "Next": "Suivant",
   "Previous": "Précédent",
+  "OfficialWebSite": "Site officiel",
   "Search": "Rechercher des cartes",
   "SearchButton": "Rechercher",
   "SelectAll": "Sélectionner tout",

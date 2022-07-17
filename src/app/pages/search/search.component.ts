@@ -77,6 +77,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.subscriptions.push(
             this._cardService.search(this.searchForm.value, numberPage).subscribe(result => {
                 this.searchResult = result;
+                document.getElementById("search")?.scrollIntoView();
             })
         );
     }
@@ -87,5 +88,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     changePage(newPage: number) {
         this.launchSearch(newPage - 1);
+    }
+
+    resetSearch() {
+        this.searchForm.reset();
+        this.searchResult = null;
     }
 }
