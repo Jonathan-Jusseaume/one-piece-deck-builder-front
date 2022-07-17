@@ -14,7 +14,7 @@ import {SearchComponent} from "./pages/search/search.component";
 
 export const ROUTES: RouteInfo[] = [
     {
-        path: '/search',
+        path: '',
         title: 'Search',
         icon: 'fa fa-search',
         class: '',
@@ -24,23 +24,21 @@ export const ROUTES: RouteInfo[] = [
 ];
 
 export const routes: Routes = [
-    {path: 'search', component: SearchComponent},
+    {path: '', component: SearchComponent},
     {path: 'user', component: UserComponent},
     {path: 'table', component: TablesComponent},
     {path: 'typography', component: TypographyComponent},
     {path: 'icons', component: IconsComponent},
     {path: 'maps', component: MapsComponent},
     {path: 'notifications', component: NotificationsComponent},
-    {path: '**', redirectTo: 'search'}
+    {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
     imports: [
         CommonModule,
         BrowserModule,
-        RouterModule.forRoot(routes, {
-            useHash: true
-        })
+        RouterModule.forRoot(routes)
     ],
     exports: [],
 })

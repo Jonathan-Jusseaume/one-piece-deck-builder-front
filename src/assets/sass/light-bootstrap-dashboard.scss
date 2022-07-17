@@ -54,3 +54,32 @@
   align-items: center;
 }
 
+a {
+  cursor: pointer;
+}
+
+.google {
+  display: flex !important;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  color: #9a9a9a;
+  padding: 10px 15px;
+  margin: 4px 0;
+
+}
+
+.google-user {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  color: #9a9a9a;
+  padding: 10px 8px;
+  margin: 4px 0;
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+  }
+}
+

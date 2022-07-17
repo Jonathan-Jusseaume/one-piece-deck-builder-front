@@ -16,6 +16,7 @@ node_modules
 .c9/
 *.launch
 .settings/
+src/app/app.module.ts
 
 # IDE - VSCode
 .vscode/*

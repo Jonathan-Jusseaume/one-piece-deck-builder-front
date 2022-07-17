@@ -6,22 +6,24 @@
         </a>
     </div>
     <ul class="nav responsive-nav">
-        <li *ngIf="isMobileMenu()">
-            <a href="">
-                <p>{{'Connection' | translate}}</p>
-            </a>
+        <li class="google-user" *ngIf="user && isMobileMenu()">
+            <img [src]="user.photoUrl"/>
+        </li>
+        <li class="google" *ngIf="!user && isMobileMenu()">
+            <span style="color: #FFFFFF">{{'Connection' | translate}} :</span>
+            <asl-google-signin-button id="google-button"></asl-google-signin-button>
         </li>
         <li class="dropdown" *ngIf="isMobileMenu()">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
                 {{'LanguageChoice' | translate}}
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-                <li (click)="changeLanguage('en')"><a href="#">{{'English' | translate}}</a></li>
-                <li (click)="changeLanguage('fr')"><a href="#">{{'French' | translate}}</a></li>
+                <li (click)="changeLanguage('en')"><a>{{'English' | translate}}</a></li>
+                <li (click)="changeLanguage('fr')"><a>{{'French' | translate}}</a></li>
             </ul>
         </li>
-        <li *ngIf="isMobileMenu()">
+        <li *ngIf="isMobileMenu() && user">
             <a>
                 <p>{{'Disconnection' | translate}}</p>
             </a>

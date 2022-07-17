@@ -5,6 +5,7 @@ import {filter, Subscription} from "rxjs";
 import {NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {InterfaceService} from "./shared/service/interface.service";
 import PerfectScrollbar from "perfect-scrollbar";
+import {SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Component({
     selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
     private yScrollStack: number[] = [];
 
     constructor(public location: Location, private _translateService: TranslateService,
-                private router: Router, private _interfaceService: InterfaceService) {
+                private router: Router, private _interfaceService: InterfaceService, private _authService: SocialAuthService) {
         this._translateService.addLangs(['en', 'fr']);
         if (sessionStorage.getItem('lang')) {
             this._translateService.use(sessionStorage.getItem('lang'));
@@ -28,6 +29,9 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+        this._authService.authState.subscribe((user) => {
+            console.log(user)
+        });
         const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
         if (isWindows) {
