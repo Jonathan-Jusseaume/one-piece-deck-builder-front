@@ -14,7 +14,7 @@ import {SearchComponent} from "./pages/search/search.component";
 
 export const ROUTES: RouteInfo[] = [
     {
-        path: '',
+        path: '/',
         title: 'Search',
         icon: 'fa fa-search',
         class: '',
