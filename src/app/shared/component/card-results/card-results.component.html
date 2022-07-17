@@ -5,7 +5,7 @@
                 <h4 class="title">{{cardResult.totalElements}} {{'CardFound' | translate}}</h4>
             </div>
             <div class="content">
-                <div class="row justify-content-center d-flex">
+                <div class="row justify-content-center d-flex" *ngIf="cardResult.totalElements > cardResult.size">
                     <pagination-controls (pageChange)="changePage($event)"
                                          [nextLabel]="'Next' | translate"
                                          [previousLabel]="'Previous' | translate"></pagination-controls>
@@ -18,7 +18,7 @@
                                totalItems: cardResult.totalElements}; let index = index" [card]="card">
                     </opdb-card>
                 </div>
-                <div class="row justify-content-center d-flex">
+                <div class="row justify-content-center d-flex" *ngIf="cardResult.totalElements > cardResult.size">
                     <pagination-controls (pageChange)="changePage($event)"
                                          [nextLabel]="'Next' | translate"
                                          [previousLabel]="'Previous' | translate"></pagination-controls>
