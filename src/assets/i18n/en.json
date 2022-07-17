@@ -1,4 +1,5 @@
 {
+  "CardFound": "cards found",
   "ColorFilterPlaceHolder": "Color",
   "Connection": "Connect with Google",
   "Disconnection": "Log out",
@@ -7,6 +8,8 @@
   "FilterTitle": "Filters",
   "FilterInformation": "Select filters and press the button \"Search\" in order to launch the search",
   "LanguageChoice": "Change Language",
+  "Next": "Next",
+  "Previous": "Previous",
   "Search": "Search cards",
   "SearchButton": "Search",
   "SelectAll": "Select All",

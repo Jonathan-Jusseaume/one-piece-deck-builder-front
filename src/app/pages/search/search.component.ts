@@ -34,6 +34,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.searchForm = this.fb.group({
+            colors: [],
+            tags: [],
+            types: []
+        });
         this.subscriptions.push(this._languageService.languageSelectedChanged.subscribe(language => {
             this.initComponents();
         }))
@@ -65,16 +70,12 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.subscriptions.push(this._typeService.list().subscribe(types => {
             this.types = types;
         }))
-        this.searchForm = this.fb.group({
-            colors: [],
-            tags: [],
-            types: []
-        });
+
     }
 
-    launchSearch() {
+    launchSearch(numberPage) {
         this.subscriptions.push(
-            this._cardService.search(this.searchForm.value).subscribe(result => {
+            this._cardService.search(this.searchForm.value, numberPage).subscribe(result => {
                 this.searchResult = result;
             })
         );
@@ -82,5 +83,9 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    }
+
+    changePage(newPage: number) {
+        this.launchSearch(newPage - 1);
     }
 }

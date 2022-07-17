@@ -1,0 +1,9 @@
+.all-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  opdb-card {
+    width: fit-content;
+  }
+}

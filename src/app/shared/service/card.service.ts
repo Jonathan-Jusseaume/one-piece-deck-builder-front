@@ -15,8 +15,9 @@ export class CardService {
 
     }
 
-    public search(cardFilter): Observable<Page<Card>> {
-        const httpParams = new HttpParams().set('language', this._languageService.getCurrentLanguage());
+    public search(cardFilter: any, numberPage: number): Observable<Page<Card>> {
+        const httpParams = new HttpParams().set('language', this._languageService.getCurrentLanguage())
+            .set('page', numberPage);
         return this.httpClient.post<Page<Card>>(this._configurationService.getApiUrl() + 'cards/search',
             cardFilter,
             {params: httpParams});

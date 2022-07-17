@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'opdb-card-results',
@@ -10,12 +11,15 @@ export class CardResultsComponent implements OnInit {
   @Input()
   public cardResult: Page<Card>;
 
-  constructor() { }
+  @Output()
+  public pageChanged: EventEmitter<number> = new EventEmitter<number>();
+
+  constructor(private _translateService: TranslateService) { }
 
   ngOnInit(): void {
   }
 
   changePage($event: number) {
-    console.log($event);
+    this.pageChanged.emit($event);
   }
 }

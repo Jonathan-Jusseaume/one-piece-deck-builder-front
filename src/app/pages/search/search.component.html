@@ -7,7 +7,7 @@
                         <h4 class="title">{{'FilterTitle' | translate}}</h4>
                         <p class="category">{{'FilterInformation' | translate}}</p>
                     </div>
-                    <form class="content" [formGroup]="searchForm" (submit)="launchSearch()">
+                    <form class="content" [formGroup]="searchForm" (submit)="launchSearch(0)">
                         <div class="row px-1">
                             <div class="col-md-4 col-12">
                                 <div class="form-group">
@@ -54,6 +54,6 @@
             </div>
         </div>
 
-        <opdb-card-results *ngIf="searchResult" [cardResult]="searchResult"></opdb-card-results>
+        <opdb-card-results *ngIf="searchResult" [cardResult]="searchResult" (pageChanged)="changePage($event)"></opdb-card-results>
     </div>
 </div>
