@@ -17,16 +17,10 @@ const FILTER_PAG_REGEX = /[^0-9]/g;
 export class SearchComponent implements OnInit, OnDestroy {
 
 
+
     private subscriptions: Subscription[] = [];
-    public colors: Color[];
-    public tags: Tag[];
-    public types: Type[];
-    public dropdownSettings: any;
-    public searchForm: FormGroup;
-    public colorPlaceHolder: string;
-    public tagPlaceHolder: string;
-    public typePlaceHolder: string;
-    public searchResult: Page<Card>;
+    public searchResult: Page<Deck>;
+    public searchForm: any;
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
@@ -34,48 +28,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.searchForm = this.fb.group({
-            colors: [],
-            tags: [],
-            types: []
-        });
-        this.subscriptions.push(this._languageService.languageSelectedChanged.subscribe(language => {
-            this.initComponents();
-        }))
-    }
-
-    initComponents() {
-        this._translateService.get(['SelectAll', 'UnselectAll', 'ColorFilterPlaceHolder', 'SearchButton',
-            'TagFilterPlaceHolder', 'TypeFilterPlaceHolder'])
-            .subscribe(translations => {
-                this.colorPlaceHolder = translations['ColorFilterPlaceHolder'];
-                this.tagPlaceHolder = translations['TagFilterPlaceHolder'];
-                this.typePlaceHolder = translations['TypeFilterPlaceHolder'];
-                this.dropdownSettings = {
-                    singleSelection: false,
-                    idField: 'id',
-                    textField: 'label',
-                    selectAllText: translations['SelectAll'],
-                    unSelectAllText: translations['UnselectAll'],
-                    searchPlaceholderText: translations['SearchButton'],
-                    allowSearchFilter: true
-                };
-            });
-        this.subscriptions.push(this._colorService.list().subscribe(colors => {
-            this.colors = colors;
-        }))
-        this.subscriptions.push(this._tagService.list().subscribe(tags => {
-            this.tags = tags;
-        }))
-        this.subscriptions.push(this._typeService.list().subscribe(types => {
-            this.types = types;
-        }))
-
     }
 
     launchSearch(numberPage) {
         this.subscriptions.push(
-            this._cardService.search(this.searchForm.value, numberPage).subscribe(result => {
+            this._cardService.search(this.searchForm.value, numberPage, 25).subscribe(result => {
                 this.searchResult = result;
                 document.getElementById("top")?.scrollIntoView();
             })
@@ -90,9 +47,13 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.launchSearch(newPage - 1);
     }
 
-    resetSearch() {
-        this.searchForm.reset();
-        this.searchResult = null;
-        document.getElementById("top")?.scrollIntoView();
+
+    formSubmitted($event: any) {
+        if ($event == null) {
+            this.searchResult = null;
+        } else {
+            this.searchForm =  {...$event};
+            this.launchSearch(0);
+        }
     }
 }

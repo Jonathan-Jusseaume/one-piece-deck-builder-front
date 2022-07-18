@@ -11,7 +11,8 @@
                                          [previousLabel]="'Previous' | translate"></pagination-controls>
                 </div>
                 <div class="row all-results">
-                    <opdb-card
+                    <opdb-card [style]="'max-width:' + cardMaxWidth + 'px!important'"
+                               (cardIsClicked)="cardIsClicked($event)"
                             *ngFor="let card of cardResult.content | paginate : {
                                itemsPerPage: cardResult.size,
                                currentPage: cardResult.number + 1,

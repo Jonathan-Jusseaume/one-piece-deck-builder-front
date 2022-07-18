@@ -1,0 +1,12 @@
+.not-valid {
+    color: red;
+}
+
+.card-not-valid {
+    box-shadow: 0 1px 1px red, 0 0 0 1px red !important;
+}
+
+.actions {
+    padding: 15px 0;
+    justify-content: left;
+}

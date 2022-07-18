@@ -15,10 +15,10 @@ export class CardService {
 
     }
 
-    public search(cardFilter: any, numberPage: number): Observable<Page<Card>> {
+    public search(cardFilter: any, numberPage: number, numberElements: number): Observable<Page<Deck>> {
         const httpParams = new HttpParams().set('language', this._languageService.getCurrentLanguage())
-            .set('page', numberPage);
-        return this.httpClient.post<Page<Card>>(this._configurationService.getApiUrl() + 'cards/search',
+            .set('page', numberPage).set('size', numberElements);
+        return this.httpClient.post<Page<Deck>>(this._configurationService.getApiUrl() + 'cards/search',
             cardFilter,
             {params: httpParams});
     }

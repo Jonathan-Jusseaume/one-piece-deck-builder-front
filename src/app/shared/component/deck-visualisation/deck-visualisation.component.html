@@ -1,0 +1,15 @@
+<div class="deck-container">
+    <div class="leader-container">
+        <opdb-card *ngIf="deck?.leader" [card]="deck?.leader" [inDeck]="true">
+        </opdb-card>
+        <div *ngIf="!deck?.leader" class="no-leader">
+            {{'Leader'|translate}}
+        </div>
+    </div>
+    <div class="all-results">
+        <div *ngFor="let card of getDistinctCards(deck)">
+            <opdb-card [card]="card" [inDeck]="true" [countInDeck]="mapCardIdCountNumber.get(card.id)">
+            </opdb-card>
+        </div>
+    </div>
+</div>

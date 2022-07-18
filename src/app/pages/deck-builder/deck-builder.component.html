@@ -1,0 +1,27 @@
+<div class="main-content" id="search">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 col-12">
+                <opdb-search-filter (formValueChanged)="formSubmitted($event)"></opdb-search-filter>
+            </div>
+            <div class="col-md-8 col-sm-12 col-12">
+                <opdb-card-results (cardClick)="addCardToDeck($event)" [cardMaxWidth]="125" *ngIf="searchResult" [cardResult]="searchResult" (pageChanged)="changePage($event)"></opdb-card-results>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card" [class]="{'card-not-valid': deckIsNotValid}">
+                    <div class="header">
+                        <h4 class="title">{{'Deck' | translate}}</h4>
+                        <p class="category not-valid" *ngIf="deckIsNotValid">{{'NotValidDeck' | translate}}</p>
+                    </div>
+                    <div class="content">
+                        <div class="actions">
+                            <button class="btn btn-danger" (click)="eraseDeck()">{{'Erase' | translate}}</button>
+                        </div>
+                        <opdb-deck-visualisation [deck]="deck"></opdb-deck-visualisation>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

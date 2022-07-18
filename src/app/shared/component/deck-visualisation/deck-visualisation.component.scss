@@ -1,0 +1,21 @@
+.deck-container {
+  display: flex;
+  gap: 20px;
+}
+.no-leader {
+  width: 200px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  outline: #3f3f441a 3px dashed;
+  font-size: 24px;
+}
+
+@media screen and (max-width: 1040px){
+  .deck-container {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

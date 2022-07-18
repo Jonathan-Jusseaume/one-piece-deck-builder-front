@@ -1,4 +1,7 @@
 <div class="card-img">
-    <img [src]="_configurationService.getApiUrl() + 'card/image/' + card.image" />
+    <img [class]="{'leader-in-deck': inDeck && card.type.id === TypeEnum.LEADER,
+    'card-in-deck': inDeck && card.type.id !== TypeEnum.LEADER }"
+         [src]="_configurationService.getApiUrl() + 'card/image/' + card.image" (click)="isClicked(card)"/>
+    <span class="count" *ngIf="inDeck && countInDeck > 0">{{countInDeck}}</span>
 </div>
 

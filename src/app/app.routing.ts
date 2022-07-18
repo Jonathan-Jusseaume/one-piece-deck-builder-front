@@ -11,27 +11,37 @@ import {UpgradeComponent} from "./pages/upgrade/upgrade.component";
 import {IconsComponent} from "./pages/icons/icons.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {SearchComponent} from "./pages/search/search.component";
+import {DeckBuilderComponent} from "./pages/deck-builder/deck-builder.component";
 
 export const ROUTES: RouteInfo[] = [
     {
-        path: '/',
+        path: '/search',
         title: 'Search',
         icon: 'fa fa-search',
         class: '',
         color: 'red',
         backgroundImage: 'assets/img/luffy.jpg'
+    },
+    {
+        path: '/deck-builder',
+        title: 'DeckBuilder',
+        icon: 'pe-7s-hammer',
+        class: '',
+        color: 'green',
+        backgroundImage: 'assets/img/zoro.jpg'
     }
 ];
 
 export const routes: Routes = [
-    {path: '', component: SearchComponent},
+    {path: 'search', component: SearchComponent},
+    {path: 'deck-builder', component: DeckBuilderComponent},
     {path: 'user', component: UserComponent},
     {path: 'table', component: TablesComponent},
     {path: 'typography', component: TypographyComponent},
     {path: 'icons', component: IconsComponent},
     {path: 'maps', component: MapsComponent},
     {path: 'notifications', component: NotificationsComponent},
-    {path: '**', redirectTo: ''}
+    {path: '**', redirectTo: 'search'}
 ];
 
 @NgModule({
