@@ -1,0 +1,16 @@
+<ngx-charts-bar-vertical
+        [scheme]="colorScheme"
+        [results]="costValues"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showGridLines]="false"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [legendTitle]="'Cost of the team'"
+        [yAxisTickFormatting]="tickFormatting"
+        [yScaleMin]="0"
+        [yScaleMax]="10"
+        (select)="onSelect($event)">
+</ngx-charts-bar-vertical>

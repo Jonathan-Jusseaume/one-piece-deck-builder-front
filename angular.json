@@ -36,12 +36,13 @@
           },
           "configurations": {
             "production": {
-              "optimization": true,
+              "aot": false,
+              "optimization": false,
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -50,13 +51,14 @@
               ]
             },
             "development": {
-              "vendorChunk": true,
+              "aot": false,
+              "vendorChunk": false,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
+              "sourceMap": false,
+              "namedChunks": false,
               "buildOptimizer": false,
               "optimization": {
-                "scripts": true,
+                "scripts": false,
                 "styles": {
                   "minify": false,
                   "inlineCritical": true

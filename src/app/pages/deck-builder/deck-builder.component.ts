@@ -32,7 +32,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (sessionStorage.getItem('deck') && JSON.parse(sessionStorage.getItem('mapCount'))) {
+        if (sessionStorage.getItem('deck')) {
             this.deck = JSON.parse(sessionStorage.getItem('deck'))
         } else {
             this.deck = {id: null, leader: null, cards: []}
@@ -78,12 +78,16 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     addCardToDeck(cardSelected: Card) {
         if (cardSelected.type.id === TypeEnum.LEADER) {
             this.deck.leader = {...cardSelected};
+            sessionStorage.setItem('deck', JSON.stringify(this.deck));
+            this.deck = JSON.parse(sessionStorage.getItem('deck'))
             this.filtersComponent.searchForm.patchValue({colors: cardSelected.colors})
             this.filtersComponent.validForm();
         } else {
             this.deck.cards.push({...cardSelected});
             sessionStorage.setItem('deck', JSON.stringify(this.deck));
+            this.deck = JSON.parse(sessionStorage.getItem('deck'))
         }
+        console.log(this.deck);
     }
 
     eraseDeck() {

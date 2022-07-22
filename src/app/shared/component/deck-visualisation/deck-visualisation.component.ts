@@ -12,8 +12,6 @@ export class DeckVisualisationComponent implements OnInit {
     @Input()
     public deck: Deck;
 
-
-
     public mapCardIdCountNumber: Map<string, number> = new Map<string, number>();
 
     constructor() {
