@@ -5,19 +5,12 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
     templateUrl: './deck-statistiques.component.html',
     styleUrls: ['./deck-statistiques.component.scss']
 })
-export class DeckStatistiquesComponent implements OnInit, OnChanges {
+export class DeckStatistiquesComponent implements OnInit {
 
     @Input()
     public deck: Deck;
 
     ngOnInit(): void {
     }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        console.log(this.deck);
-    }
-
-
-
 
 }

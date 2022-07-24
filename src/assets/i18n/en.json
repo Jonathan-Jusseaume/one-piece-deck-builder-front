@@ -3,6 +3,7 @@
   "ClearButton": "Reset",
   "ColorFilterPlaceHolder": "Color",
   "Connection": "Connect",
+  "CostChart": "Cost repartition",
   "Disconnection": "Log out",
   "Deck": "Your deck",
   "DeckBuilder": "Build a deck",
@@ -18,10 +19,12 @@
   "NotValidDeck": "This deck is not valid",
   "OfficialWebSite": "Official Website",
   "Previous": "Previous",
+  "Statistics": "Statistics",
   "Search": "Search cards",
   "SearchButton": "Search",
   "SelectAll": "Select All",
   "TagFilterPlaceHolder": "Tag",
   "TypeFilterPlaceHolder": "Type",
+  "TypePieChart": "Card type repartition",
   "UnselectAll": "Unselect All"
 }

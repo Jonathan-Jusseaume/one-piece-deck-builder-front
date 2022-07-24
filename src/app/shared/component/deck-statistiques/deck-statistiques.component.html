@@ -1,1 +1,11 @@
-<opdb-deck-cost-bar-chart [deck]="deck"></opdb-deck-cost-bar-chart>
+<div class="all-charts">
+    <div class="chart-container">
+        <span class="chart-title">{{'CostChart' | translate}}</span>
+        <opdb-deck-cost-bar-chart [deck]="deck"></opdb-deck-cost-bar-chart>
+    </div>
+    <div class="chart-container">
+        <span class="chart-title">{{'TypePieChart' | translate}}</span>
+        <opdb-deck-type-pie-chart [deck]="deck"></opdb-deck-type-pie-chart>
+    </div>
+</div>
+

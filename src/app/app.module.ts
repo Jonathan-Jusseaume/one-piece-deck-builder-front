@@ -30,7 +30,8 @@ import {DeckStatistiquesComponent} from './shared/component/deck-statistiques/de
 import {BrowserModule} from "@angular/platform-browser";
 import {NgxTabsModule} from "@ngx-lite/tabs";
 import { DeckCostBarChartComponent } from './shared/component/deck-cost-bar-chart/deck-cost-bar-chart.component';
-import {BarChartModule} from "@swimlane/ngx-charts";
+import {BarChartModule, PieChartModule} from "@swimlane/ngx-charts";
+import { DeckTypePieChartComponent } from './shared/component/deck-type-pie-chart/deck-type-pie-chart.component';
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -58,7 +59,8 @@ export function httpTranslateLoader(http: HttpClient) {
         MatTabsModule,
         BrowserModule,
         NgxTabsModule,
-        BarChartModule
+        BarChartModule,
+        PieChartModule
     ],
     declarations: [
         AppComponent,
@@ -74,7 +76,8 @@ export function httpTranslateLoader(http: HttpClient) {
         SearchFilterComponent,
         DeckVisualisationComponent,
         DeckStatistiquesComponent,
-        DeckCostBarChartComponent
+        DeckCostBarChartComponent,
+        DeckTypePieChartComponent
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {TypeEnum} from "../../model/constant/TypeEnum";
 import {SearchFilterComponent} from "../search-filter/search-filter.component";
 
@@ -11,6 +11,12 @@ export class DeckVisualisationComponent implements OnInit {
 
     @Input()
     public deck: Deck;
+
+    @Input()
+    public isBuilding: boolean = false;
+
+    @Output()
+    public cardIsClicked: EventEmitter<Card> = new EventEmitter<Card>();
 
     public mapCardIdCountNumber: Map<string, number> = new Map<string, number>();
 
@@ -36,5 +42,9 @@ export class DeckVisualisationComponent implements OnInit {
             }
         });
         return distinctCards;
+    }
+
+    clickCard($cardClicked: Card) {
+        this.cardIsClicked.emit($cardClicked);
     }
 }

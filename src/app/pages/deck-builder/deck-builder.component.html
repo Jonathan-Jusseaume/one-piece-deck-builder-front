@@ -23,12 +23,13 @@
                                     <button class="btn btn-danger"
                                             (click)="eraseDeck()">{{'Erase' | translate}}</button>
                                 </div>
-                                <opdb-deck-visualisation [deck]="deck"></opdb-deck-visualisation>
+                                <opdb-deck-visualisation (cardIsClicked)="deleteCard($event)" [isBuilding]="true"
+                                                         [deck]="deck"></opdb-deck-visualisation>
                             </div>
                         </div>
                     </div>
                 </ngx-tab>
-                <ngx-tab name="Statistiques">
+                <ngx-tab [name]="statisticsText">
                     <div class="col-12">
                         <div class="card card-tab" [class]="{'card-not-valid': deckIsNotValid}">
                             <div class="content dashboard-card-content">

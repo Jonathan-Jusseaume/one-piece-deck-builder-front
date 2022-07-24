@@ -3,6 +3,7 @@
   "ClearButton": "Réinitialiser",
   "ColorFilterPlaceHolder": "Couleur",
   "Connection": "Connexion",
+  "CostChart": "Répartition des coûts",
   "Disconnection": "Se déconnecter",
   "Deck": "Votre deck",
   "DeckBuilder": "Construire un deck",
@@ -20,8 +21,10 @@
   "OfficialWebSite": "Site officiel",
   "Search": "Rechercher des cartes",
   "SearchButton": "Rechercher",
+  "Statistics": "Statistiques",
   "SelectAll": "Sélectionner tout",
   "TagFilterPlaceHolder": "Tag",
+  "TypePieChart": "Répartition des types de carte",
   "TypeFilterPlaceHolder": "Type",
   "UnselectAll": "Désélectionner tout"
 }

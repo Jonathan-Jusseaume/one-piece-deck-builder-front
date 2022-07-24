@@ -25,6 +25,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     public searchForm: any;
     public deckIsNotValid: boolean = false;
     public deck: Deck;
+    public statisticsText = 'Statistics';
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
@@ -37,6 +38,10 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         } else {
             this.deck = {id: null, leader: null, cards: []}
         }
+        this._translateService.get(['Statistics'])
+            .subscribe(translations => {
+                this.statisticsText = translations['Statistics'];
+            });
 
         this.searchForm = this.fb.group({
             colors: [],
@@ -75,19 +80,16 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     }
 
 
-    addCardToDeck(cardSelected: Card) {
+    addCardToDeck(cardSelected: Card): void {
         if (cardSelected.type.id === TypeEnum.LEADER) {
             this.deck.leader = {...cardSelected};
-            sessionStorage.setItem('deck', JSON.stringify(this.deck));
-            this.deck = JSON.parse(sessionStorage.getItem('deck'))
             this.filtersComponent.searchForm.patchValue({colors: cardSelected.colors})
             this.filtersComponent.validForm();
         } else {
             this.deck.cards.push({...cardSelected});
-            sessionStorage.setItem('deck', JSON.stringify(this.deck));
-            this.deck = JSON.parse(sessionStorage.getItem('deck'))
         }
-        console.log(this.deck);
+        sessionStorage.setItem('deck', JSON.stringify(this.deck));
+        this.deck = JSON.parse(sessionStorage.getItem('deck'))
     }
 
     eraseDeck() {
@@ -96,4 +98,16 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     }
 
 
+    deleteCard(cardClicked: Card): void {
+        if (cardClicked.type.id === TypeEnum.LEADER) {
+            this.deck.leader = null;
+        } else {
+            const indexCardToDelete = this.deck.cards.map(card => card.id).lastIndexOf(cardClicked.id);
+            if (indexCardToDelete !== -1) {
+                this.deck.cards.splice(indexCardToDelete, 1);
+            }
+        }
+        sessionStorage.setItem('deck', JSON.stringify(this.deck));
+        this.deck = JSON.parse(sessionStorage.getItem('deck'))
+    }
 }

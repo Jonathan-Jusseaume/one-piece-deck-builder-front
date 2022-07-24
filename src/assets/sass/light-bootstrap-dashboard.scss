@@ -93,3 +93,14 @@ a {
   }
 }
 
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  .chart-title {
+    font-size: 16px;
+  }
+}
+
