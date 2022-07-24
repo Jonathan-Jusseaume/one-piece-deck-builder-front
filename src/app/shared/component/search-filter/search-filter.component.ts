@@ -6,6 +6,7 @@ import {LanguageService} from "../../service/language.service";
 import {TranslateService} from "@ngx-translate/core";
 import {TagService} from "../../service/tag.service";
 import {TypeService} from "../../service/type.service";
+import {RarityService} from "../../service/rarity.service";
 
 @Component({
   selector: 'opdb-search-filter',
@@ -24,20 +25,24 @@ export class SearchFilterComponent implements OnInit {
   public colorPlaceHolder: string;
   public tagPlaceHolder: string;
   public typePlaceHolder: string;
+  public rarityPlaceHolder: string;
   public colors: Color[];
   public tags: Tag[];
   public types: Type[];
+  public rarities: Rarity[];
   public dropdownSettings: any;
+
 
   constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
               private _translateService: TranslateService, private _tagService: TagService,
-              private _typeService: TypeService) { }
+              private _typeService: TypeService, private _rarityService: RarityService) { }
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       colors: [],
       tags: [],
-      types: []
+      types: [],
+      rarities: []
     });
     this.subscriptions.push(this._languageService.languageSelectedChanged.subscribe(language => {
       this.initComponents();
@@ -47,11 +52,12 @@ export class SearchFilterComponent implements OnInit {
 
   initComponents() {
     this._translateService.get(['SelectAll', 'UnselectAll', 'ColorFilterPlaceHolder', 'SearchButton',
-      'TagFilterPlaceHolder', 'TypeFilterPlaceHolder'])
+      'TagFilterPlaceHolder', 'TypeFilterPlaceHolder', 'RarityFilterPlaceHolder'])
         .subscribe(translations => {
           this.colorPlaceHolder = translations['ColorFilterPlaceHolder'];
           this.tagPlaceHolder = translations['TagFilterPlaceHolder'];
           this.typePlaceHolder = translations['TypeFilterPlaceHolder'];
+          this.rarityPlaceHolder = translations['RarityFilterPlaceHolder'];
           this.dropdownSettings = {
             singleSelection: false,
             idField: 'id',
@@ -70,6 +76,9 @@ export class SearchFilterComponent implements OnInit {
     }))
     this.subscriptions.push(this._typeService.list().subscribe(types => {
       this.types = types;
+    }))
+    this.subscriptions.push(this._rarityService.list().subscribe(rarities => {
+      this.rarities = rarities;
     }))
 
   }
