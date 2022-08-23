@@ -8,7 +8,7 @@ declare interface Card {
     label: string;
     effect: string;
     cost: number;
-    image: string;
+    images: string[];
     power: number;
     life: number;
     counter: number;
