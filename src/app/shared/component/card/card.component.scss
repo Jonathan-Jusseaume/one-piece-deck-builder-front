@@ -8,6 +8,13 @@
     width: 100%;
     object-fit: contain;
     cursor: pointer;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+    &.visible {
+      display: block;
+      opacity: 1;
+    }
   }
   .leader-in-deck {
     width: 200px;

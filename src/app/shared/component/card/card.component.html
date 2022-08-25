@@ -1,7 +1,12 @@
 <div class="card-img">
-    <img [class]="{'leader-in-deck': inDeck && card.type.id === TypeEnum.LEADER,
-    'card-in-deck': inDeck && card.type.id !== TypeEnum.LEADER }"
-         [src]="_configurationService.getApiUrl() + 'card/image/' + card.images[0]" (click)="isClicked(card)" [alt]="card?.label"/>
+    <ng-container *ngFor="let img of card.images; let index = index">
+        <img [class]="{'leader-in-deck': inDeck && card.type.id === TypeEnum.LEADER,
+                'card-in-deck': inDeck && card.type.id !== TypeEnum.LEADER,
+                 'visible': index === currentImageIndex}"
+             [src]="_configurationService.getApiUrl() + 'card/image/' + img" (click)="isClicked(card)"
+             [alt]="card?.label"/>
+    </ng-container>
+
     <span class="count" *ngIf="inDeck && countInDeck > 0">{{countInDeck}}</span>
 </div>
 
