@@ -5,6 +5,10 @@
     </div>
     <form class="content" [formGroup]="searchForm" (reset)="resetSearch()" (submit)="validForm()">
         <div class="select-container">
+            <div class="form-group large-select">
+                <input type="text" class="form-control"
+                       [placeholder]="keywordPlaceHolder" formControlName="keyword">
+            </div>
             <div class="form-group small-select">
                 <ng-multiselect-dropdown *ngIf="types && dropdownSettings"
                                          name="types"
@@ -30,6 +34,33 @@
                                          [placeholder]="rarityPlaceHolder"
                                          [data]="rarities"
                                          formControlName="rarities">
+                </ng-multiselect-dropdown>
+            </div>
+            <div class="form-group small-select">
+                <ng-multiselect-dropdown *ngIf="costs && dropdownSettings"
+                                         name="costs"
+                                         [settings]="dropdownSettings"
+                                         [placeholder]="costsPlaceHolder"
+                                         [data]="costs"
+                                         formControlName="costs">
+                </ng-multiselect-dropdown>
+            </div>
+            <div class="form-group small-select">
+                <ng-multiselect-dropdown *ngIf="powers && dropdownSettings"
+                                         name="powers"
+                                         [settings]="dropdownSettings"
+                                         [placeholder]="powerPlaceHolder"
+                                         [data]="powers"
+                                         formControlName="powers">
+                </ng-multiselect-dropdown>
+            </div>
+            <div class="form-group large-select">
+                <ng-multiselect-dropdown *ngIf="products && dropdownSettings"
+                                         name="products"
+                                         [settings]="dropdownSettings"
+                                         [placeholder]="productPlaceHolder"
+                                         [data]="products"
+                                         formControlName="products">
                 </ng-multiselect-dropdown>
             </div>
             <div class="form-group large-select">
