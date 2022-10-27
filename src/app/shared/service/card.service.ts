@@ -16,10 +16,41 @@ export class CardService {
     }
 
     public search(cardFilter: any, numberPage: number, numberElements: number): Observable<Page<Deck>> {
-        const httpParams = new HttpParams().set('language', this._languageService.getCurrentLanguage())
-            .set('page', numberPage).set('size', numberElements);
-        return this.httpClient.post<Page<Deck>>(this._configurationService.getApiUrl() + 'cards/search',
-            cardFilter,
+        let httpParams = new HttpParams()
+            .set('page', numberPage)
+            .set('size', numberElements);
+        httpParams = CardService.addFilterParamsToSearchQuery(cardFilter, httpParams);
+        return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'cards',
             {params: httpParams});
+    }
+
+
+    private static addFilterParamsToSearchQuery(cardFilter: any, httpParams: HttpParams): HttpParams {
+        if (cardFilter?.types?.length) {
+            httpParams = httpParams.set('typeId', cardFilter.types.map(type => type?.id).join(","));
+        }
+        if (cardFilter?.tags?.length) {
+            httpParams = httpParams.set('tagId', cardFilter.tags.map(tag => tag?.id).join(","));
+        }
+        if (cardFilter?.rarities?.length) {
+            httpParams = httpParams.set('rarityId', cardFilter.tags.map(rarity => rarity?.id).join(","));
+        }
+        if (cardFilter?.colors?.length) {
+            httpParams = httpParams.set('colorId', cardFilter.colors.map(color => color?.id).join(","));
+        }
+        if (cardFilter?.products?.length) {
+            httpParams = httpParams.set('productId', cardFilter.products.map(product => product?.id).join(","));
+        }
+        if (cardFilter?.costs?.length) {
+            httpParams = httpParams.set('cost', cardFilter.costs.join(","));
+        }
+        if (cardFilter?.powers?.length) {
+            httpParams = httpParams.set('power', cardFilter.powers.join(","));
+        }
+        if (cardFilter?.keyword !== '') {
+            httpParams = httpParams.set('keyword', cardFilter.keyword);
+        }
+
+        return httpParams;
     }
 }

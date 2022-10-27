@@ -1,1 +1,8 @@
-<p>hand-shuffler works!</p>
+<div class="hand-shuffler">
+    <button class="btn btn-danger" (click)="shuffleHand()">{{'Shuffle' | translate}}</button>
+    <div class="card-container">
+        <opdb-card *ngFor="let card of cardsInHand" [card]="card"></opdb-card>
+    </div>
+</div>
+
+

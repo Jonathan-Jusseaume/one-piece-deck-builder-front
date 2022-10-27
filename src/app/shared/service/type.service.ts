@@ -16,8 +16,7 @@ export class TypeService {
     }
 
     public list(): Observable<Type[]> {
-        const httpParams = new HttpParams().set('language', this._languageService.getCurrentLanguage());
-        return this.httpClient.get<Type[]>(this._configurationService.getApiUrl() + 'types', {params: httpParams});
+        return this.httpClient.get<Type[]>(this._configurationService.getApiUrl() + 'types');
     }
 
 }

@@ -1,0 +1,18 @@
+.hand-shuffler {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    max-width: 200px;
+  }
+
+  .card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
+

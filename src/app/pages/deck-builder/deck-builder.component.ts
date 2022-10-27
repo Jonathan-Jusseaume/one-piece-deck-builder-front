@@ -10,8 +10,6 @@ import {CardService} from "../../shared/service/card.service";
 import {TypeEnum} from "../../shared/model/constant/TypeEnum";
 import {SearchFilterComponent} from "../../shared/component/search-filter/search-filter.component";
 
-const FILTER_PAG_REGEX = /[^0-9]/g;
-
 @Component({
     selector: 'opdb-deck-builder',
     templateUrl: './deck-builder.component.html',
@@ -46,9 +44,14 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
             });
 
         this.searchForm = this.fb.group({
+            keyword: "",
+            products: [],
             colors: [],
             tags: [],
-            types: []
+            types: [],
+            rarities: [],
+            costs: [],
+            powers: []
         });
         this.launchSearch(0);
     }
@@ -100,7 +103,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     }
 
 
-    deleteCard(cardClicked: Card): void {
+    deleteCardFromDeck(cardClicked: Card): void {
         if (cardClicked.type.id === TypeEnum.LEADER) {
             this.deck.leader = null;
         } else {

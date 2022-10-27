@@ -16,8 +16,7 @@ export class RarityService {
     }
 
     public list(): Observable<Rarity[]> {
-        const httpParams = new HttpParams().set('language', this._languageService.getCurrentLanguage());
-        return this.httpClient.get<Rarity[]>(this._configurationService.getApiUrl() + 'rarities', {params: httpParams});
+        return this.httpClient.get<Rarity[]>(this._configurationService.getApiUrl() + 'rarities');
     }
 
 }

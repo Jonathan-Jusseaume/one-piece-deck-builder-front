@@ -16,8 +16,7 @@ export class ProductService {
     }
 
     public list(): Observable<Product[]> {
-        const httpParams = new HttpParams().set('language', this._languageService.getCurrentLanguage());
-        return this.httpClient.get<Product[]>(this._configurationService.getApiUrl() + 'products', {params: httpParams});
+        return this.httpClient.get<Product[]>(this._configurationService.getApiUrl() + 'products');
     }
 
 }

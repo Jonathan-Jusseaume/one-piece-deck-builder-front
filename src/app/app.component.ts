@@ -6,6 +6,7 @@ import {NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {InterfaceService} from "./shared/service/interface.service";
 import PerfectScrollbar from "perfect-scrollbar";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {LanguageService} from "./shared/service/language.service";
 
 @Component({
     selector: 'app-root',
@@ -19,12 +20,21 @@ export class AppComponent implements OnInit {
     private yScrollStack: number[] = [];
 
     constructor(public location: Location, private _translateService: TranslateService,
-                private router: Router, private _interfaceService: InterfaceService, private _authService: SocialAuthService) {
-        this._translateService.addLangs(['en', 'fr']);
+                private router: Router, private _interfaceService: InterfaceService,
+                private _authService: SocialAuthService, private _languageService: LanguageService) {
+        const languagesAvailable = ['en', 'fr'];
+        this._translateService.addLangs(languagesAvailable);
         if (sessionStorage.getItem('lang')) {
             this._translateService.use(sessionStorage.getItem('lang'));
+            this._languageService.setLanguage(sessionStorage.getItem('lang'));
         } else {
-            this._translateService.use('fr');
+            if (languagesAvailable.some(language => language === navigator.language)) {
+                this._translateService.use(navigator.language);
+                this._languageService.setLanguage(navigator.language);
+            } else {
+                this._translateService.use('en');
+                this._languageService.setLanguage('en');
+            }
         }
     }
 
@@ -32,11 +42,9 @@ export class AppComponent implements OnInit {
         this._authService.authState.subscribe((user) => {
             console.log(user)
         });
-        const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
-
+        const isWindows = navigator.platform.indexOf('Win') > -1;
         if (isWindows) {
             // if we are on windows OS we activate the perfectScrollbar function
-
             document.getElementsByTagName('body')[0].classList.add('perfect-scrollbar-on');
         } else {
             document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');

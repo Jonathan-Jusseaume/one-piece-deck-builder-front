@@ -23,7 +23,7 @@
                                     <button class="btn btn-danger"
                                             (click)="eraseDeck()">{{'Erase' | translate}}</button>
                                 </div>
-                                <opdb-deck-visualisation (cardIsClicked)="deleteCard($event)" [isBuilding]="true"
+                                <opdb-deck-visualisation (cardIsClicked)="deleteCardFromDeck($event)" [isBuilding]="true"
                                                          [deck]="deck"></opdb-deck-visualisation>
                             </div>
                         </div>

@@ -16,8 +16,7 @@ export class ColorService {
     }
 
     public list(): Observable<Color[]> {
-        const httpParams = new HttpParams().set('language', this._languageService.getCurrentLanguage());
-        return this.httpClient.get<Color[]>(this._configurationService.getApiUrl() + 'colors', {params: httpParams});
+        return this.httpClient.get<Color[]>(this._configurationService.getApiUrl() + 'colors');
     }
 
 }

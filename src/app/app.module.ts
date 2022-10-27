@@ -1,7 +1,7 @@
 import {ANIMATION_MODULE_TYPE, BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppRoutingModule} from './app.routing';
@@ -29,11 +29,12 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {DeckStatistiquesComponent} from './shared/component/deck-statistiques/deck-statistiques.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {NgxTabsModule} from "@ngx-lite/tabs";
-import { DeckCostBarChartComponent } from './shared/component/deck-cost-bar-chart/deck-cost-bar-chart.component';
+import {DeckCostBarChartComponent} from './shared/component/deck-cost-bar-chart/deck-cost-bar-chart.component';
 import {BarChartModule, PieChartModule} from "@swimlane/ngx-charts";
-import { DeckTypePieChartComponent } from './shared/component/deck-type-pie-chart/deck-type-pie-chart.component';
+import {DeckTypePieChartComponent} from './shared/component/deck-type-pie-chart/deck-type-pie-chart.component';
 import {DeckPowerBarChartComponent} from "./shared/component/deck-power-bar-chart/deck-power-bar-chart.component";
-import { HandShufflerComponent } from './shared/component/hand-shuffler/hand-shuffler.component';
+import {HandShufflerComponent} from './shared/component/hand-shuffler/hand-shuffler.component';
+import {HttpAcceptLanguageInterceptor} from "./shared/service/http-accept-language-interceptor.service";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -98,6 +99,12 @@ export function httpTranslateLoader(http: HttpClient) {
             }
         } as SocialAuthServiceConfig
     },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpAcceptLanguageInterceptor,
+            multi: true,
+        },
+
     ],
     bootstrap: [AppComponent]
 })

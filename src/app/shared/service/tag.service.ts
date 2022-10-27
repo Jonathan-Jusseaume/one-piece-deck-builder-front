@@ -16,8 +16,7 @@ export class TagService {
     }
 
     public list(): Observable<Tag[]> {
-        const httpParams = new HttpParams().set('language', this._languageService.getCurrentLanguage());
-        return this.httpClient.get<Tag[]>(this._configurationService.getApiUrl() + 'tags', {params: httpParams});
+        return this.httpClient.get<Tag[]>(this._configurationService.getApiUrl() + 'tags');
     }
 
 }
