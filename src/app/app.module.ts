@@ -33,6 +33,7 @@ import { DeckCostBarChartComponent } from './shared/component/deck-cost-bar-char
 import {BarChartModule, PieChartModule} from "@swimlane/ngx-charts";
 import { DeckTypePieChartComponent } from './shared/component/deck-type-pie-chart/deck-type-pie-chart.component';
 import {DeckPowerBarChartComponent} from "./shared/component/deck-power-bar-chart/deck-power-bar-chart.component";
+import { HandShufflerComponent } from './shared/component/hand-shuffler/hand-shuffler.component';
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -79,7 +80,8 @@ export function httpTranslateLoader(http: HttpClient) {
         DeckStatistiquesComponent,
         DeckCostBarChartComponent,
         DeckTypePieChartComponent,
-        DeckPowerBarChartComponent
+        DeckPowerBarChartComponent,
+        HandShufflerComponent
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

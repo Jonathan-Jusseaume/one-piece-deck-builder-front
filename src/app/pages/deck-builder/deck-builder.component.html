@@ -38,6 +38,15 @@
                         </div>
                     </div>
                 </ngx-tab>
+                <ngx-tab [name]="handText">
+                    <div class="col-12">
+                        <div class="card card-tab" [class]="{'card-not-valid': deckIsNotValid}">
+                            <div class="content">
+                                <opdb-hand-shuffler [deck]="deck"></opdb-hand-shuffler>
+                            </div>
+                        </div>
+                    </div>
+                </ngx-tab>
             </ngx-tabs>
         </div>
     </div>

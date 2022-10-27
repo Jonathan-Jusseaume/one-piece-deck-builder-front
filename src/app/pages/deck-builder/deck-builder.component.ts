@@ -26,6 +26,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     public deckIsNotValid: boolean = false;
     public deck: Deck;
     public statisticsText = 'Statistics';
+    public handText: string = 'Hand Shuffler';
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
@@ -38,9 +39,10 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         } else {
             this.deck = {id: null, leader: null, cards: []}
         }
-        this._translateService.get(['Statistics'])
+        this._translateService.get(['Statistics', 'HandShuffler'])
             .subscribe(translations => {
                 this.statisticsText = translations['Statistics'];
+                this.handText = translations['HandShuffler'];
             });
 
         this.searchForm = this.fb.group({
