@@ -47,7 +47,7 @@ export class CardService {
         if (cardFilter?.powers?.length) {
             httpParams = httpParams.set('power', cardFilter.powers.join(","));
         }
-        if (cardFilter?.keyword !== '') {
+        if (cardFilter?.keyword && cardFilter?.keyword !== '') {
             httpParams = httpParams.set('keyword', cardFilter.keyword);
         }
 
