@@ -1,15 +1,27 @@
 <div class="all-charts">
-    <div class="chart-container">
-        <span class="chart-title">{{'CostChart' | translate}}</span>
-        <opdb-deck-cost-bar-chart [deck]="deck"></opdb-deck-cost-bar-chart>
+    <div class="card">
+        <div class="header">
+            <h4 class="title">{{'CostChart' | translate}}</h4>
+        </div>
+        <div class="content">
+            <opdb-deck-cost-bar-chart [deck]="deck"></opdb-deck-cost-bar-chart>
+        </div>
     </div>
-    <div class="chart-container">
-        <span class="chart-title">{{'TypePieChart' | translate}}</span>
-        <opdb-deck-type-pie-chart [deck]="deck"></opdb-deck-type-pie-chart>
+    <div class="card">
+        <div class="header">
+            <h4 class="title">{{'TypePieChart' | translate}}</h4>
+        </div>
+        <div class="content">
+            <opdb-deck-type-pie-chart [deck]="deck"></opdb-deck-type-pie-chart>
+        </div>
     </div>
-    <div class="chart-container">
-        <span class="chart-title">{{'PowerChart' | translate}}</span>
-        <opdb-deck-power-bar-chart [deck]="deck"></opdb-deck-power-bar-chart>
+    <div class="card">
+        <div class="header">
+            <h4 class="title">{{'PowerChart' | translate}}</h4>
+        </div>
+        <div class="content">
+            <opdb-deck-power-bar-chart [deck]="deck"></opdb-deck-power-bar-chart>
+        </div>
     </div>
 </div>
 

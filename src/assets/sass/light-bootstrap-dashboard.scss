@@ -38,6 +38,23 @@
 @import "lbd/responsive";
 @import "../css/pe-icon-7-stroke.css";
 
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --main-blue-color: #337ab7;
+}
+
+.background-blue {
+  background: var(--main-blue-color) !important;
+}
+
+.border-blue {
+  border-color: var(--main-blue-color) !important;
+}
+
+.font-blue {
+  color: var(--main-blue-color) !important;
+}
+
 
 .d-flex {
   display: flex;
@@ -102,5 +119,9 @@ a {
   .chart-title {
     font-size: 16px;
   }
+}
+
+.ngx-pagination .current {
+  background: var(--main-blue-color)!important;
 }
 

@@ -11,6 +11,7 @@ export class DeckTypePieChartComponent implements OnInit, OnChanges {
     public deck: Deck;
 
     values: any[];
+    view: number[] = [420, 400];
 
 
     ngOnInit(): void {
@@ -20,6 +21,10 @@ export class DeckTypePieChartComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.updatePieChart();
+    }
+
+    updatePieChart(): void {
         this.values = [];
         if (this.deck.leader) {
             this.values.push(
@@ -43,7 +48,6 @@ export class DeckTypePieChartComponent implements OnInit, OnChanges {
                 "value": value
             })
         })
-
     }
 
 }

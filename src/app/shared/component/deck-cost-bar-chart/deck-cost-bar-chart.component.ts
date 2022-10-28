@@ -22,10 +22,11 @@ export class DeckCostBarChartComponent implements OnInit, OnChanges, OnDestroy {
     showYAxisLabel = false;
 
     colorScheme = {
-        domain: ['#FB404B']
+        domain: ['#337ab7']
     };
     yTicks: number[];
     maxNumberCardAtCost: number;
+    view: number[] = [420, 400];
 
 
     ngOnInit(): void {

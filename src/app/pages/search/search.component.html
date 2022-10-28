@@ -6,6 +6,7 @@
             </div>
         </div>
 
-        <opdb-card-results *ngIf="searchResult" [cardMaxWidth]="200" [cardResult]="searchResult" (pageChanged)="changePage($event)"></opdb-card-results>
+        <opdb-card-results *ngIf="searchResult" [cardMaxWidth]="200" [cardResult]="searchResult"
+                           (pageChanged)="changePage($event)"></opdb-card-results>
     </div>
 </div>

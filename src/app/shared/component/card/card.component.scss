@@ -26,12 +26,13 @@
   }
   .count {
     position: absolute;
-    background: #FB404B;
-    padding: 6px 14px;
+    background: var(--main-blue-color);
+    padding: 4px 10px;
     border-radius: 30px;
     color: white;
     font-weight: 700;
-    font-size: 20px;
-    bottom: 20px;
+    font-size: 14px;
+    bottom: 120px;
+    left: 100px;
   }
 }

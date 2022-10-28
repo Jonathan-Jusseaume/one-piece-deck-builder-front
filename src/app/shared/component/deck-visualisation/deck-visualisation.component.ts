@@ -26,7 +26,7 @@ export class DeckVisualisationComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    getDistinctCards(deck: Deck): Card[] {
+    getDistinctCardsFromDeck(deck: Deck): Card[] {
         this.mapCardIdCountNumber = new Map<string, number>();
         const alreadySeenCards: Map<string, boolean> = new Map<string, boolean>();
         const distinctCards: Card[] = [];

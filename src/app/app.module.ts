@@ -35,17 +35,45 @@ import {DeckTypePieChartComponent} from './shared/component/deck-type-pie-chart/
 import {DeckPowerBarChartComponent} from "./shared/component/deck-power-bar-chart/deck-power-bar-chart.component";
 import {HandShufflerComponent} from './shared/component/hand-shuffler/hand-shuffler.component';
 import {HttpAcceptLanguageInterceptor} from "./shared/service/http-accept-language-interceptor.service";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import { SaveDeckComponent } from './shared/component/save-deck/save-deck.component';
+import {MarkdownModule, MarkedOptions, MarkedRenderer} from "ngx-markdown";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
 
+export function markedOptionsFactory(): MarkedOptions {
+    const renderer = new MarkedRenderer();
+
+    renderer.link = (href: string, title: string, text: string) => {
+        return `${text}`;
+    };
+
+    return {
+        renderer: renderer
+    };
+}
+
 @NgModule({
     imports: [
+        MarkdownModule.forRoot({
+            loader: HttpClient,
+            markedOptions: {
+                provide: MarkedOptions,
+                useFactory: markedOptionsFactory,
+            },
+        }),
         BrowserAnimationsModule,
         FormsModule,
         RouterModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
         HttpClientModule,
+        MarkdownModule.forRoot(),
         AppRoutingModule,
         TranslateModule.forRoot({
             loader: {
@@ -82,7 +110,8 @@ export function httpTranslateLoader(http: HttpClient) {
         DeckCostBarChartComponent,
         DeckTypePieChartComponent,
         DeckPowerBarChartComponent,
-        HandShufflerComponent
+        HandShufflerComponent,
+        SaveDeckComponent
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ColorService} from "../../shared/service/color.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
@@ -9,6 +9,10 @@ import {TypeService} from "../../shared/service/type.service";
 import {CardService} from "../../shared/service/card.service";
 import {TypeEnum} from "../../shared/model/constant/TypeEnum";
 import {SearchFilterComponent} from "../../shared/component/search-filter/search-filter.component";
+import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {ChangeDetection} from "@angular/cli/lib/config/workspace-schema";
+
+declare var $: any;
 
 @Component({
     selector: 'opdb-deck-builder',
@@ -25,10 +29,14 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     public deck: Deck;
     public statisticsText = 'Statistics';
     public handText: string = 'Hand Shuffler';
+    public saveText: string = 'Save Deck';
+    public isUserConnected: boolean = false;
+    public loading: boolean = true;
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
-                private _typeService: TypeService, private _cardService: CardService) {
+                private _typeService: TypeService, private _cardService: CardService,
+                private _authService: SocialAuthService, private changeDetectorRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -37,10 +45,13 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         } else {
             this.deck = {id: null, leader: null, cards: []}
         }
-        this._translateService.get(['Statistics', 'HandShuffler'])
+        this._translateService.get(['Statistics', 'HandShuffler', 'SaveText'])
             .subscribe(translations => {
+                this.loading = false;
                 this.statisticsText = translations['Statistics'];
                 this.handText = translations['HandShuffler'];
+                this.saveText = translations['SaveText'];
+                this.changeDetectorRef.detectChanges();
             });
 
         this.searchForm = this.fb.group({
@@ -54,6 +65,15 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
             powers: []
         });
         this.launchSearch(0);
+        this._authService.authState.subscribe((user) => {
+            if (user) {
+                this.isUserConnected = true;
+                this.loading = true;
+                this.changeDetectorRef.detectChanges();
+                this.loading = false;
+                this.changeDetectorRef.detectChanges();
+            }
+        });
     }
 
     launchSearch(numberPage) {
@@ -90,11 +110,47 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
             this.deck.leader = {...cardSelected};
             this.filtersComponent.searchForm.patchValue({colors: cardSelected.colors})
             this.filtersComponent.validForm();
+            this.deck.cards = this.deck?.cards?.filter(card => this.hasCardColorOfLeader(card, this.deck, false));
         } else {
-            this.deck.cards.push({...cardSelected});
+            if (this.canCardBeAddedToDeck(cardSelected, this.deck)) {
+                this.deck.cards.push({...cardSelected});
+            }
         }
         sessionStorage.setItem('deck', JSON.stringify(this.deck));
         this.deck = JSON.parse(sessionStorage.getItem('deck'))
+    }
+
+    canCardBeAddedToDeck(cardSelected: Card, deck: Deck): boolean {
+        if (deck?.cards?.length >= 50) {
+            this.showErrorMessage("Nombre max de cartes atteints");
+            return false;
+        }
+
+        if (!this.hasCardColorOfLeader(cardSelected, deck, true)) {
+            return false;
+        }
+        if (deck?.cards?.filter(card => card?.id === cardSelected?.id)?.length === 4) {
+            this.showErrorMessage("Impossible d'avoir plus de quatre fois la même carte");
+            return false;
+        }
+        return true;
+    }
+
+    hasCardColorOfLeader(cardSelected: Card, deck: Deck, displayMessage: boolean): boolean {
+        if (!deck?.leader) {
+            if (displayMessage) {
+                this.showErrorMessage("Ajouter un leader au deck");
+            }
+            return false;
+        }
+        if (deck?.leader?.colors.filter(color => cardSelected?.colors?.map(color => color?.id)
+            ?.includes(color?.id))?.length) {
+            return true;
+        }
+        if (displayMessage) {
+            this.showErrorMessage("La carte doit être de la même couleur que votre leader");
+        }
+        return false;
     }
 
     eraseDeck() {
@@ -115,4 +171,19 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         sessionStorage.setItem('deck', JSON.stringify(this.deck));
         this.deck = JSON.parse(sessionStorage.getItem('deck'))
     }
+
+    showErrorMessage(text) {
+        $.notify({
+            icon: "pe-7s-attention",
+            message: text
+        }, {
+            type: 'danger',
+            timer: 100,
+            placement: {
+                from: 'top',
+                align: 'right'
+            }
+        });
+    }
+
 }

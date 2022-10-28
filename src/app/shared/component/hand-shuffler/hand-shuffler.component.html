@@ -1,5 +1,5 @@
 <div class="hand-shuffler">
-    <button class="btn btn-danger" (click)="shuffleHand()">{{'Shuffle' | translate}}</button>
+    <button class="btn background-blue border-blue btn-fill" (click)="shuffleHand()">{{'Shuffle' | translate}}</button>
     <div class="card-container">
         <opdb-card *ngFor="let card of cardsInHand" [card]="card"></opdb-card>
     </div>

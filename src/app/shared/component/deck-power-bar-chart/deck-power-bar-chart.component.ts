@@ -22,10 +22,11 @@ export class DeckPowerBarChartComponent implements OnInit, OnChanges, OnDestroy 
     showYAxisLabel = false;
 
     colorScheme = {
-        domain: ['#87CB16']
+        domain: ['#337ab7']
     };
     yTicks: number[];
     maxNumberCardAtPower: number;
+    view: number[] = [420, 400];
 
 
     ngOnInit(): void {

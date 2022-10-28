@@ -1,0 +1,26 @@
+<form class="content" [formGroup]="deckForm" (reset)="resetSearch()" (submit)="validForm()">
+    <div class="row px-1">
+        <div class="form-group large-select">
+            <label for="name">{{'Name' | translate}}</label>
+            <input id="name" type="text" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group large-select">
+            <label for="description">{{'Description' | translate}} <button (click)="changeMode()">{{'MarkdownPreview' | translate}}</button> </label>
+            <textarea *ngIf="!isMarkdownMode" id="description"
+                      type="text" class="form-control" formControlName="description">
+            </textarea>
+            <div *ngIf="isMarkdownMode">
+                <markdown [data]="deckForm?.value?.description"></markdown>
+            </div>
+        </div>
+    </div>
+
+    <div class="row px-1 actions">
+        <button type="reset" class="btn btn-default btn-fill">
+            {{'ClearButton' | translate}}
+        </button>
+        <button type="submit" class="btn background-blue border-blue btn-fill">
+            {{'SearchButton' | translate}}
+        </button>
+    </div>
+</form>

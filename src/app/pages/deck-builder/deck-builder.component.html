@@ -9,13 +9,13 @@
                                    [cardResult]="searchResult" (pageChanged)="changePage($event)"></opdb-card-results>
             </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="!loading">
             <ngx-tabs>
                 <ngx-tab name="Deck" [active]="true">
                     <div class="col-12">
                         <div class="card card-tab" [class]="{'card-not-valid': deckIsNotValid}">
                             <div class="header">
-                                <h4 class="title">{{'Deck' | translate}}</h4>
+                                <h4 class="title">{{'Deck' | translate}}: {{deck?.cards?.length}} {{'card(s)' | translate}}</h4>
                                 <p class="category not-valid" *ngIf="deckIsNotValid">{{'NotValidDeck' | translate}}</p>
                             </div>
                             <div class="content">
@@ -23,7 +23,8 @@
                                     <button class="btn btn-danger"
                                             (click)="eraseDeck()">{{'Erase' | translate}}</button>
                                 </div>
-                                <opdb-deck-visualisation (cardIsClicked)="deleteCardFromDeck($event)" [isBuilding]="true"
+                                <opdb-deck-visualisation (cardIsClicked)="deleteCardFromDeck($event)"
+                                                         [isBuilding]="true"
                                                          [deck]="deck"></opdb-deck-visualisation>
                             </div>
                         </div>
@@ -31,7 +32,7 @@
                 </ngx-tab>
                 <ngx-tab [name]="statisticsText">
                     <div class="col-12">
-                        <div class="card card-tab" [class]="{'card-not-valid': deckIsNotValid}">
+                        <div class="card card-tab card-no-background" [class]="{'card-not-valid': deckIsNotValid}">
                             <div class="content dashboard-card-content">
                                 <opdb-deck-statistiques [deck]="deck"></opdb-deck-statistiques>
                             </div>
@@ -43,6 +44,19 @@
                         <div class="card card-tab" [class]="{'card-not-valid': deckIsNotValid}">
                             <div class="content">
                                 <opdb-hand-shuffler [deck]="deck"></opdb-hand-shuffler>
+                            </div>
+                        </div>
+                    </div>
+                </ngx-tab>
+                <ngx-tab [name]="saveText" *ngIf="isUserConnected">
+                    <div class="col-12">
+                        <div class="card card-tab" [class]="{'card-not-valid': deckIsNotValid}">
+                            <div class="header">
+                                <h4 class="title">{{'SaveText' | translate}}</h4>
+                                <p class="category">{{'SaveDescription' | translate}}</p>
+                            </div>
+                            <div class="content">
+                                <opdb-save-deck [deck]="deck"></opdb-save-deck>
                             </div>
                         </div>
                     </div>
