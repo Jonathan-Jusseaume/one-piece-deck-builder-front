@@ -1,7 +1,11 @@
-<div *ngIf="decksOfUser">
-    <div *ngFor="let deck of decksOfUser.content">
-        <opdb-card [card]="deck.leader">
-
-        </opdb-card>
+<div class="main-content" id="search">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 decks-container" *ngIf="decksOfUser">
+                <ng-container *ngFor="let deck of decksOfUser.content">
+                    <opdb-deck-preview [deck]="deck"></opdb-deck-preview>
+                </ng-container>
+            </div>
+        </div>
     </div>
 </div>

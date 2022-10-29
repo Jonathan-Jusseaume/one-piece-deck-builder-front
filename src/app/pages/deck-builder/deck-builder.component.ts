@@ -45,7 +45,10 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         if (sessionStorage.getItem('deck')) {
             this.deck = JSON.parse(sessionStorage.getItem('deck'))
         } else {
-            this.deck = {user: undefined, description: "", name: "", id: null, leader: null, cards: []}
+            this.deck = {
+                creationDate: undefined,
+                user: undefined, description: "", name: "", id: null, leader: null, cards: []
+            }
         }
         this._translateService.get(['Statistics', 'HandShuffler', 'SaveText'])
             .subscribe(translations => {
@@ -158,7 +161,15 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
 
     eraseDeck(): void {
         sessionStorage.removeItem('deck');
-        this.deck = {user: undefined, description: "", name: "", id: null, leader: null, cards: []};
+        this.deck = {
+            creationDate: undefined,
+            user: undefined,
+            description: "",
+            name: "",
+            id: null,
+            leader: null,
+            cards: []
+        };
     }
 
 

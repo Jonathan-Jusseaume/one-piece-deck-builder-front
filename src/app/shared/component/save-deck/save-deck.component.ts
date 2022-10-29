@@ -3,6 +3,8 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {DeckService} from "../../service/deck.service";
 import {Router} from "@angular/router";
 
+declare var $: any;
+
 @Component({
     selector: 'opdb-save-deck',
     templateUrl: './save-deck.component.html',
@@ -19,6 +21,7 @@ export class SaveDeckComponent implements OnInit {
     deckForm: any;
     isMarkdownMode: boolean = false;
     heightTextArea: string = "";
+    validatingForm: boolean = false;
 
     constructor(private fb: FormBuilder, private _deckService: DeckService, private router: Router) {
     }
@@ -34,7 +37,10 @@ export class SaveDeckComponent implements OnInit {
     validForm(): void {
         this.deck.description = this.deckForm.value.description;
         this.deck.name =  this.deckForm.value.name;
+        this.validatingForm = true;
         this._deckService.create(this.deck).subscribe(result => {
+            this.showSuccessMessage('Deck ajouté avec succès');
+            this.validatingForm = false;
             this.router.navigate(["/my-decks"])
         });
     }
@@ -45,5 +51,19 @@ export class SaveDeckComponent implements OnInit {
 
     isFormValid(): boolean {
         return this.deckForm?.valid && this.isDeckValid;
+    }
+
+    showSuccessMessage(text): void {
+        $.notify({
+            icon: "pe-7s-attention",
+            message: text
+        }, {
+            type: 'success',
+            timer: 100,
+            placement: {
+                from: 'top',
+                align: 'right'
+            }
+        });
     }
 }

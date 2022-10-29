@@ -4,5 +4,6 @@ declare interface Deck {
     cards: Card[];
     name: string;
     description: string;
+    creationDate: Date;
     user: User;
 }

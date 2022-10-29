@@ -17,7 +17,7 @@ export class DeckService {
         return this._authService.authState.pipe(switchMap(authUser => {
             const httpParams = new HttpParams().set('mail', authUser.email)
                 .set('page', pageNumber)
-                .set('size', 15)
+                .set('size', 20)
             return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'decks',
                 {params: httpParams});
         }))
