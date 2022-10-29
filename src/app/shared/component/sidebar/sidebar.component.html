@@ -29,11 +29,14 @@
             </a>
         </li>
         <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
-            <a [routerLink]="[menuItem.path]">
-                <i class="{{menuItem.icon}}"></i>
-                <p>{{menuItem.title | translate}}</p>
-            </a>
-        </li>
+        <ng-container *ngFor="let menuItem of menuItems">
+            <li routerLinkActive="active"  class="{{menuItem.class}}" *ngIf="!menuItem.connected || user">
+                <a [routerLink]="[menuItem.path]">
+                    <i class="{{menuItem.icon}}"></i>
+                    <p>{{menuItem.title | translate}}</p>
+                </a>
+            </li>
+        </ng-container>
+
     </ul>
 </div>

@@ -1,13 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ColorService} from "../../shared/service/color.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {LanguageService} from "../../shared/service/language.service";
 import {TranslateService} from "@ngx-translate/core";
 import {TagService} from "../../shared/service/tag.service";
 import {TypeService} from "../../shared/service/type.service";
 import {CardService} from "../../shared/service/card.service";
-const FILTER_PAG_REGEX = /[^0-9]/g;
 
 @Component({
     selector: 'opdb-search',
@@ -19,7 +18,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
 
     private subscriptions: Subscription[] = [];
-    public searchResult: Page<Deck>;
+    public searchResult: Page<Card>;
     public searchForm: any;
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,

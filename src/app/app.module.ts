@@ -40,6 +40,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { SaveDeckComponent } from './shared/component/save-deck/save-deck.component';
 import {MarkdownModule, MarkedOptions, MarkedRenderer} from "ngx-markdown";
+import { MyDecksComponent } from './pages/my-decks/my-decks.component';
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -111,7 +112,8 @@ export function markedOptionsFactory(): MarkedOptions {
         DeckTypePieChartComponent,
         DeckPowerBarChartComponent,
         HandShufflerComponent,
-        SaveDeckComponent
+        SaveDeckComponent,
+        MyDecksComponent
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

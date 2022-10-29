@@ -1,0 +1,7 @@
+<div *ngIf="decksOfUser">
+    <div *ngFor="let deck of decksOfUser.content">
+        <opdb-card [card]="deck.leader">
+
+        </opdb-card>
+    </div>
+</div>

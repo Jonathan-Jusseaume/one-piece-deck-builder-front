@@ -10,7 +10,8 @@ import {CardService} from "../../shared/service/card.service";
 import {TypeEnum} from "../../shared/model/constant/TypeEnum";
 import {SearchFilterComponent} from "../../shared/component/search-filter/search-filter.component";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
-import {ChangeDetection} from "@angular/cli/lib/config/workspace-schema";
+import {compareToCard} from "../../shared/model/utils/compare-to-card";
+
 
 declare var $: any;
 
@@ -23,7 +24,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
 
     @ViewChild(SearchFilterComponent) filtersComponent: SearchFilterComponent;
     private subscriptions: Subscription[] = [];
-    public searchResult: Page<Deck>;
+    public searchResult: Page<Card>;
     public searchForm: any;
     public deckIsNotValid: boolean = false;
     public deck: Deck;
@@ -32,6 +33,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     public saveText: string = 'Save Deck';
     public isUserConnected: boolean = false;
     public loading: boolean = true;
+    public isDeckValid: boolean = false;
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
@@ -43,7 +45,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         if (sessionStorage.getItem('deck')) {
             this.deck = JSON.parse(sessionStorage.getItem('deck'))
         } else {
-            this.deck = {id: null, leader: null, cards: []}
+            this.deck = {user: undefined, description: "", name: "", id: null, leader: null, cards: []}
         }
         this._translateService.get(['Statistics', 'HandShuffler', 'SaveText'])
             .subscribe(translations => {
@@ -74,9 +76,11 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
                 this.changeDetectorRef.detectChanges();
             }
         });
+        this.isDeckValid = this.checkDeckValidity();
+
     }
 
-    launchSearch(numberPage) {
+    launchSearch(numberPage): void {
         this.subscriptions.push(
             this._cardService.search(this.searchForm.value, numberPage, 15).subscribe(result => {
                 this.searchResult = result;
@@ -89,12 +93,12 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
-    changePage(newPage: number) {
+    changePage(newPage: number): void {
         this.launchSearch(newPage - 1);
     }
 
 
-    formSubmitted($event: any) {
+    formSubmitted($event: any): void {
         if ($event == null) {
             this.filtersComponent.searchForm.reset()
             this.filtersComponent.validForm();
@@ -116,8 +120,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
                 this.deck.cards.push({...cardSelected});
             }
         }
-        sessionStorage.setItem('deck', JSON.stringify(this.deck));
-        this.deck = JSON.parse(sessionStorage.getItem('deck'))
+        this.updateDeckSessionStorageAndValidity();
     }
 
     canCardBeAddedToDeck(cardSelected: Card, deck: Deck): boolean {
@@ -143,8 +146,8 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
             }
             return false;
         }
-        if (deck?.leader?.colors.filter(color => cardSelected?.colors?.map(color => color?.id)
-            ?.includes(color?.id))?.length) {
+        if (deck?.leader?.colors.filter(color => cardSelected?.colors
+            ?.map(color => color?.id)?.includes(color?.id))?.length) {
             return true;
         }
         if (displayMessage) {
@@ -153,9 +156,9 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         return false;
     }
 
-    eraseDeck() {
+    eraseDeck(): void {
         sessionStorage.removeItem('deck');
-        this.deck = {id: null, leader: null, cards: []};
+        this.deck = {user: undefined, description: "", name: "", id: null, leader: null, cards: []};
     }
 
 
@@ -168,11 +171,10 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
                 this.deck.cards.splice(indexCardToDelete, 1);
             }
         }
-        sessionStorage.setItem('deck', JSON.stringify(this.deck));
-        this.deck = JSON.parse(sessionStorage.getItem('deck'))
+        this.updateDeckSessionStorageAndValidity();
     }
 
-    showErrorMessage(text) {
+    showErrorMessage(text): void {
         $.notify({
             icon: "pe-7s-attention",
             message: text
@@ -186,4 +188,33 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         });
     }
 
+    private checkDeckValidity(): boolean {
+        if (!this.deck?.leader) {
+            return false;
+        }
+        if (this.deck?.cards?.length !== 50) {
+            return false;
+        }
+        if (this.deck?.cards?.some(card => !this.hasCardColorOfLeader(card, this.deck, false))) {
+            return false;
+        }
+        const cardsId = this.deck?.cards?.map(card => card?.id);
+        let hasACardMoreThanFourTimes = false;
+        cardsId.forEach(cardId => {
+            if (this.deck?.cards?.filter(card => card?.id === cardId)?.length > 4) {
+                hasACardMoreThanFourTimes = true;
+            }
+        });
+        if (hasACardMoreThanFourTimes) {
+            return false;
+        }
+        return true;
+    }
+
+    private updateDeckSessionStorageAndValidity(): void {
+        this.deck?.cards?.sort((card, card2) => compareToCard(card, card2));
+        sessionStorage.setItem('deck', JSON.stringify(this.deck));
+        this.deck = JSON.parse(sessionStorage.getItem('deck'))
+        this.isDeckValid = this.checkDeckValidity();
+    }
 }

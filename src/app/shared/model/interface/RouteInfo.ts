@@ -5,4 +5,5 @@ declare interface RouteInfo {
     class: string;
     color: string;
     backgroundImage: string;
+    connected: boolean;
 }
