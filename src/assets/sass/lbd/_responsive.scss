@@ -119,12 +119,9 @@
     }
     .sidebar,
     .bootstrap-navbar{
-        position: fixed;
         display: block;
         top: 0;
         height: 100%;
-        right: 0;
-        left: auto;
         z-index: 1032;
         visibility: visible;
         background-color: #999;

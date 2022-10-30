@@ -11,8 +11,9 @@ import {switchMap} from "rxjs";
 export class DeckDetailsComponent implements OnInit {
 
 
-    deck: Deck;
-    panelOpenState: boolean = true;
+    public deck: Deck;
+    public panelOpenState: boolean = true;
+    public panelOpenStateHandShuffler: boolean = true;
 
     constructor(private activatedRoute: ActivatedRoute, private _deckService: DeckService, private router: Router) {
     }

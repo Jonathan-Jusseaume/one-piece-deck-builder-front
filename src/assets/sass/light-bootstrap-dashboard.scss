@@ -124,9 +124,9 @@ a {
   margin: 4px 0;
 
   img {
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
   }
 }
 
@@ -251,4 +251,67 @@ span.mat-content {
 
 .no-bs-gutter-x {
   --bs-gutter-x: 0!important;
+}
+
+.footer {
+  height: 60px;
+}
+
+.sidebar-button {
+  position: absolute;
+  z-index: 10;
+  top: 90px;
+  background: red;
+  border-right: solid 2px white;
+  border-top: solid 2px white;
+  border-bottom: solid 2px white;
+  border-left: none;
+  color: white;
+  width: 35px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-weight: 900;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.full-header, .short-header {
+  button {
+    font-size: 32px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+  }
+}
+
+.full-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  p {
+    font-size: 20px;
+    margin: 0;
+  }
+}
+
+.header-part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.dropdown-menu.show {
+  visibility: visible!important;
+  opacity: 1!important;
+  width: 100%;
+  a {
+    width: 100%;
+  }
 }

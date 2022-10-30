@@ -96,5 +96,17 @@ body {
       color: white;
     }
   }
+  .footer {
+    a, p {
+      color: white !important;
+    }
+    background: #202020;
+  }
+
+  .full-header, .short-header {
+    button {
+      color: white;
+    }
+  }
 
 }

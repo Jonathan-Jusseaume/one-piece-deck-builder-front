@@ -1,24 +1,29 @@
-import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {TranslateService} from "@ngx-translate/core";
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Location} from '@angular/common';
 import {InterfaceService} from "../../service/interface.service";
 import {ROUTES} from "../../../app.routing";
 import {LanguageService} from "../../service/language.service";
-import {GoogleLoginProvider, SocialAuthService} from "@abacritt/angularx-social-login";
+import {SocialAuthService} from "@abacritt/angularx-social-login";
 import {SocialUser} from "angularx-social-login";
+
+
+declare const $: any;
 
 @Component({
     selector: 'opdb-navbar',
     templateUrl: 'navbar.component.html'
 })
-
 export class NavbarComponent implements OnInit {
     private listTitles: any[];
     private toggleButton: any;
     private sidebarVisible: boolean;
     public user: SocialUser;
+    public isDarkMode: boolean = true;
 
-    @ViewChild('googleButton', { static: false}) googleButton: ElementRef;
+    @ViewChild('googleButton', {static: false}) googleButton: ElementRef;
+
+    @Input() sidebarOpened: boolean;
+    @Output() clickMenuButton: EventEmitter<void> = new EventEmitter<void>();
 
     constructor(private location: Location, private element: ElementRef, private _languageService: LanguageService,
                 private _interfaceService: InterfaceService, private _socialAuthService: SocialAuthService) {
@@ -74,5 +79,28 @@ export class NavbarComponent implements OnInit {
 
     logOut() {
         this._socialAuthService.signOut();
+    }
+
+    isMobileMenu(): boolean {
+        return $(window).width() <= 991;
+    }
+
+    switchMode($event: any): void {
+        console.log($event)
+
+    }
+
+    changeMode(): void {
+        this.isDarkMode = !this.isDarkMode;
+        if (!this.isDarkMode) {
+            document.getElementById('body').classList.add('light');
+        } else {
+            document.getElementById('body').classList.remove('light');
+        }
+
+    }
+
+    clickMenu(): void {
+        this.clickMenuButton.emit();
     }
 }

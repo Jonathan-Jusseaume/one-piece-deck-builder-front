@@ -47,6 +47,10 @@ import {DeckDetailsComponent} from './pages/deck-details/deck-details.component'
 import {Slugger} from "marked";
 import {CardModalComponent} from "./shared/component/card-modal/card-modal.component";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {MatSelectModule} from "@angular/material/select";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -99,7 +103,12 @@ export function markedOptionsFactory(): MarkedOptions {
         NgxTabsModule,
         BarChartModule,
         PieChartModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatSlideToggleModule,
+        NgbModule,
+        MatSelectModule
     ],
     declarations: [
         AppComponent,

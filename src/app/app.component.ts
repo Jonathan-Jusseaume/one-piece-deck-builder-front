@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Location, PopStateEvent} from '@angular/common';
 import {TranslateService} from "@ngx-translate/core";
 import {filter, Subscription} from "rxjs";
@@ -18,6 +18,17 @@ export class AppComponent implements OnInit {
     private _router: Subscription;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
+    public sidebarOpened: boolean = true;
+    public clickedOnceOnRetract: boolean = false;
+
+    public colorMap: Map<string, string> = new Map<string, string>([
+        ['purple', '#9368E9'],
+        ['red', '#FB404B'],
+        ['green', '#87CB16'],
+        ['orange', '#FFA534'],
+        ['blue', '#1F77D0'],
+        ['black', '5e5e5e']
+    ])
 
     constructor(public location: Location, private _translateService: TranslateService,
                 private router: Router, private _interfaceService: InterfaceService,
@@ -39,6 +50,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.sidebarOpened = window.innerWidth > 960;
         this._authService.authState.subscribe((user) => {
             console.log(user)
         });
@@ -68,8 +80,12 @@ export class AppComponent implements OnInit {
             }
         });
         this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
-            elemMainPanel.scrollTop = 0;
-            elemSidebar.scrollTop = 0;
+            if (elemMainPanel) {
+                elemMainPanel.scrollTop = 0;
+            }
+            if (elemSidebar) {
+                elemSidebar.scrollTop = 0;
+            }
         });
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
             let ps = new PerfectScrollbar(elemMainPanel);
@@ -103,5 +119,28 @@ export class AppComponent implements OnInit {
 
     getBackground() {
         return this._interfaceService.getCurrentRouteInfo()?.backgroundImage || 'assets/img/luffy.jpg';
+    }
+
+    switchSideBarMode(): void {
+        this.clickedOnceOnRetract = true;
+        this.sidebarOpened = !this.sidebarOpened;
+    }
+
+    getHexaColorByName(name: string): string {
+        return this.colorMap.get(name);
+    }
+
+    @HostListener('window:resize', ['$event.target'])
+    public onResize(target) {
+        if (!this.clickedOnceOnRetract) {
+            if (target.innerWidth <= 961) {
+                this.sidebarOpened = false;
+            }
+        }
+
+    }
+
+    isMobileMenu() {
+        return window.innerWidth <= 991;
     }
 }

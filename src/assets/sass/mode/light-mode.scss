@@ -95,4 +95,18 @@ body.light {
       color: black;
     }
   }
+
+  .footer {
+    a, p {
+      color: #202020 !important;
+    }
+
+    background: white;
+  }
+
+  .full-header, .short-header {
+    button {
+      color: black;
+    }
+  }
 }
