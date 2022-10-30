@@ -1,7 +1,7 @@
-import {ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ColorService} from "../../shared/service/color.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {LanguageService} from "../../shared/service/language.service";
 import {TranslateService} from "@ngx-translate/core";
 import {TagService} from "../../shared/service/tag.service";
@@ -22,18 +22,35 @@ declare var $: any;
 })
 export class DeckBuilderComponent implements OnInit, OnDestroy {
 
+    /**
+     * The deck
+     */
+    public deck: Deck;
+
+    /**
+     * Information about searchForm
+     */
     @ViewChild(SearchFilterComponent) filtersComponent: SearchFilterComponent;
-    private subscriptions: Subscription[] = [];
     public searchResult: Page<Card>;
     public searchForm: any;
+
+
+    /**
+     * Booleans
+     */
     public deckIsNotValid: boolean = false;
-    public deck: Deck;
-    public statisticsText = 'Statistics';
-    public handText: string = 'Hand Shuffler';
-    public saveText: string = 'Save Deck';
     public isUserConnected: boolean = false;
     public loading: boolean = true;
     public isDeckValid: boolean = false;
+
+    /**
+     Texts
+     */
+    public statisticsText = 'Statistics';
+    public handText: string = 'Hand Shuffler';
+    public saveText: string = 'Save Deck';
+
+    private subscriptions: Subscription[] = [];
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
@@ -46,19 +63,19 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
             this.deck = JSON.parse(sessionStorage.getItem('deck'))
         } else {
             this.deck = {
-                creationDate: undefined,
-                description: "", name: "", id: null, leader: null, cards: []
+                creationDate: undefined, description: "", name: "", id: null, leader: null, cards: []
             }
         }
-        this._translateService.get(['Statistics', 'HandShuffler', 'SaveText'])
-            .subscribe(translations => {
-                this.loading = false;
-                this.statisticsText = translations['Statistics'];
-                this.handText = translations['HandShuffler'];
-                this.saveText = translations['SaveText'];
-                this.changeDetectorRef.detectChanges();
-            });
-
+        this.subscriptions.push(
+            this._translateService.get(['Statistics', 'HandShuffler', 'SaveText'])
+                .subscribe(translations => {
+                    this.loading = false;
+                    this.statisticsText = translations['Statistics'];
+                    this.handText = translations['HandShuffler'];
+                    this.saveText = translations['SaveText'];
+                    this.changeDetectorRef.detectChanges();
+                })
+        );
         this.searchForm = this.fb.group({
             keyword: "",
             products: [],
@@ -70,17 +87,22 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
             powers: []
         });
         this.launchSearch(0);
-        this._authService.authState.subscribe((user) => {
-            if (user) {
-                this.isUserConnected = true;
-                this.loading = true;
-                this.changeDetectorRef.detectChanges();
-                this.loading = false;
-                this.changeDetectorRef.detectChanges();
-            }
-        });
+        this.subscriptions.push(
+            this._authService.authState.subscribe((user) => {
+                if (user) {
+                    this.isUserConnected = true;
+                    this.loading = true;
+                    this.changeDetectorRef.detectChanges();
+                    this.loading = false;
+                    this.changeDetectorRef.detectChanges();
+                }
+            })
+        );
         this.isDeckValid = this.checkDeckValidity();
+    }
 
+    ngOnDestroy(): void {
+        this.subscriptions?.forEach(subscription => subscription.unsubscribe());
     }
 
     launchSearch(numberPage): void {
@@ -92,14 +114,9 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         );
     }
 
-    ngOnDestroy(): void {
-        this.subscriptions.forEach(subscription => subscription.unsubscribe());
-    }
-
     changePage(newPage: number): void {
         this.launchSearch(newPage - 1);
     }
-
 
     formSubmitted($event: any): void {
         if ($event == null) {
@@ -110,7 +127,6 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         }
         this.launchSearch(0);
     }
-
 
     addCardToDeck(cardSelected: Card): void {
         if (cardSelected.type.id === TypeEnum.LEADER) {
@@ -215,10 +231,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
                 hasACardMoreThanFourTimes = true;
             }
         });
-        if (hasACardMoreThanFourTimes) {
-            return false;
-        }
-        return true;
+        return !hasACardMoreThanFourTimes;
     }
 
     private updateDeckSessionStorageAndValidity(): void {

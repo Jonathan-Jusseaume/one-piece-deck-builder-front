@@ -1,14 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DeckService} from "../../shared/service/deck.service";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'opdb-my-decks',
     templateUrl: './my-decks.component.html',
     styleUrls: ['./my-decks.component.scss']
 })
-export class MyDecksComponent implements OnInit {
+export class MyDecksComponent implements OnInit, OnDestroy {
 
-    decksOfUser: Page<Deck>;
+    public decksOfUser: Page<Deck>;
+
+    private subscriptions: Subscription[] = [];
 
     constructor(private _deckService: DeckService) {
     }
@@ -17,11 +20,17 @@ export class MyDecksComponent implements OnInit {
         this.launchSearch(0);
     }
 
-    launchSearch(numberPage: number): void {
-        this._deckService.listMyDeck(numberPage).subscribe(result => this.decksOfUser = result);
+    ngOnDestroy(): void {
+        this.subscriptions?.forEach(subscription => subscription.unsubscribe());
     }
 
-    changePage($event: number) {
-        this.launchSearch($event - 1);
+    launchSearch(pageNumber: number): void {
+        this.subscriptions.push(
+            this._deckService.listMyDeck(pageNumber).subscribe(result => this.decksOfUser = result)
+        );
+    }
+
+    changePage(pageNumber: number): void {
+        this.launchSearch(pageNumber - 1);
     }
 }

@@ -5,10 +5,10 @@
                 <opdb-deck-preview [deck]="deck" [inSearchResults]="false"></opdb-deck-preview>
             </div>
             <div class="col-md-8 col-sm-12 col-12 m30">
-                <mat-accordion class="card" [class]="{'no-height-100': !panelOpenState}">
+                <mat-accordion class="card" [class]="{'no-height-100': !panelOpenStateCardList}">
                     <mat-expansion-panel [expanded]="true"
-                                         (opened)="panelOpenState = true"
-                                         (closed)="panelOpenState = false">
+                                         (opened)="panelOpenStateCardList = true"
+                                         (closed)="panelOpenStateCardList = false">
                         <mat-expansion-panel-header class="header">
                             <h4 class="title">{{'CardList' | translate}}</h4>
                         </mat-expansion-panel-header>

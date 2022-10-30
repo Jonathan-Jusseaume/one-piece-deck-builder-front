@@ -9,7 +9,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class CardResultsComponent implements OnInit {
 
     @Input()
-    public cardResult: Page<Deck>;
+    public cardResult: Page<Card>;
     @Input()
     public cardMaxWidth: number = 200;
 

@@ -46,7 +46,7 @@
 }
 
 .card-no-background {
-    background: transparent!important;
+    background: transparent !important;
     box-shadow: none !important;
 }
 

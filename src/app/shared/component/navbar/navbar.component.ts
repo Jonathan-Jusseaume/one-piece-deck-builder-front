@@ -86,8 +86,6 @@ export class NavbarComponent implements OnInit {
     }
 
     switchMode($event: any): void {
-        console.log($event)
-
     }
 
     changeMode(): void {

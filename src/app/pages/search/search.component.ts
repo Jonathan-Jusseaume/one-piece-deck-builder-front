@@ -15,11 +15,10 @@ import {CardService} from "../../shared/service/card.service";
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
-
+    public searchForm: any;
+    public searchResult: Page<Card>;
 
     private subscriptions: Subscription[] = [];
-    public searchResult: Page<Card>;
-    public searchForm: any;
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
@@ -31,10 +30,11 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     launchSearch(numberPage) {
         this.subscriptions.push(
-            this._cardService.search(this.searchForm.value, numberPage, 25).subscribe(result => {
-                this.searchResult = result;
-                document.getElementById("top")?.scrollIntoView();
-            })
+            this._cardService.search(this.searchForm.value, numberPage, 25)
+                .subscribe(result => {
+                    this.searchResult = result;
+                    document.getElementById("top")?.scrollIntoView();
+                })
         );
     }
 
@@ -42,16 +42,16 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
-    changePage(newPage: number) {
-        this.launchSearch(newPage - 1);
+    changePage(pageNumber: number): void {
+        this.launchSearch(pageNumber - 1);
     }
 
 
-    formSubmitted($event: any) {
-        if ($event == null) {
+    formSubmitted(form: any): void {
+        if (form == null) {
             this.searchResult = null;
         } else {
-            this.searchForm =  {...$event};
+            this.searchForm = {...form};
             this.launchSearch(0);
         }
     }
