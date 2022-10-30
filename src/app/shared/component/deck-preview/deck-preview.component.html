@@ -1,20 +1,40 @@
 <ng-container *ngIf="deck">
-    <div class="card">
-        <div class="header">
-            <h4 class="title">
-                {{deck?.name}}
-            </h4>
-            <p class="category italic">
-                {{'CreationDate' | translate}} : {{deck.creationDate | date: 'dd/MM/yyyy'}}
-            </p>
-        </div>
-        <div class="content">
 
-            <opdb-card [card]="deck?.leader"></opdb-card>
-            <div class="details">
+    <mat-accordion class="card" [class]="{'no-height-100': !panelOpenState}">
+        <mat-expansion-panel [expanded]="true" [disabled]="inSearchResults" [hideToggle]="inSearchResults"
+                             (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+            <mat-expansion-panel-header class="header">
+                <h4 class="title">
+                    {{deck?.name}}
+                </h4>
+                <p class="category italic">
+                    {{'CreationDate' | translate}} : {{deck.creationDate | date: 'dd/MM/yyyy'}}
+                </p>
+            </mat-expansion-panel-header>
+            <ng-container *ngIf="!isDescription; else description">
+                <div class="content" [class]="{'justify-content-sm-between': !inSearchResults}">
+                    <opdb-card [card]="deck?.leader" (cardIsClicked)="openModal($event)"></opdb-card>
+                    <div class="details">
+                        <button *ngIf="!inSearchResults" type="action" class="background-blue btn btn-fill border-blue"
+                                (click)="changeDescription($event)">
+                            {{"Description" | translate}}</button>
+                    </div>
+                </div>
+            </ng-container>
 
-            </div>
-        </div>
-    </div>
+
+            <ng-template #description>
+                <div class="content justify-content-sm-between">
+                    <markdown [data]="deck.description">
+                    </markdown>
+                    <div class="details">
+                        <button type="action" *ngIf="!inSearchResults" class="background-blue btn btn-fill border-blue"
+                                (click)="changeDescription($event)">{{"Description" | translate}}</button>
+                    </div>
+                </div>
+            </ng-template>
+        </mat-expansion-panel>
+    </mat-accordion>
 
 </ng-container>

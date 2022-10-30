@@ -1,0 +1,100 @@
+// Default mode is dark mode
+body {
+  color: white;
+
+  .main-panel {
+    background: #404040;
+  }
+
+  .navbar-default, .card {
+    background: #202020;
+  }
+
+  .card .title {
+    color: white;
+  }
+
+  .form-control {
+    background-color: #202020;
+    border: 1px solid #E3E3E3;
+    color: white;
+    &:focus {
+      background-color: #202020;
+      border: 1px solid white;
+      color: white;
+    }
+  }
+
+
+
+  .card .category, .card label {
+    color: #E3E3E3;
+  }
+
+  .ngx-tabs button {
+    color: white;
+
+    &.active {
+      color: white!important;
+      background: #202020;
+    }
+  }
+
+  .ngx-pagination a {
+    color: white;
+  }
+
+  .ngx-pagination a:hover, .ngx-pagination button:hover {
+    background: white;
+    color: black !important;
+  }
+
+
+  ng-multiselect-dropdown {
+    span, li {
+      color: white;
+    }
+
+    .dropdown-list {
+      border: 1px solid #e3e3e3;
+      background: #202020;
+      box-shadow: 0 1px 5px #e3e3e3;
+    }
+
+    .multiselect-item-checkbox input[type=checkbox] + div {
+      color: white;
+    }
+
+    .filter-textbox input[type="text"] {
+      background-color: #202020;
+      border: none;
+      color: white;
+    }
+
+    .multiselect-item-checkbox:hover {
+      background-color: white;
+    }
+
+    .multiselect-item-checkbox:hover input[type=checkbox] + div {
+      color: black !important;
+    }
+  }
+
+  .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret:before {
+    color: white;
+    border-color: white transparent;
+  }
+
+  .ngx-charts .axis, .ngx-charts .pie-label {
+    fill: white!important;
+  }
+
+  .markdown-preview {
+    label button {
+      background: #202020;
+      border: solid 1px white;
+      color: white;
+    }
+  }
+
+}

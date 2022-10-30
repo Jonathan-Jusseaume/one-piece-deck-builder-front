@@ -1,33 +1,39 @@
-<div class="row" *ngIf="cardResult">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="header">
-                <h4 class="title">{{cardResult.totalElements}} {{'CardFound' | translate}}</h4>
+<mat-accordion class="card" *ngIf="cardResult" [class]="{'no-height-100': !panelOpenState}">
+    <mat-expansion-panel [expanded]="true"
+                         (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="header">
+            <h4 class="title">{{cardResult.totalElements}} {{'CardFound' | translate}}</h4>
+        </mat-expansion-panel-header>
+        <div class="content">
+            <div class="row text-center justify-content-center d-flex"
+                 *ngIf="cardResult.totalElements > cardResult.size">
+                <pagination-controls (pageChange)="changePage($event)"
+                                     [nextLabel]="'Next' | translate"
+                                     [previousLabel]="'Previous' | translate"></pagination-controls>
             </div>
-            <div class="content">
-                <div class="row justify-content-center d-flex" *ngIf="cardResult.totalElements > cardResult.size">
-                    <pagination-controls (pageChange)="changePage($event)"
-                                         [nextLabel]="'Next' | translate"
-                                         [previousLabel]="'Previous' | translate"></pagination-controls>
-                </div>
-                <div class="row all-results">
+            <div class="row">
+                <div class="all-results">
                     <opdb-card [style]="'max-width:' + cardMaxWidth + 'px!important'"
                                (cardIsClicked)="cardIsClicked($event)"
-                            *ngFor="let card of cardResult.content | paginate : {
+                               *ngFor="let card of cardResult.content | paginate : {
                                itemsPerPage: cardResult.size,
                                currentPage: cardResult.number + 1,
                                totalItems: cardResult.totalElements}; let index = index" [card]="card">
                     </opdb-card>
                 </div>
-                <div class="row justify-content-center d-flex" *ngIf="cardResult.totalElements > cardResult.size">
-                    <pagination-controls (pageChange)="changePage($event)"
-                                         [nextLabel]="'Next' | translate"
-                                         [previousLabel]="'Previous' | translate"></pagination-controls>
-                </div>
+            </div>
+            <div class="row text-center justify-content-center d-flex"
+                 *ngIf="cardResult.totalElements > cardResult.size">
+                <pagination-controls (pageChange)="changePage($event)"
+                                     [nextLabel]="'Next' | translate"
+                                     [previousLabel]="'Previous' | translate"></pagination-controls>
             </div>
         </div>
-    </div>
-</div>
+    </mat-expansion-panel>
+
+</mat-accordion>
+
 
 
 

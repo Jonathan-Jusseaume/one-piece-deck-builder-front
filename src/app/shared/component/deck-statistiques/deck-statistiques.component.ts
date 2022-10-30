@@ -10,6 +10,13 @@ export class DeckStatistiquesComponent implements OnInit {
     @Input()
     public deck: Deck;
 
+    @Input()
+    public inDetailsDeck: boolean = false;
+    public panelOpenStateCostChart: boolean = true;
+    public panelOpenStatePieChart: boolean = true;
+    public panelOpenStatePowerChart: boolean = true;
+
+
     ngOnInit(): void {
     }
 

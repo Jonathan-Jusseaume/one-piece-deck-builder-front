@@ -1,28 +1,45 @@
 <div class="all-charts">
-    <div class="card">
-        <div class="header">
-            <h4 class="title">{{'CostChart' | translate}}</h4>
-        </div>
-        <div class="content">
-            <opdb-deck-cost-bar-chart [deck]="deck"></opdb-deck-cost-bar-chart>
-        </div>
-    </div>
-    <div class="card">
-        <div class="header">
-            <h4 class="title">{{'TypePieChart' | translate}}</h4>
-        </div>
-        <div class="content">
-            <opdb-deck-type-pie-chart [deck]="deck"></opdb-deck-type-pie-chart>
-        </div>
-    </div>
-    <div class="card">
-        <div class="header">
-            <h4 class="title">{{'PowerChart' | translate}}</h4>
-        </div>
-        <div class="content">
-            <opdb-deck-power-bar-chart [deck]="deck"></opdb-deck-power-bar-chart>
-        </div>
-    </div>
+    <mat-accordion class="card" [class]="{'no-height-100': !panelOpenStateCostChart}">
+        <mat-expansion-panel [expanded]="true" [disabled]="!inDetailsDeck" [hideToggle]="!inDetailsDeck"
+                             (opened)="panelOpenStateCostChart = true"
+                             (closed)="panelOpenStateCostChart = false">
+            <mat-expansion-panel-header class="header">
+                <h4 class="title">{{'CostChart' | translate}}</h4>
+            </mat-expansion-panel-header>
+            <div class="content" #chartCost>
+                <opdb-deck-cost-bar-chart [view]="[chartCost.offsetWidth < 600 ? chartCost.offsetWidth: 600, 400]"
+                                          class="deck-chart" [deck]="deck"></opdb-deck-cost-bar-chart>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion class="card" [class]="{'no-height-100': !panelOpenStatePieChart}">
+        <mat-expansion-panel [expanded]="true" [disabled]="!inDetailsDeck" [hideToggle]="!inDetailsDeck"
+                             (opened)="panelOpenStatePieChart = true"
+                             (closed)="panelOpenStatePieChart = false">
+            <mat-expansion-panel-header class="header">
+                <h4 class="title">{{'TypePieChart' | translate}}</h4>
+            </mat-expansion-panel-header>
+            <div class="content" #pieChart>
+                <opdb-deck-type-pie-chart class="deck-chart"
+                                          [view]="[pieChart.offsetWidth < 600 ? pieChart.offsetWidth: 600, 400]"
+                                          [deck]="deck"></opdb-deck-type-pie-chart>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion class="card" [class]="{'no-height-100': !panelOpenStatePowerChart}">
+        <mat-expansion-panel [expanded]="true" [disabled]="!inDetailsDeck" [hideToggle]="!inDetailsDeck"
+                             (opened)="panelOpenStatePowerChart = true"
+                             (closed)="panelOpenStatePowerChart = false">
+            <mat-expansion-panel-header class="header">
+                <h4 class="title">{{'PowerChart' | translate}}</h4>
+            </mat-expansion-panel-header>
+            <div class="content" #powerChart>
+                <opdb-deck-power-bar-chart class="deck-chart"
+                                           [view]="[powerChart.offsetWidth < 600 ? powerChart.offsetWidth: 600, 400]"
+                                           [deck]="deck"></opdb-deck-power-bar-chart>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
 
 

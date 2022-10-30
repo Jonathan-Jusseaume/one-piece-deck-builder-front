@@ -38,11 +38,15 @@ import {HttpAcceptLanguageInterceptor} from "./shared/service/http-accept-langua
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import { SaveDeckComponent } from './shared/component/save-deck/save-deck.component';
+import {SaveDeckComponent} from './shared/component/save-deck/save-deck.component';
 import {MarkdownModule, MarkedOptions, MarkedRenderer} from "ngx-markdown";
-import { MyDecksComponent } from './pages/my-decks/my-decks.component';
-import { DeckPreviewComponent } from './shared/component/deck-preview/deck-preview.component';
+import {MyDecksComponent} from './pages/my-decks/my-decks.component';
+import {DeckPreviewComponent} from './shared/component/deck-preview/deck-preview.component';
 import {DatePipe} from "@angular/common";
+import {DeckDetailsComponent} from './pages/deck-details/deck-details.component';
+import {Slugger} from "marked";
+import {CardModalComponent} from "./shared/component/card-modal/card-modal.component";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -94,7 +98,8 @@ export function markedOptionsFactory(): MarkedOptions {
         BrowserModule,
         NgxTabsModule,
         BarChartModule,
-        PieChartModule
+        PieChartModule,
+        MatExpansionModule
     ],
     declarations: [
         AppComponent,
@@ -116,7 +121,9 @@ export function markedOptionsFactory(): MarkedOptions {
         HandShufflerComponent,
         SaveDeckComponent,
         MyDecksComponent,
-        DeckPreviewComponent
+        DeckPreviewComponent,
+        DeckDetailsComponent,
+        CardModalComponent
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

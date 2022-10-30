@@ -1,12 +1,12 @@
 <div class="main-content" id="search">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <opdb-search-filter (formValueChanged)="formSubmitted($event)"></opdb-search-filter>
-            </div>
+            <opdb-search-filter (formValueChanged)="formSubmitted($event)" [inSearchPlace]="true"></opdb-search-filter>
+        </div>
+        <div class="row m30">
+            <opdb-card-results *ngIf="searchResult" [cardMaxWidth]="200" [cardResult]="searchResult"
+                               (pageChanged)="changePage($event)"></opdb-card-results>
         </div>
 
-        <opdb-card-results *ngIf="searchResult" [cardMaxWidth]="200" [cardResult]="searchResult"
-                           (pageChanged)="changePage($event)"></opdb-card-results>
     </div>
 </div>

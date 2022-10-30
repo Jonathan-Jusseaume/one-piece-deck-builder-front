@@ -1,7 +1,23 @@
 .all-charts {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   gap: 20px;
+  height: 100%;
+  .card {
+    flex: 1;
+    height: 100%;
+    .deck-chart {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1325px){
+  .card {
+    width: 100%;
+  }
+  .all-charts {
+    flex-direction: column;
+  }
 }

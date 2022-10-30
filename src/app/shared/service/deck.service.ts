@@ -24,6 +24,10 @@ export class DeckService {
 
     }
 
+    public read(id: string): Observable<Deck> {
+        return this.httpClient.get<Deck>(this._configurationService.getApiUrl() + 'decks/' + id);
+    }
+
     public create(deck: Deck): Observable<Deck> {
         return this._authService.authState.pipe(switchMap(authUser => {
             const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
@@ -32,4 +36,6 @@ export class DeckService {
         }))
 
     }
+
+
 }

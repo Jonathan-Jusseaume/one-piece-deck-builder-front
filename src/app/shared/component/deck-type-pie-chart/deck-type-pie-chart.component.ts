@@ -11,6 +11,7 @@ export class DeckTypePieChartComponent implements OnInit, OnChanges {
     public deck: Deck;
 
     values: any[];
+    @Input()
     view: number[] = [420, 400];
 
 

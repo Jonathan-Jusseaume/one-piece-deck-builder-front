@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {ColorService} from "../../service/color.service";
@@ -37,6 +37,9 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     public costs: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     public powers: number[] = [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
     public dropdownSettings: any;
+    @Input()
+    public inSearchPlace: boolean = false;
+    panelOpenState: boolean = true;
 
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,

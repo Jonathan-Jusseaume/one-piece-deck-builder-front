@@ -21,6 +21,7 @@ export class CardResultsComponent implements OnInit {
 
     public previousString: string = 'Previous';
     public nextString: string = 'Next';
+    public panelOpenState: boolean = true;
 
 
     constructor(private _translateService: TranslateService) {

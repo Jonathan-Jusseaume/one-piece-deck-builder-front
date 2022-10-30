@@ -1,15 +1,15 @@
 <div class="main-content" id="search">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 col-sm-12 col-12">
+            <div class="m30 col-md-4 col-sm-12 col-12">
                 <opdb-search-filter (formValueChanged)="formSubmitted($event)"></opdb-search-filter>
             </div>
-            <div class="col-md-8 col-sm-12 col-12">
+            <div class="m30 col-md-8 col-sm-12 col-12">
                 <opdb-card-results (cardClick)="addCardToDeck($event)" [cardMaxWidth]="125" *ngIf="searchResult"
                                    [cardResult]="searchResult" (pageChanged)="changePage($event)"></opdb-card-results>
             </div>
         </div>
-        <div class="row" *ngIf="!loading">
+        <div class="row m30" *ngIf="!loading">
             <ngx-tabs>
                 <ngx-tab name="Deck" [active]="true">
                     <div class="col-12">
@@ -20,7 +20,7 @@
                             </div>
                             <div class="content">
                                 <div class="actions">
-                                    <button class="btn btn-danger"
+                                    <button class="btn btn-danger btn-fill"
                                             (click)="eraseDeck()">{{'Erase' | translate}}</button>
                                 </div>
                                 <opdb-deck-visualisation (cardIsClicked)="deleteCardFromDeck($event)"
@@ -33,8 +33,8 @@
                 <ngx-tab [name]="statisticsText">
                     <div class="col-12">
                         <div class="card card-tab card-no-background" [class]="{'card-not-valid': deckIsNotValid}">
-                            <div class="content dashboard-card-content">
-                                <opdb-deck-statistiques [deck]="deck"></opdb-deck-statistiques>
+                            <div class="dashboard-card-content">
+                                <opdb-deck-statistiques class="stats-deck" [deck]="deck"></opdb-deck-statistiques>
                             </div>
                         </div>
                     </div>

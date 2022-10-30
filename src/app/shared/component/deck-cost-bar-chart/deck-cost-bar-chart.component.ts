@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {fromEvent, Observable, Subscription} from "rxjs";
 
 @Component({
@@ -26,13 +26,11 @@ export class DeckCostBarChartComponent implements OnInit, OnChanges, OnDestroy {
     };
     yTicks: number[];
     maxNumberCardAtCost: number;
+
+    @Input()
     view: number[] = [420, 400];
 
-
     ngOnInit(): void {
-        this.resizeObservable$ = fromEvent(window, 'resize')
-        this.resizeSubscription = this.resizeObservable$.subscribe(evt => {
-        })
     }
 
     constructor() {

@@ -13,7 +13,7 @@ export class DeckVisualisationComponent implements OnInit {
     public deck: Deck;
 
     @Input()
-    public isBuilding: boolean = false;
+    public isBuilding: boolean = true;
 
     @Output()
     public cardIsClicked: EventEmitter<Card> = new EventEmitter<Card>();

@@ -1,85 +1,90 @@
-<div class="card">
-    <div class="header">
-        <h4 class="title">{{'FilterTitle' | translate}}</h4>
-        <p class="category">{{'FilterInformation' | translate}}</p>
-    </div>
-    <form class="content" [formGroup]="searchForm" (reset)="resetSearch()" (submit)="validForm()">
-        <div class="select-container">
-            <div class="form-group large-select">
-                <input type="text" class="form-control"
-                       [placeholder]="keywordPlaceHolder" formControlName="keyword">
+<mat-accordion class="card" [class]="{'no-height-100': !panelOpenState}">
+    <mat-expansion-panel [expanded]="true"
+                         (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="header">
+            <h4 class="title">{{'FilterTitle' | translate}}</h4>
+            <p class="category">{{'FilterInformation' | translate}}</p>
+        </mat-expansion-panel-header>
+        <form class="content" [formGroup]="searchForm" (reset)="resetSearch()" (submit)="validForm()">
+            <div class="select-container">
+                <div class="form-group large-select" [class]="{'small-select': !inSearchPlace}">
+                    <input type="text" class="form-control"
+                           [placeholder]="keywordPlaceHolder" formControlName="keyword">
+                </div>
+                <div class="form-group small-select">
+                    <ng-multiselect-dropdown *ngIf="types && dropdownSettings"
+                                             name="types"
+                                             [settings]="dropdownSettings"
+                                             [placeholder]="typePlaceHolder"
+                                             [data]="types"
+                                             formControlName="types">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="form-group small-select">
+                    <ng-multiselect-dropdown *ngIf="colors && dropdownSettings"
+                                             name="colors"
+                                             [settings]="dropdownSettings"
+                                             [placeholder]="colorPlaceHolder"
+                                             [data]="colors"
+                                             formControlName="colors">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="form-group small-select">
+                    <ng-multiselect-dropdown *ngIf="rarities && dropdownSettings"
+                                             name="rarities"
+                                             [settings]="dropdownSettings"
+                                             [placeholder]="rarityPlaceHolder"
+                                             [data]="rarities"
+                                             formControlName="rarities">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="form-group small-select">
+                    <ng-multiselect-dropdown *ngIf="costs && dropdownSettings"
+                                             name="costs"
+                                             [settings]="dropdownSettings"
+                                             [placeholder]="costsPlaceHolder"
+                                             [data]="costs"
+                                             formControlName="costs">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="form-group small-select">
+                    <ng-multiselect-dropdown *ngIf="powers && dropdownSettings"
+                                             name="powers"
+                                             [settings]="dropdownSettings"
+                                             [placeholder]="powerPlaceHolder"
+                                             [data]="powers"
+                                             formControlName="powers">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="form-group large-select" [class]="{'small-select': !inSearchPlace}">
+                    <ng-multiselect-dropdown *ngIf="products && dropdownSettings"
+                                             name="products"
+                                             [settings]="dropdownSettings"
+                                             [placeholder]="productPlaceHolder"
+                                             [data]="products"
+                                             formControlName="products">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="form-group large-select" [class]="{'small-select': !inSearchPlace}">
+                    <ng-multiselect-dropdown *ngIf="tags && dropdownSettings"
+                                             name="tags"
+                                             [settings]="dropdownSettings"
+                                             [placeholder]="tagPlaceHolder"
+                                             [data]="tags"
+                                             formControlName="tags">
+                    </ng-multiselect-dropdown>
+                </div>
             </div>
-            <div class="form-group small-select">
-                <ng-multiselect-dropdown *ngIf="types && dropdownSettings"
-                                         name="types"
-                                         [settings]="dropdownSettings"
-                                         [placeholder]="typePlaceHolder"
-                                         [data]="types"
-                                         formControlName="types">
-                </ng-multiselect-dropdown>
+            <div class="actions">
+                <button type="reset" class="btn btn-default btn-fill">
+                    {{'ClearButton' | translate}}
+                </button>
+                <button type="submit" class="btn background-blue border-blue btn-fill">
+                    {{'SearchButton' | translate}}
+                </button>
             </div>
-            <div class="form-group small-select">
-                <ng-multiselect-dropdown *ngIf="colors && dropdownSettings"
-                                         name="colors"
-                                         [settings]="dropdownSettings"
-                                         [placeholder]="colorPlaceHolder"
-                                         [data]="colors"
-                                         formControlName="colors">
-                </ng-multiselect-dropdown>
-            </div>
-            <div class="form-group small-select">
-                <ng-multiselect-dropdown *ngIf="rarities && dropdownSettings"
-                                         name="rarities"
-                                         [settings]="dropdownSettings"
-                                         [placeholder]="rarityPlaceHolder"
-                                         [data]="rarities"
-                                         formControlName="rarities">
-                </ng-multiselect-dropdown>
-            </div>
-            <div class="form-group small-select">
-                <ng-multiselect-dropdown *ngIf="costs && dropdownSettings"
-                                         name="costs"
-                                         [settings]="dropdownSettings"
-                                         [placeholder]="costsPlaceHolder"
-                                         [data]="costs"
-                                         formControlName="costs">
-                </ng-multiselect-dropdown>
-            </div>
-            <div class="form-group small-select">
-                <ng-multiselect-dropdown *ngIf="powers && dropdownSettings"
-                                         name="powers"
-                                         [settings]="dropdownSettings"
-                                         [placeholder]="powerPlaceHolder"
-                                         [data]="powers"
-                                         formControlName="powers">
-                </ng-multiselect-dropdown>
-            </div>
-            <div class="form-group large-select">
-                <ng-multiselect-dropdown *ngIf="products && dropdownSettings"
-                                         name="products"
-                                         [settings]="dropdownSettings"
-                                         [placeholder]="productPlaceHolder"
-                                         [data]="products"
-                                         formControlName="products">
-                </ng-multiselect-dropdown>
-            </div>
-            <div class="form-group large-select">
-                <ng-multiselect-dropdown *ngIf="tags && dropdownSettings"
-                                         name="tags"
-                                         [settings]="dropdownSettings"
-                                         [placeholder]="tagPlaceHolder"
-                                         [data]="tags"
-                                         formControlName="tags">
-                </ng-multiselect-dropdown>
-            </div>
-        </div>
-        <div class="row px-1 actions">
-            <button type="reset" class="btn btn-default btn-fill">
-                {{'ClearButton' | translate}}
-            </button>
-            <button type="submit" class="btn background-blue border-blue btn-fill">
-                {{'SearchButton' | translate}}
-            </button>
-        </div>
-    </form>
-</div>
+        </form>
+    </mat-expansion-panel>
+
+</mat-accordion>

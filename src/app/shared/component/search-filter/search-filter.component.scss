@@ -8,7 +8,7 @@
   width: 100%;
 
   .small-select {
-    min-width: 200px;
+    min-width: 200px!important;
     flex-basis: auto;
     flex-grow: 1;
   }
@@ -19,3 +19,4 @@
     flex-grow: 1;
   }
 }
+

@@ -14,11 +14,14 @@ export class MyDecksComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this._deckService.listMyDeck(0).subscribe(result => {
-                this.decksOfUser = result;
-                console.log(this.decksOfUser);
-            }
-        );
+        this.launchSearch(0);
     }
 
+    launchSearch(numberPage: number): void {
+        this._deckService.listMyDeck(numberPage).subscribe(result => this.decksOfUser = result);
+    }
+
+    changePage($event: number) {
+        this.launchSearch($event - 1);
+    }
 }

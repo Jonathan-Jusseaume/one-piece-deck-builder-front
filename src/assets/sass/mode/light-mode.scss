@@ -1,0 +1,98 @@
+body.light {
+  color: black;
+
+  .main-panel {
+    background: rgba(203, 203, 210, 0.15);
+  }
+
+  .navbar-default, .card {
+    background: white;
+  }
+
+  .card .title {
+    color: #333333;
+  }
+
+  .form-control {
+    background-color: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    color: #565656;
+    &:focus {
+      background-color: #FFFFFF;
+      border: 1px solid #AAAAAA;
+      color: #333333;
+    }
+  }
+
+  .card .category, .card label {
+    color: #9A9A9A;
+  }
+
+  ngx-tabs button {
+    color: black;
+
+    &.active {
+      background: white;
+      color: black!important;
+    }
+  }
+
+  pagination-template li a {
+    color: black;
+  }
+
+  .ngx-pagination a:hover, .ngx-pagination button:hover {
+    background: #e3e3e3;
+  }
+
+  ng-multiselect-dropdown {
+    span {
+      color: black;
+    }
+
+    .dropdown-list {
+      border: 1px solid #ccc;
+      background: #fff;
+      box-shadow: 0 1px 5px #959595;
+    }
+
+    .multiselect-item-checkbox input[type=checkbox] + div {
+      color: #000;
+    }
+
+    .filter-textbox input[type="text"] {
+      background-color: white;
+      border: none;
+      color: black;
+    }
+
+    .multiselect-item-checkbox:hover {
+      background-color: black;
+    }
+
+    .multiselect-item-checkbox:hover input[type=checkbox] + div {
+      color: white !important;
+    }
+  }
+
+
+  .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret:before {
+
+    color: #999;
+    border-color: #999999 transparent;
+
+  }
+
+  .ngx-charts .axis, .ngx-charts .pie-label {
+    fill: black!important;
+  }
+
+
+  .markdown-preview {
+    label button {
+      background: white;
+      border: solid 1px black;
+      color: black;
+    }
+  }
+}

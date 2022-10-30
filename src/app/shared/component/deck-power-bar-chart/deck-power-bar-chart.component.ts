@@ -26,6 +26,7 @@ export class DeckPowerBarChartComponent implements OnInit, OnChanges, OnDestroy 
     };
     yTicks: number[];
     maxNumberCardAtPower: number;
+    @Input()
     view: number[] = [420, 400];
 
 

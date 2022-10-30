@@ -1,10 +1,42 @@
 <div class="main-content" id="search">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 decks-container" *ngIf="decksOfUser">
-                <ng-container *ngFor="let deck of decksOfUser.content">
-                    <opdb-deck-preview [deck]="deck"></opdb-deck-preview>
-                </ng-container>
+            <div class="col-md-12" *ngIf="decksOfUser">
+                <div class="row justify-content-center d-flex no-bs-gutter-x"
+                >
+                    <div class="card">
+                        <div class="content control-pagination">
+                            <span class="number">{{'DeckNumbers' | translate}} {{decksOfUser.totalElements}}
+                                deck(s)</span>
+                            <pagination-controls *ngIf="decksOfUser.totalElements > decksOfUser.size"
+                                                 (pageChange)="changePage($event)"
+                                                 [nextLabel]="'Next' | translate"
+                                                 [previousLabel]="'Previous' | translate"></pagination-controls>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row  m30 justify-content-center d-flex">
+                    <div class="decks-container">
+                        <a *ngFor="let deck of decksOfUser.content | paginate : {
+                               itemsPerPage: decksOfUser.size,
+                               currentPage: decksOfUser.number + 1,
+                               totalItems: decksOfUser.totalElements};" [routerLink]="'/deck/' + deck?.id">
+                            <opdb-deck-preview [deck]="deck"></opdb-deck-preview>
+                        </a>
+                    </div>
+                </div>
+                <div class="row m30 text-center justify-content-center d-flex no-bs-gutter-x"
+                     *ngIf="decksOfUser.totalElements > decksOfUser.size">
+                    <div class="card">
+                        <div class="content">
+                            <pagination-controls (pageChange)="changePage($event)"
+                                                 [nextLabel]="'Next' | translate"
+                                                 [previousLabel]="'Previous' | translate"></pagination-controls>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

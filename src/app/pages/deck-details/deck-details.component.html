@@ -1,0 +1,39 @@
+<div class="main-content" id="search">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 col-12">
+                <opdb-deck-preview [deck]="deck" [inSearchResults]="false"></opdb-deck-preview>
+            </div>
+            <div class="col-md-8 col-sm-12 col-12">
+                <mat-accordion class="card" [class]="{'no-height-100': !panelOpenState}">
+                    <mat-expansion-panel [expanded]="true"
+                                         (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header class="header">
+                            <h4 class="title">{{'CardList' | translate}}</h4>
+                        </mat-expansion-panel-header>
+                        <div class="content">
+                            <opdb-deck-visualisation [deck]="deck" [isBuilding]="false"></opdb-deck-visualisation>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+
+        <div class="row m30">
+            <opdb-deck-statistiques [deck]="deck" [inDetailsDeck]="true">
+            </opdb-deck-statistiques>
+        </div>
+        <div class="row m30">
+            <div class="col-12">
+                <div class="card">
+                    <div class="content">
+                        <opdb-hand-shuffler [deck]="deck">
+                        </opdb-hand-shuffler>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,5 +1,5 @@
 <div class="deck-container">
-    <div class="leader-container">
+    <div class="leader-container" *ngIf="isBuilding">
         <opdb-card *ngIf="deck?.leader" [card]="deck?.leader" (cardIsClicked)="clickCard($event)" [inDeck]="true">
         </opdb-card>
         <div *ngIf="!deck?.leader" class="no-leader">
