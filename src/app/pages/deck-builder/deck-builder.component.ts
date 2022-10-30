@@ -47,7 +47,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         } else {
             this.deck = {
                 creationDate: undefined,
-                user: undefined, description: "", name: "", id: null, leader: null, cards: []
+                description: "", name: "", id: null, leader: null, cards: []
             }
         }
         this._translateService.get(['Statistics', 'HandShuffler', 'SaveText'])
@@ -163,7 +163,6 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         sessionStorage.removeItem('deck');
         this.deck = {
             creationDate: undefined,
-            user: undefined,
             description: "",
             name: "",
             id: null,

@@ -5,5 +5,4 @@ declare interface Deck {
     name: string;
     description: string;
     creationDate: Date;
-    user: User;
 }

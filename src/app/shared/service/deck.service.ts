@@ -15,6 +15,14 @@ export class DeckService {
 
     public listMyDeck(pageNumber: number): Observable<Page<Deck>> {
         return this._authService.authState.pipe(switchMap(authUser => {
+            const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
+            const httpParams = new HttpParams()
+                .set('page', pageNumber)
+                .set('size', 20)
+            return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'decks',
+                {params: httpParams, headers: httpHeaders});
+        }))
+        return this._authService.authState.pipe(switchMap(authUser => {
             const httpParams = new HttpParams().set('mail', authUser.email)
                 .set('page', pageNumber)
                 .set('size', 20)
