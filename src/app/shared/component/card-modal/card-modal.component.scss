@@ -1,0 +1,95 @@
+.info-container {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px 30px;
+
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+
+    img {
+      max-width: 225px;
+      height: 314px;
+    }
+
+    ::ng-deep .ngx-pagination {
+      padding-left: 0 !important;
+    }
+
+    max-width: 400px;
+  }
+
+  .power-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    max-width: 500px;
+
+    .info {
+      span:first-of-type {
+        font-weight: 600;
+        width: 70px;
+      }
+    }
+
+    .basic-info {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      align-items: center;
+
+      .info {
+        flex: 1;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+      }
+    }
+
+    .tags {
+      width: 100%;
+
+      ul {
+        padding-left: 15px;
+        list-style: none;
+        margin-bottom: 0;
+
+        li {
+          padding: 6px 0;
+        }
+      }
+    }
+  }
+
+
+}
+
+.modal-header {
+
+  h4 {
+    margin: 0 !important;
+    font-weight: 900;
+    font-size: 26px;
+  }
+
+  button {
+    opacity: 1;
+    border: solid 2px white;
+    background: #202020;
+    color: white;
+    font-weight: 900;
+    font-size: 30px;
+  }
+}
+
+
+
+
+

@@ -369,3 +369,21 @@ span.mat-content {
 .custom-dropdown {
   list-style: none;
 }
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 1000px;
+    margin: 1.75rem auto;
+  }
+}
+
+.effect-box {
+  border: solid 4px;
+  border-radius: 3px;
+  &.effect-main {
+    border-color: rgb(3, 111, 173)
+  }
+  &.effect-once {
+    border-color: rgb(219, 59, 91)
+  }
+}

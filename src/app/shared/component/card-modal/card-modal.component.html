@@ -1,13 +1,87 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="btn-close" aria-label="Close"></button>
+    <h4 class="modal-title" id="modal-basic-title">[{{card?.id}}] {{card?.label}}</h4>
+    <button type="button" class="btn-close pe-7s-close" (click)="close()"></button>
 </div>
 <div class="modal-body">
-    <form>
-        <div class="mb-3">
+    <div class="info-container">
+        <div class="image-container">
+            <img *ngFor="let image of card?.images | paginate : {
+                               itemsPerPage: 1,
+                               currentPage: currentImageIndex,
+                               totalItems: card.images.length}; let index = index"
+                 [src]="_configurationService.getApiUrl() + 'cards/image/' + image"
+                 [alt]="card?.label"/>
+            <pagination-controls *ngIf="card?.images?.length > 1" (pageChange)="changePage($event)"
+                                 [nextLabel]="'Next' | translate"
+                                 [previousLabel]="'Previous' | translate"></pagination-controls>
         </div>
-    </form>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark">Save</button>
+        <div class="power-container">
+            <div class="basic-info">
+                <div class="info">
+                    <span>{{'Color'|translate}} </span>
+                    <span>{{getColors(card?.colors) || '-'}}</span>
+                </div>
+                <div class="info">
+                    <span>{{'Type'|translate}} </span>
+                    <span>{{card?.type?.label || '-'}}</span>
+                </div>
+
+
+            </div>
+            <div class="basic-info">
+                <div class="info">
+                    <span>{{'Rarity'|translate}} </span>
+                    <span>{{card?.rarity?.label || '-'}}</span>
+                </div>
+                <div class="info">
+                    <span>{{'Cost'|translate}} </span>
+                    <span>{{card?.cost || '-'}}</span>
+                </div>
+            </div>
+            <div class="basic-info">
+                <div class="info">
+                    <span>{{'Life'|translate}} </span>
+                    <span>{{card?.life || '-'}}</span>
+                </div>
+                <div class="info">
+                    <span>{{'Power'|translate}} </span>
+                    <span> {{card?.power || '-'}}</span>
+                </div>
+            </div>
+            <div class="basic-info">
+                <div class="info">
+                    <span>{{'Attribute'|translate}} </span>
+                    <span> {{card?.attribute?.label || '-'}}</span>
+                </div>
+
+            </div>
+            <div class="effect">
+                <div class="info d-flex flex-column">
+                    <span>{{'Effect'|translate}}</span>
+                    <span class="stylized" [innerHTML]="getEffectStylized(card?.effect)"></span>
+                </div>
+            </div>
+            <div class="tags">
+                <div class="info d-flex flex-column">
+                    <span>{{'Tags'|translate}} </span>
+                    <ul>
+                        <li *ngFor="let tag of card?.tags">
+                            {{tag?.label}}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="tags">
+                <div class="info d-flex flex-column">
+                    <span>{{'Product'|translate}} </span>
+                    <ul>
+                        <li>
+                            {{card?.product?.label || '-'}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

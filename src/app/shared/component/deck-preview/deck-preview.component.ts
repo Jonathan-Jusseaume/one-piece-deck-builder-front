@@ -32,7 +32,9 @@ export class DeckPreviewComponent implements OnInit {
 
     openModal(card: Card): void {
         if (!this.inSearchResults) {
-            this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'}).result
+            const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
+            modal.componentInstance.card = card;
+            modal.result
                 .then()
                 .catch();
         }
