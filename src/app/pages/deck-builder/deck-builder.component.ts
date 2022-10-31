@@ -40,7 +40,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
      */
     public deckIsNotValid: boolean = false;
     public isUserConnected: boolean = false;
-    public loading: boolean = true;
+    public needRenderer: boolean = true;
     public isDeckValid: boolean = false;
 
     /**
@@ -66,16 +66,12 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
                 creationDate: undefined, description: "", name: "", id: null, leader: null, cards: []
             }
         }
-        this.subscriptions.push(
-            this._translateService.get(['Statistics', 'HandShuffler', 'SaveText'])
-                .subscribe(translations => {
-                    this.loading = false;
-                    this.statisticsText = translations['Statistics'];
-                    this.handText = translations['HandShuffler'];
-                    this.saveText = translations['SaveText'];
-                    this.changeDetectorRef.detectChanges();
-                })
-        );
+        this.updateLanguage()
+        this.subscriptions.push(this._languageService.languageSelectedChanged.subscribe(() => {
+            this.needRenderer = true;
+            this.updateLanguage();
+        }))
+
         this.searchForm = this.fb.group({
             keyword: "",
             products: [],
@@ -91,9 +87,9 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
             this._authService.authState.subscribe((user) => {
                 if (user) {
                     this.isUserConnected = true;
-                    this.loading = true;
+                    this.needRenderer = true;
                     this.changeDetectorRef.detectChanges();
-                    this.loading = false;
+                    this.needRenderer = false;
                     this.changeDetectorRef.detectChanges();
                 }
             })
@@ -111,6 +107,19 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
                 this.searchResult = result;
                 document.getElementById("top")?.scrollIntoView();
             })
+        );
+    }
+
+    updateLanguage(): void {
+        this.subscriptions.push(
+            this._translateService.get(['Statistics', 'HandShuffler', 'SaveText'])
+                .subscribe(translations => {
+                    this.needRenderer = false;
+                    this.statisticsText = translations['Statistics'];
+                    this.handText = translations['HandShuffler'];
+                    this.saveText = translations['SaveText'];
+                    this.changeDetectorRef.detectChanges();
+                })
         );
     }
 

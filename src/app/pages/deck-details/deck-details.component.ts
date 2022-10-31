@@ -4,6 +4,7 @@ import {DeckService} from "../../shared/service/deck.service";
 import {Subscription, switchMap} from "rxjs";
 import {CardModalComponent} from "../../shared/component/card-modal/card-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {LanguageService} from "../../shared/service/language.service";
 
 @Component({
     selector: 'opdb-deck-details',
@@ -20,10 +21,21 @@ export class DeckDetailsComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription[] = [];
 
     constructor(private activatedRoute: ActivatedRoute, private _deckService: DeckService, private router: Router,
-                private dialog: NgbModal) {
+                private dialog: NgbModal, private _languageService: LanguageService) {
     }
 
     ngOnInit(): void {
+        this.searchDeck();
+        this.subscriptions.push(this._languageService.languageSelectedChanged.subscribe(() => {
+            this.searchDeck();
+        }))
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions?.forEach(subscription => subscription.unsubscribe());
+    }
+
+    searchDeck(): void {
         this.subscriptions.push(
             this.activatedRoute.params.pipe(switchMap(s => this._deckService.read(s.id)))
                 .subscribe(deck => {
@@ -33,10 +45,6 @@ export class DeckDetailsComponent implements OnInit, OnDestroy {
                 }, () => {
                 })
         );
-    }
-
-    ngOnDestroy(): void {
-        this.subscriptions?.forEach(subscription => subscription.unsubscribe());
     }
 
 

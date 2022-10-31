@@ -10,7 +10,7 @@
                                    [cardResult]="searchResult" (pageChanged)="changePage($event)"></opdb-card-results>
             </div>
         </div>
-        <div class="row m30" *ngIf="!loading">
+        <div class="row m30" *ngIf="!needRenderer">
             <ngx-tabs>
                 <ngx-tab name="Deck" [active]="true">
                     <div class="col-12">

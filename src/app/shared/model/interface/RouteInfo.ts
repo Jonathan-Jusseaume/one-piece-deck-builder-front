@@ -6,4 +6,5 @@ declare interface RouteInfo {
     color: string;
     backgroundImage: string;
     connected: boolean;
+    visible: boolean;
 }

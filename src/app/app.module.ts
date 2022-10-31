@@ -42,15 +42,14 @@ import {SaveDeckComponent} from './shared/component/save-deck/save-deck.componen
 import {MarkdownModule, MarkedOptions, MarkedRenderer} from "ngx-markdown";
 import {MyDecksComponent} from './pages/my-decks/my-decks.component';
 import {DeckPreviewComponent} from './shared/component/deck-preview/deck-preview.component';
-import {DatePipe} from "@angular/common";
 import {DeckDetailsComponent} from './pages/deck-details/deck-details.component';
-import {Slugger} from "marked";
 import {CardModalComponent} from "./shared/component/card-modal/card-modal.component";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatSelectModule} from "@angular/material/select";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -108,7 +107,8 @@ export function markedOptionsFactory(): MarkedOptions {
         MatIconModule,
         MatSlideToggleModule,
         NgbModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTooltipModule,
     ],
     declarations: [
         AppComponent,

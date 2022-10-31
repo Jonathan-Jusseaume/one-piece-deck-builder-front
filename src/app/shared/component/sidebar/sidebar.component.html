@@ -30,7 +30,7 @@
         </li>
         <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>
         <ng-container *ngFor="let menuItem of menuItems">
-            <li routerLinkActive="active"  class="{{menuItem.class}}" *ngIf="!menuItem.connected || user">
+            <li routerLinkActive="active"  class="{{menuItem.class}}" *ngIf="menuItem.visible && (!menuItem.connected || user)">
                 <a [routerLink]="[menuItem.path]">
                     <i class="{{menuItem.icon}}"></i>
                     <p>{{menuItem.title | translate}}</p>

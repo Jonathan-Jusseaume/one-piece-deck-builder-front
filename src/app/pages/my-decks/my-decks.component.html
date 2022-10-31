@@ -5,8 +5,7 @@
                 <div class="row justify-content-center d-flex no-bs-gutter-x">
                     <div class="card">
                         <div class="content control-pagination">
-                            <span class="number">{{'DeckNumbers' | translate}} {{decksOfUser.totalElements}}
-                                deck(s)</span>
+                            <span class="number">{{decksOfUser.totalElements}} {{'DeckNumbers' | translate}} </span>
                             <pagination-controls *ngIf="decksOfUser.totalElements > decksOfUser.size"
                                                  (pageChange)="changePage($event)"
                                                  [nextLabel]="'Next' | translate"
@@ -20,7 +19,7 @@
                         <a *ngFor="let deck of decksOfUser.content | paginate : {
                                itemsPerPage: decksOfUser.size,
                                currentPage: decksOfUser.number + 1,
-                               totalItems: decksOfUser.totalElements};" [routerLink]="'/deck/' + deck?.id">
+                               totalItems: decksOfUser.totalElements};" [routerLink]="'/decks/' + deck?.id">
                             <opdb-deck-preview [deck]="deck"></opdb-deck-preview>
                         </a>
                     </div>

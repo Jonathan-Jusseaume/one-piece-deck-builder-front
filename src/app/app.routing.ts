@@ -22,7 +22,8 @@ export const ROUTES: RouteInfo[] = [
         class: '',
         color: 'red',
         backgroundImage: 'assets/img/luffy.jpg',
-        connected: false
+        connected: false,
+        visible: true
     },
     {
         path: '/deck-builder',
@@ -31,7 +32,8 @@ export const ROUTES: RouteInfo[] = [
         class: '',
         color: 'green',
         backgroundImage: 'assets/img/zoro.jpg',
-        connected: false
+        connected: false,
+        visible: true
     },
     {
         path: '/my-decks',
@@ -40,7 +42,18 @@ export const ROUTES: RouteInfo[] = [
         class: '',
         color: 'blue',
         backgroundImage: 'assets/img/ace.jpg',
-        connected: true
+        connected: true,
+        visible: true
+    },
+    {
+        path: '/decks',
+        title: 'DeckDetails',
+        icon: '',
+        class: '',
+        color: 'purple',
+        backgroundImage: 'assets/img/roger.jpg',
+        connected: false,
+        visible: false
     }
 ];
 
@@ -48,12 +61,7 @@ export const routes: Routes = [
     {path: 'search', component: SearchComponent},
     {path: 'deck-builder', component: DeckBuilderComponent},
     {path: 'my-decks', component: MyDecksComponent, canActivate: [RouteGuard]},
-    {path: 'deck/:id', component: DeckDetailsComponent},
-    {path: 'table', component: TablesComponent},
-    {path: 'typography', component: TypographyComponent},
-    {path: 'icons', component: IconsComponent},
-    {path: 'maps', component: MapsComponent},
-    {path: 'notifications', component: NotificationsComponent},
+    {path: 'decks/:id', component: DeckDetailsComponent},
     {path: '**', redirectTo: 'search'}
 ];
 

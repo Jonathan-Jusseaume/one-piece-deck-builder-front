@@ -8,12 +8,12 @@
                 <button type="" [class]="{'pe-7s-moon' :!this.isDarkMode, 'pe-7s-sun': this.isDarkMode}"
                         (click)="changeMode()"></button>
                 <li class="google-user" *ngIf="user">
-                    <img [src]="user.photoUrl"/>
+                    <img [src]="user.photoUrl" alt="profile-picture"/>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-bs-toggle="dropdown">
                         {{'LanguageChoice' | translate}}
-                        <b class="caret"></b>
+                        <strong class="caret"></strong>
                     </a>
                     <ul class="dropdown-menu">
                         <li (click)="changeLanguage('en')"><a>{{'English' | translate}}</a></li>
@@ -39,50 +39,5 @@
             <button type="" [class]="{'pe-7s-moon' :!this.isDarkMode, 'pe-7s-sun': this.isDarkMode}"
                     (click)="changeMode()"></button>
         </div>
-
-        <!--<div class="navbar-header">
-            <button type="button" class="navbar-toggle"  data-bs-toggle="collapse" data-bs-target="#coco" (click)="sidebarToggle()">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">{{getTitle() | translate}}</a>
-        </div>
-        <div id="coco" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a class="dropdown-toggle" data-bs-toggle="dropdown">
-                        <p class="hidden-lg hidden-md">{{getTitle() | translate}}</p>
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class="google-user" *ngIf="user">
-                    <img [src]="user.photoUrl"/>
-                </li>
-                <li class="google" *ngIf="!user">
-                    <span>{{'Connection' | translate}} :</span>
-                    <asl-google-signin-button id="google-button"></asl-google-signin-button>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-bs-toggle="dropdown">
-                        {{'LanguageChoice' | translate}}
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li (click)="changeLanguage('en')"><a>{{'English' | translate}}</a></li>
-                        <li (click)="changeLanguage('fr')"><a >{{'French' | translate}}</a></li>
-                    </ul>
-                </li>
-                <li *ngIf="user">
-                    <a (click)="logOut()">
-                        {{'Disconnection' | translate}}
-                    </a>
-                </li>
-                <li class="separator hidden-lg hidden-md"></li>
-            </ul>
-        </div> -->
     </div>
 </nav>

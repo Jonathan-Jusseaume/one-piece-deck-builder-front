@@ -19,7 +19,7 @@ export class InterfaceService {
 
         let routeInfo: RouteInfo = null;
         ROUTES.forEach(route => {
-            if (route.path === currentPath) {
+            if (currentPath.startsWith(route.path)) {
                 routeInfo = route;
             }
         })

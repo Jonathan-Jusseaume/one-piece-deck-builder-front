@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     ngOnInit() {
     }
 
-    launchSearch(numberPage) {
+    launchSearch(numberPage): void {
         this.subscriptions.push(
             this._cardService.search(this.searchForm.value, numberPage, 25)
                 .subscribe(result => {
