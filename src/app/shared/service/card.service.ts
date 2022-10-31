@@ -33,7 +33,7 @@ export class CardService {
             httpParams = httpParams.set('tagId', cardFilter.tags.map(tag => tag?.id).join(","));
         }
         if (cardFilter?.rarities?.length) {
-            httpParams = httpParams.set('rarityId', cardFilter.tags.map(rarity => rarity?.id).join(","));
+            httpParams = httpParams.set('rarityId', cardFilter.rarities.map(rarity => rarity?.id).join(","));
         }
         if (cardFilter?.colors?.length) {
             httpParams = httpParams.set('colorId', cardFilter.colors.map(color => color?.id).join(","));

@@ -14,13 +14,13 @@
             <asl-google-signin-button id="google-button"></asl-google-signin-button>
         </li>
         <li class="dropdown" *ngIf="isMobileMenu()">
-            <a class="dropdown-toggle" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">
+            <a class="dropdown-toggle" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false" (click)="switchLanguageMode()">
                 {{'LanguageChoice' | translate}}
                 <b class="caret"></b>
             </a>
-            <ul class="dropdown-menu" id="sidebar-language-dropdown" aria-labelledby="dropdownMenuButton1">
+            <ul class="custom-dropdown" *ngIf="languageModeOpened">
                 <li (click)="changeLanguage('en')"><a>{{'English' | translate}}</a></li>
-                <li (click)="changeLanguage('fr')"><a>{{'French' | translate}}</a></li>
+                <li (click)="changeLanguage('fr')"><a>{{'French' | translate}} (beta)</a></li>
             </ul>
         </li>
         <li *ngIf="isMobileMenu() && user">

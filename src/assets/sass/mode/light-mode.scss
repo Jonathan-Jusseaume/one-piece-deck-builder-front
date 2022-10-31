@@ -109,4 +109,26 @@ body.light {
       color: black;
     }
   }
+
+  .dropdown-menu {
+    background: white;
+    color: black;
+  }
+
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color: #F5F5F5;
+    color: #333333;
+  }
+
+  .no-leader {
+    outline: #3f3f441a 3px dashed;
+  }
+
+  .dropdown-toggle {
+    color: black;
+  }
+
+  .google {
+    color: black;
+  }
 }

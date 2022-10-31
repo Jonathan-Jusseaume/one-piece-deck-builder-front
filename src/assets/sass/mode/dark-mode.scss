@@ -109,4 +109,26 @@ body {
     }
   }
 
+  .dropdown-menu {
+    background: #202020;
+    color: white;
+  }
+
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color: #F5F5F5;
+    color: #333333!important;
+  }
+
+  .no-leader {
+    outline: rgba(240, 240, 240, 0.5019607843) 3px dashed;
+  }
+
+  .dropdown-toggle {
+    color: white;
+  }
+
+  .google {
+    color: white;
+  }
+
 }

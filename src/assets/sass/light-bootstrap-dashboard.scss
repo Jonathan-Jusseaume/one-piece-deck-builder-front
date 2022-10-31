@@ -51,7 +51,7 @@
 .card {
   border: none;
   height: 100%;
-  margin-bottom: 0!important;
+  margin-bottom: 0 !important;
 }
 
 .background-blue {
@@ -109,7 +109,6 @@ a {
   gap: 6px;
   justify-content: center;
   align-items: center;
-  color: #9a9a9a;
   padding: 10px 15px;
   margin: 4px 0;
 
@@ -216,6 +215,7 @@ ngb-modal-window {
 .markdown-preview {
   margin-top: 22px;
   margin-bottom: 10px;
+
   label {
     display: flex;
     gap: 10px;
@@ -237,20 +237,22 @@ ngb-modal-window {
 mat-expansion-panel-header {
   padding: 15px !important;
 }
+
 span.mat-content {
   display: flex;
   flex-direction: column;
 }
+
 .mat-expansion-panel-body {
   padding: 0 !important;
 }
 
 .no-height-100 {
-  height: 100px!important;
+  height: 100px !important;
 }
 
 .no-bs-gutter-x {
-  --bs-gutter-x: 0!important;
+  --bs-gutter-x: 0 !important;
 }
 
 .footer {
@@ -295,6 +297,7 @@ span.mat-content {
   display: flex;
   justify-content: space-between;
   width: 100%;
+
   p {
     font-size: 20px;
     margin: 0;
@@ -305,13 +308,64 @@ span.mat-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
+  list-style: none;
 }
+
 .dropdown-menu.show {
-  visibility: visible!important;
-  opacity: 1!important;
+  visibility: visible !important;
+  opacity: 1 !important;
   width: 100%;
+
   a {
     width: 100%;
   }
+}
+
+
+.dropdown-menu {
+  top: 100%;
+  left: 0;
+  float: left;
+  min-width: 160px;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, .15);
+  box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+}
+
+.dropdown-menu > li:first-child > a {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.dropdown-menu > li > a {
+  padding: 8px 16px;
+  color: #333;
+}
+
+.dropdown-menu > li > a {
+  display: block;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  white-space: nowrap;
+}
+
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: 0px;
+  margin-top: 1.5rem;
+}
+
+.mat-accordion>.mat-expansion-panel-spacing {
+  overflow: inherit;
+}
+
+.custom-dropdown {
+  list-style: none;
 }

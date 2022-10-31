@@ -15,7 +15,7 @@ declare const $: any;
 export class SidebarComponent implements OnInit {
     menuItems: any[];
     public user: SocialUser;
-
+    public languageModeOpened: boolean = false;
 
     constructor(private _languageService: LanguageService, private _socialAuthService: SocialAuthService) {
     }
@@ -33,9 +33,14 @@ export class SidebarComponent implements OnInit {
 
     changeLanguage(language: string) {
         this._languageService.setLanguage(language);
+        this.languageModeOpened = false;
     }
 
     logOut() {
         this._socialAuthService.signOut();
+    }
+
+    switchLanguageMode(): void {
+        this.languageModeOpened = !this.languageModeOpened;
     }
 }
