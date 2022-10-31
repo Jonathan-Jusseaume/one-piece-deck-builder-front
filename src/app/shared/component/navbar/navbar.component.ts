@@ -31,6 +31,9 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (sessionStorage.getItem('light')) {
+            this.changeMode();
+        }
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
@@ -85,15 +88,14 @@ export class NavbarComponent implements OnInit {
         return $(window).width() <= 991;
     }
 
-    switchMode($event: any): void {
-    }
-
     changeMode(): void {
         this.isDarkMode = !this.isDarkMode;
         if (!this.isDarkMode) {
             document.getElementById('body').classList.add('light');
+            sessionStorage.setItem('light', 'true');
         } else {
             document.getElementById('body').classList.remove('light');
+            sessionStorage.removeItem('light');
         }
 
     }
