@@ -1,7 +1,7 @@
 declare interface Card {
     id: string;
     type: Type;
-    product: Product;
+    products: Product[];
     colors: Color[];
     tags: Tag[];
     attribute: Attribute;

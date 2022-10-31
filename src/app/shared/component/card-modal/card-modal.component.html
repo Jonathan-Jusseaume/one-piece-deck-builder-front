@@ -74,12 +74,12 @@
                 </div>
 
             </div>
-            <div class="tags" *ngIf="card?.product?.label">
+            <div class="tags" *ngIf="card?.products?.length">
                 <div class="info d-flex flex-column">
                     <span>{{'Product'|translate}} </span>
                     <ul>
-                        <li>
-                            {{card?.product?.label || '-'}}
+                        <li *ngFor="let product of card?.products">
+                            {{product?.label}}
                         </li>
                     </ul>
                 </div>
