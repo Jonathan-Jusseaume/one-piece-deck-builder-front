@@ -30,6 +30,8 @@
     align-items: center;
     gap: 30px;
     max-width: 500px;
+    min-width: 400px;
+
 
     .info {
       span:first-of-type {
@@ -43,6 +45,7 @@
       flex-wrap: wrap;
       width: 100%;
       align-items: center;
+      gap: 20px;
 
       .info {
         flex: 1;
@@ -89,7 +92,19 @@
   }
 }
 
+.effect {
+  .stylized {
+    line-height: 34px;
+    padding: 10px 0 10px 15px;
+  }
+}
 
+@media screen and (max-width: 450px) {
+  .power-container  {
+    width: 100%;
+    min-width: unset!important;
+  }
+}
 
 
 

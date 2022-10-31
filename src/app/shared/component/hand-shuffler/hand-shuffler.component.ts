@@ -1,4 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {CardModalComponent} from "../card-modal/card-modal.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'opdb-hand-shuffler',
@@ -13,7 +15,7 @@ export class HandShufflerComponent implements OnInit, OnChanges {
     public cardsInHand: Card[];
     public numbersAlreadyInHand: number[];
 
-    constructor() {
+    constructor(private dialog: NgbModal) {
     }
 
     ngOnInit(): void {
@@ -40,4 +42,11 @@ export class HandShufflerComponent implements OnInit, OnChanges {
 
     }
 
+    openCardModal(card: Card): void {
+        const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
+        modal.componentInstance.card = card;
+        modal.result
+            .then()
+            .catch();
+    }
 }

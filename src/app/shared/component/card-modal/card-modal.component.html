@@ -6,22 +6,24 @@
     <div class="info-container">
         <div class="image-container">
             <img *ngFor="let image of card?.images | paginate : {
+                               id: 'card-image',
                                itemsPerPage: 1,
                                currentPage: currentImageIndex,
                                totalItems: card.images.length}; let index = index"
                  [src]="_configurationService.getApiUrl() + 'cards/image/' + image"
                  [alt]="card?.label"/>
             <pagination-controls *ngIf="card?.images?.length > 1" (pageChange)="changePage($event)"
+                                 id="card-image"
                                  [nextLabel]="'Next' | translate"
                                  [previousLabel]="'Previous' | translate"></pagination-controls>
         </div>
         <div class="power-container">
             <div class="basic-info">
-                <div class="info">
+                <div class="info" *ngIf="card?.colors?.length">
                     <span>{{'Color'|translate}} </span>
                     <span>{{getColors(card?.colors) || '-'}}</span>
                 </div>
-                <div class="info">
+                <div class="info" *ngIf="card?.type?.label">
                     <span>{{'Type'|translate}} </span>
                     <span>{{card?.type?.label || '-'}}</span>
                 </div>
@@ -29,39 +31,39 @@
 
             </div>
             <div class="basic-info">
-                <div class="info">
+                <div class="info" *ngIf="card?.rarity?.label">
                     <span>{{'Rarity'|translate}} </span>
                     <span>{{card?.rarity?.label || '-'}}</span>
                 </div>
-                <div class="info">
+                <div class="info" *ngIf="card?.cost">
                     <span>{{'Cost'|translate}} </span>
                     <span>{{card?.cost || '-'}}</span>
                 </div>
             </div>
-            <div class="basic-info">
-                <div class="info">
+            <div class="basic-info" *ngIf="card?.power || card?.life">
+                <div class="info" *ngIf="card?.life">
                     <span>{{'Life'|translate}} </span>
                     <span>{{card?.life || '-'}}</span>
                 </div>
-                <div class="info">
+                <div class="info" *ngIf="card?.power">
                     <span>{{'Power'|translate}} </span>
                     <span> {{card?.power || '-'}}</span>
                 </div>
             </div>
-            <div class="basic-info">
+            <div class="basic-info" *ngIf="card?.attribute?.label">
                 <div class="info">
                     <span>{{'Attribute'|translate}} </span>
                     <span> {{card?.attribute?.label || '-'}}</span>
                 </div>
 
             </div>
-            <div class="effect">
-                <div class="info d-flex flex-column">
+            <div class="effect" *ngIf="card?.effect">
+                <div class="info d-flex flex-column" >
                     <span>{{'Effect'|translate}}</span>
                     <span class="stylized" [innerHTML]="getEffectStylized(card?.effect)"></span>
                 </div>
             </div>
-            <div class="tags">
+            <div class="tags" *ngIf="card?.tags?.length">
                 <div class="info d-flex flex-column">
                     <span>{{'Tags'|translate}} </span>
                     <ul>
@@ -72,7 +74,7 @@
                 </div>
 
             </div>
-            <div class="tags">
+            <div class="tags" *ngIf="card?.product?.label">
                 <div class="info d-flex flex-column">
                     <span>{{'Product'|translate}} </span>
                     <ul>

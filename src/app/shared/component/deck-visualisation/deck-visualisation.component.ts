@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {TypeEnum} from "../../model/constant/TypeEnum";
-import {SearchFilterComponent} from "../search-filter/search-filter.component";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {CardModalComponent} from "../card-modal/card-modal.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'opdb-deck-visualisation',
@@ -20,7 +20,7 @@ export class DeckVisualisationComponent implements OnInit {
 
     public mapCardIdCountNumber: Map<string, number> = new Map<string, number>();
 
-    constructor() {
+    constructor(private dialog: NgbModal) {
     }
 
     ngOnInit(): void {
@@ -46,5 +46,13 @@ export class DeckVisualisationComponent implements OnInit {
 
     clickCard($cardClicked: Card) {
         this.cardIsClicked.emit($cardClicked);
+    }
+
+    openModal(card: Card): void {
+        const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
+        modal.componentInstance.card = card;
+        modal.result
+            .then()
+            .catch();
     }
 }

@@ -7,6 +7,8 @@ import {TranslateService} from "@ngx-translate/core";
 import {TagService} from "../../shared/service/tag.service";
 import {TypeService} from "../../shared/service/type.service";
 import {CardService} from "../../shared/service/card.service";
+import {CardModalComponent} from "../../shared/component/card-modal/card-modal.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'opdb-search',
@@ -22,7 +24,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
-                private _typeService: TypeService, private _cardService: CardService) {
+                private _typeService: TypeService, private _cardService: CardService,
+                private dialog: NgbModal) {
     }
 
     ngOnInit() {
@@ -54,5 +57,13 @@ export class SearchComponent implements OnInit, OnDestroy {
             this.searchForm = {...form};
             this.launchSearch(0);
         }
+    }
+
+    openCardModal(card: Card): void {
+        const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
+        modal.componentInstance.card = card;
+        modal.result
+            .then()
+            .catch();
     }
 }

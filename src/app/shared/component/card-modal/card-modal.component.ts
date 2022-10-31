@@ -35,10 +35,38 @@ export class CardModalComponent implements OnInit {
         if (!effect) {
             return "-"
         }
+        effect = effect.replace('\n',
+            '<br> <br>');
+        effect = effect.replace('\\n',
+            '<br> <br>');
+        effect = effect.replace('<Strike>',
+            'Strike');
         effect = effect.replace('[Activate: Main]',
             '<span class="effect-box effect-main">Activate: Main</span>');
+        effect = effect.replace('[Main]',
+            '<span class="effect-box effect-main">Main</span>');
+        effect = effect.replace('[When Attacking]',
+            '<span class="effect-box effect-main">When Attacking</span>');
+        effect = effect.replace('[Your Turn]',
+            '<span class="effect-box effect-main">Your Turn</span>');
+        effect = effect.replace('[On Block]',
+            '<span class="effect-box effect-main">On Block</span>');
+        effect = effect.replace('[On Play]',
+            '<span class="effect-box effect-main">On Play</span>');
         effect = effect.replace('[Once Per Turn]',
             '<span class="effect-box effect-once">Once Per Turn</span>');
+        effect = effect.replace('[DON!! x1]',
+            '<span class="effect-box effect-don">DON!! x1</span>');
+        effect = effect.replace('[DON!! x2]',
+            '<span class="effect-box effect-don">DON!! x2</span>');
+        effect = effect.replace('[Blocker]',
+            '<span class="effect-box effect-blocker">Blocker</span>');
+        effect = effect.replace('[Rush]',
+            '<span class="effect-box effect-blocker">Rush</span>');
+        effect = effect.replace('[Counter]',
+            '<span class="effect-box effect-counter">Counter</span>');
+        effect = effect.replace('[Trigger]',
+            '<span class="effect-box effect-trigger">Trigger</span>');
         return effect;
     }
 }

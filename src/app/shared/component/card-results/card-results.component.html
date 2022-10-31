@@ -16,6 +16,8 @@
                 <div class="all-results">
                     <opdb-card [style]="'max-width:' + cardMaxWidth + 'px!important'"
                                (cardIsClicked)="cardIsClicked($event)"
+                               [enableEye]="inDeckBuilding"
+                               (cardEyeIsClicked)="openCardModal(card)"
                                *ngFor="let card of cardResult.content | paginate : {
                                itemsPerPage: cardResult.size,
                                currentPage: cardResult.number + 1,

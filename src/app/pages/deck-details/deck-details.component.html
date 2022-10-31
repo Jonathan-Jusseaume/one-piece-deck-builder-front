@@ -13,7 +13,7 @@
                             <h4 class="title">{{'CardList' | translate}}</h4>
                         </mat-expansion-panel-header>
                         <div class="content">
-                            <opdb-deck-visualisation [deck]="deck" [isBuilding]="false"></opdb-deck-visualisation>
+                            <opdb-deck-visualisation [deck]="deck" (cardIsClicked)="openModal($event)" [isBuilding]="false"></opdb-deck-visualisation>
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>

@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
+import {CardModalComponent} from "../card-modal/card-modal.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'opdb-card-results',
@@ -12,6 +14,8 @@ export class CardResultsComponent implements OnInit {
     public cardResult: Page<Card>;
     @Input()
     public cardMaxWidth: number = 200;
+    @Input()
+    public inDeckBuilding: boolean = false;
 
     @Output()
     public pageChanged: EventEmitter<number> = new EventEmitter<number>();
@@ -19,12 +23,9 @@ export class CardResultsComponent implements OnInit {
     @Output()
     public cardClick: EventEmitter<Card> = new EventEmitter<Card>();
 
-    public previousString: string = 'Previous';
-    public nextString: string = 'Next';
     public panelOpenState: boolean = true;
 
-
-    constructor(private _translateService: TranslateService) {
+    constructor(private _translateService: TranslateService, private dialog: NgbModal) {
     }
 
     ngOnInit(): void {
@@ -36,5 +37,13 @@ export class CardResultsComponent implements OnInit {
 
     cardIsClicked($event: Card) {
         this.cardClick.emit($event);
+    }
+
+    openCardModal(card: Card): void {
+        const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
+        modal.componentInstance.card = card;
+        modal.result
+            .then()
+            .catch();
     }
 }

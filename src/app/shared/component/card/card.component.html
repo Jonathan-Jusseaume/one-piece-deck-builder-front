@@ -1,4 +1,4 @@
-<div class="card-img">
+<div class="card-img" [class]="{'has-eye-button': enableEye}">
     <ng-container *ngFor="let img of card.images; let index = index">
         <img [class]="{'leader-in-deck': inDeck && card.type.id === TypeEnum.LEADER,
                 'card-in-deck': inDeck && card.type.id !== TypeEnum.LEADER,
@@ -6,7 +6,7 @@
              [src]="_configurationService.getApiUrl() + 'cards/image/' + img" (click)="isClicked(card)"
              [alt]="card?.label"/>
     </ng-container>
-
+    <button class="eye-button pe-7s-info" (click)="eyeClick(card)"></button>
     <span class="count" *ngIf="inDeck && countInDeck > 1">{{countInDeck}}</span>
 </div>
 

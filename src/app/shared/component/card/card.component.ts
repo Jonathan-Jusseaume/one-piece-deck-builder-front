@@ -19,8 +19,14 @@ export class CardComponent implements OnInit, OnDestroy {
     @Input()
     public countInDeck: number = 0;
 
+    @Input()
+    public enableEye: boolean = false;
+
     @Output()
     public cardIsClicked: EventEmitter<Card> = new EventEmitter<Card>();
+
+    @Output()
+    public cardEyeIsClicked: EventEmitter<Card> = new EventEmitter<Card>();
 
     public currentImageIndex = 0;
 
@@ -46,4 +52,7 @@ export class CardComponent implements OnInit, OnDestroy {
     }
 
 
+    eyeClick(card: Card): void {
+        this.cardEyeIsClicked.emit(card);
+    }
 }

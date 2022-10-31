@@ -7,6 +7,7 @@
   img {
     max-width: 225px;
     width: 100%;
+    min-height: 153px;
     object-fit: contain;
     cursor: pointer;
     display: none;
@@ -39,5 +40,25 @@
     font-size: 14px;
     bottom: 120px;
     left: 100px;
+  }
+
+  .eye-button {
+    display: none;
+    position: absolute;
+    background: var(--main-blue-color);
+    padding: 1px 2px;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+    font-size: 24px;
+    bottom: 85px;
+    left: 100px;
+  }
+}
+
+.has-eye-button:hover {
+  .eye-button {
+    display: block;
   }
 }

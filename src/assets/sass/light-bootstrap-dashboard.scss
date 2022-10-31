@@ -380,10 +380,24 @@ span.mat-content {
 .effect-box {
   border: solid 4px;
   border-radius: 3px;
+  font-weight: 600;
+  padding: 2px;
   &.effect-main {
     border-color: rgb(3, 111, 173)
   }
   &.effect-once {
     border-color: rgb(219, 59, 91)
+  }
+  &.effect-don {
+    border-color: black;
+  }
+  &.effect-blocker {
+    border-color: rgb(229, 121, 32)
+  }
+  &.effect-counter {
+    border-color: rgb(223, 1, 17)
+  }
+  &.effect-trigger {
+    border-color: rgb(255, 234, 38)
   }
 }

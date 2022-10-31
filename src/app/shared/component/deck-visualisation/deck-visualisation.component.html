@@ -1,6 +1,7 @@
 <div class="deck-container">
     <div class="leader-container" *ngIf="isBuilding">
-        <opdb-card *ngIf="deck?.leader" [card]="deck?.leader" (cardIsClicked)="clickCard($event)" [inDeck]="true">
+        <opdb-card *ngIf="deck?.leader" [card]="deck?.leader"
+                   (cardIsClicked)="clickCard($event)" [inDeck]="true">
         </opdb-card>
         <div *ngIf="!deck?.leader" class="no-leader">
             {{'Leader'|translate}}
@@ -8,7 +9,7 @@
     </div>
     <div class="all-results">
         <div *ngFor="let card of getDistinctCardsFromDeck(deck)">
-            <opdb-card (cardIsClicked)="clickCard($event)" [card]="card" [inDeck]="true"
+            <opdb-card [enableEye]="isBuilding" (cardEyeIsClicked)="openModal(card)" (cardIsClicked)="clickCard($event)" [card]="card" [inDeck]="true"
                        [countInDeck]="mapCardIdCountNumber.get(card.id)">
             </opdb-card>
         </div>
