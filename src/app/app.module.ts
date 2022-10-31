@@ -1,4 +1,4 @@
-import {ANIMATION_MODULE_TYPE, BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
@@ -13,9 +13,6 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {NavbarComponent} from "./shared/component/navbar/navbar.component";
 import {SidebarComponent} from "./shared/component/sidebar/sidebar.component";
 import {FooterComponent} from "./shared/component/footer/footer.component";
-import {MapsComponent} from "./pages/maps/maps.component";
-import {NguiMapModule} from "@ngui/map";
-import {IconsComponent} from "./pages/icons/icons.component";
 import {SearchComponent} from "./pages/search/search.component";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {CardResultsComponent} from './shared/component/card-results/card-results.component';
@@ -37,7 +34,6 @@ import {HandShufflerComponent} from './shared/component/hand-shuffler/hand-shuff
 import {HttpAcceptLanguageInterceptor} from "./shared/service/http-accept-language-interceptor.service";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
 import {SaveDeckComponent} from './shared/component/save-deck/save-deck.component';
 import {MarkdownModule, MarkedOptions, MarkedRenderer} from "ngx-markdown";
 import {MyDecksComponent} from './pages/my-decks/my-decks.component';
@@ -49,7 +45,6 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatSelectModule} from "@angular/material/select";
-import {MatTooltipModule} from "@angular/material/tooltip";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -81,7 +76,6 @@ export function markedOptionsFactory(): MarkedOptions {
         RouterModule,
         MatInputModule,
         MatButtonModule,
-        MatIconModule,
         HttpClientModule,
         MarkdownModule.forRoot(),
         AppRoutingModule,
@@ -92,7 +86,6 @@ export function markedOptionsFactory(): MarkedOptions {
                 deps: [HttpClient]
             }
         }),
-        NguiMapModule,
         NgMultiSelectDropDownModule,
         ReactiveFormsModule,
         NgxPaginationModule,
@@ -104,19 +97,15 @@ export function markedOptionsFactory(): MarkedOptions {
         PieChartModule,
         MatExpansionModule,
         MatSidenavModule,
-        MatIconModule,
         MatSlideToggleModule,
         NgbModule,
-        MatSelectModule,
-        MatTooltipModule,
+        MatSelectModule
     ],
     declarations: [
         AppComponent,
         NavbarComponent,
         SidebarComponent,
         FooterComponent,
-        MapsComponent,
-        IconsComponent,
         SearchComponent,
         CardResultsComponent,
         CardComponent,
