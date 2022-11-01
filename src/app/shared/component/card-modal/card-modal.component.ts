@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {ConfigurationService} from "../../service/configuration.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
@@ -10,10 +10,13 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class CardModalComponent implements OnInit {
 
     @Input()
-    public card: Card;
+    public cardList: Card[];
+    @Input()
+    public indexInCardList: number;
+
     public currentImageIndex: number = 0;
 
-    constructor(private _configurationService: ConfigurationService, private _ngbModalService: NgbModal) {
+    constructor(public _configurationService: ConfigurationService, private _ngbModalService: NgbModal) {
     }
 
     ngOnInit(): void {
@@ -68,5 +71,27 @@ export class CardModalComponent implements OnInit {
         effect = effect.replace('[Trigger]',
             '<span class="effect-box effect-trigger">Trigger</span>');
         return effect;
+    }
+
+    incrementIndex(number: number) {
+        let indexTemp = this.indexInCardList;
+        indexTemp = indexTemp + number;
+        if (indexTemp < 0) {
+            indexTemp = this.cardList.length - 1;
+        }
+        if (indexTemp >= this.cardList.length) {
+            indexTemp = 0;
+        }
+        this.indexInCardList = indexTemp;
+    }
+
+    @HostListener('document:keydown', ['$event'])
+    handleKeyboardEvent(event: KeyboardEvent) {
+        if (event.code === 'ArrowRight' || event.code === 'KeyD') {
+            this.incrementIndex(1);
+        }
+        if (event.code === 'ArrowLeft' || event.code === 'KeyA') {
+            this.incrementIndex(-1);
+        }
     }
 }

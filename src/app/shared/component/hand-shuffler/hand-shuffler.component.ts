@@ -42,9 +42,10 @@ export class HandShufflerComponent implements OnInit, OnChanges {
 
     }
 
-    openCardModal(card: Card): void {
+    openCardModal(index: number): void {
         const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
-        modal.componentInstance.card = card;
+        modal.componentInstance.cardList = this.cardsInHand;
+        modal.componentInstance.indexInCardList = index;
         modal.result
             .then()
             .catch();

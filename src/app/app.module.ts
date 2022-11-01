@@ -45,6 +45,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatSelectModule} from "@angular/material/select";
+import {environment} from "../environments/environment";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -130,7 +131,7 @@ export function markedOptionsFactory(): MarkedOptions {
             providers: [
                 {
                     id: GoogleLoginProvider.PROVIDER_ID,
-                    provider: new GoogleLoginProvider('992619369309-dbtcsa095jkkp7ht504i8pvt8snj8f1o.apps.googleusercontent.com') // your client id
+                    provider: new GoogleLoginProvider(environment.clientId) // your client id
                 }
             ],
             onError: (err) => {

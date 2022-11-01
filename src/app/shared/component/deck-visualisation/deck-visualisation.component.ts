@@ -48,9 +48,10 @@ export class DeckVisualisationComponent implements OnInit {
         this.cardIsClicked.emit($cardClicked);
     }
 
-    openModal(card: Card): void {
+    openModal(indexCardClicked: number): void {
         const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
-        modal.componentInstance.card = card;
+        modal.componentInstance.cardList = this.getDistinctCardsFromDeck(this.deck);
+        modal.componentInstance.indexInCardList = indexCardClicked;
         modal.result
             .then()
             .catch();

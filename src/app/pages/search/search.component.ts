@@ -60,7 +60,10 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     openCardModal(card: Card): void {
+        const indexCardClicked = this.searchResult?.content?.map(card => card.id)?.indexOf(card?.id);
         const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
+        modal.componentInstance.cardList = this.searchResult?.content;
+        modal.componentInstance.indexInCardList = indexCardClicked;
         modal.componentInstance.card = card;
         modal.result
             .then()

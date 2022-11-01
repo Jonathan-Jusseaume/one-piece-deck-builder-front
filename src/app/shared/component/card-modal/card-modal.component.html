@@ -1,89 +1,95 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">[{{card?.id}}] {{card?.label}}</h4>
+    <h4 class="modal-title" id="modal-basic-title">[{{cardList[indexInCardList]?.id}}] {{cardList[indexInCardList]?.label}}</h4>
     <button type="button" class="btn-close pe-7s-close" (click)="close()"></button>
 </div>
 <div class="modal-body">
+    <div class="">
+        <button (click)="incrementIndex(-1)">ARRIERE</button>
+    </div>
     <div class="info-container">
         <div class="image-container">
-            <img *ngFor="let image of card?.images | paginate : {
+            <img *ngFor="let image of cardList[indexInCardList]?.images | paginate : {
                                id: 'card-image',
                                itemsPerPage: 1,
                                currentPage: currentImageIndex,
-                               totalItems: card.images.length}; let index = index"
+                               totalItems: cardList[indexInCardList].images.length}; let index = index"
                  [src]="_configurationService.getApiUrl() + 'cards/image/' + image"
-                 [alt]="card?.label"/>
-            <pagination-controls *ngIf="card?.images?.length > 1" (pageChange)="changePage($event)"
+                 [alt]="cardList[indexInCardList]?.label"/>
+            <pagination-controls *ngIf="cardList[indexInCardList]?.images?.length > 1" (pageChange)="changePage($event)"
                                  id="card-image"
                                  [nextLabel]="'Next' | translate"
                                  [previousLabel]="'Previous' | translate"></pagination-controls>
         </div>
         <div class="power-container">
             <div class="basic-info">
-                <div class="info" *ngIf="card?.colors?.length">
+                <div class="info" *ngIf="cardList[indexInCardList]?.colors?.length">
                     <span>{{'Color'|translate}} </span>
-                    <span>{{getColors(card?.colors) || '-'}}</span>
+                    <span>{{getColors(cardList[indexInCardList]?.colors) || '-'}}</span>
                 </div>
-                <div class="info" *ngIf="card?.type?.label">
+                <div class="info" *ngIf="cardList[indexInCardList]?.type?.label">
                     <span>{{'Type'|translate}} </span>
-                    <span>{{card?.type?.label || '-'}}</span>
+                    <span>{{cardList[indexInCardList]?.type?.label || '-'}}</span>
                 </div>
 
 
             </div>
             <div class="basic-info">
-                <div class="info" *ngIf="card?.rarity?.label">
+                <div class="info" *ngIf="cardList[indexInCardList]?.rarity?.label">
                     <span>{{'Rarity'|translate}} </span>
-                    <span>{{card?.rarity?.label || '-'}}</span>
+                    <span>{{cardList[indexInCardList]?.rarity?.label || '-'}}</span>
                 </div>
-                <div class="info" *ngIf="card?.cost">
+                <div class="info" *ngIf="cardList[indexInCardList]?.cost">
                     <span>{{'Cost'|translate}} </span>
-                    <span>{{card?.cost || '-'}}</span>
+                    <span>{{cardList[indexInCardList]?.cost || '-'}}</span>
                 </div>
             </div>
-            <div class="basic-info" *ngIf="card?.power || card?.life">
-                <div class="info" *ngIf="card?.life">
+            <div class="basic-info" *ngIf="cardList[indexInCardList]?.power || cardList[indexInCardList]?.life">
+                <div class="info" *ngIf="cardList[indexInCardList]?.life">
                     <span>{{'Life'|translate}} </span>
-                    <span>{{card?.life || '-'}}</span>
+                    <span>{{cardList[indexInCardList]?.life || '-'}}</span>
                 </div>
-                <div class="info" *ngIf="card?.power">
+                <div class="info" *ngIf="cardList[indexInCardList]?.power">
                     <span>{{'Power'|translate}} </span>
-                    <span> {{card?.power || '-'}}</span>
+                    <span> {{cardList[indexInCardList]?.power || '-'}}</span>
                 </div>
             </div>
-            <div class="basic-info" *ngIf="card?.attribute?.label">
+            <div class="basic-info" *ngIf="cardList[indexInCardList]?.attribute?.label">
                 <div class="info">
                     <span>{{'Attribute'|translate}} </span>
-                    <span> {{card?.attribute?.label || '-'}}</span>
+                    <span> {{cardList[indexInCardList]?.attribute?.label || '-'}}</span>
                 </div>
 
             </div>
-            <div class="effect" *ngIf="card?.effect">
+            <div class="effect" *ngIf="cardList[indexInCardList]?.effect">
                 <div class="info d-flex flex-column" >
                     <span>{{'Effect'|translate}}</span>
-                    <span class="stylized" [innerHTML]="getEffectStylized(card?.effect)"></span>
+                    <span class="stylized" [innerHTML]="getEffectStylized(cardList[indexInCardList]?.effect)"></span>
                 </div>
             </div>
-            <div class="tags" *ngIf="card?.tags?.length">
+            <div class="tags" *ngIf="cardList[indexInCardList]?.tags?.length">
                 <div class="info d-flex flex-column">
                     <span>{{'Tags'|translate}} </span>
                     <ul>
-                        <li *ngFor="let tag of card?.tags">
+                        <li *ngFor="let tag of cardList[indexInCardList]?.tags">
                             {{tag?.label}}
                         </li>
                     </ul>
                 </div>
 
             </div>
-            <div class="tags" *ngIf="card?.products?.length">
+            <div class="tags" *ngIf="cardList[indexInCardList]?.products?.length">
                 <div class="info d-flex flex-column">
                     <span>{{'Product'|translate}} </span>
                     <ul>
-                        <li *ngFor="let product of card?.products">
+                        <li *ngFor="let product of cardList[indexInCardList]?.products">
                             {{product?.label}}
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="">
+        <button (click)="incrementIndex(1)">AVANT</button>
     </div>
 </div>

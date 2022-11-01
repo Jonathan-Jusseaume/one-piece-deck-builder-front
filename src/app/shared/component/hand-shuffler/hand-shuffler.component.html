@@ -1,7 +1,7 @@
 <div class="hand-shuffler">
     <button class="btn background-blue border-blue btn-fill" (click)="shuffleHand()">{{'Shuffle' | translate}}</button>
     <div class="card-container">
-        <opdb-card *ngFor="let card of cardsInHand" [card]="card" (cardIsClicked)="openCardModal($event)"></opdb-card>
+        <opdb-card *ngFor="let card of cardsInHand; let index = index" [card]="card" (cardIsClicked)="openCardModal(index)"></opdb-card>
     </div>
 </div>
 

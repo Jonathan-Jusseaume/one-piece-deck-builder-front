@@ -39,9 +39,10 @@ export class CardResultsComponent implements OnInit {
         this.cardClick.emit($event);
     }
 
-    openCardModal(card: Card): void {
+    openCardModal(cardList: Card[], index: number): void {
         const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
-        modal.componentInstance.card = card;
+        modal.componentInstance.cardList = cardList;
+        modal.componentInstance.indexInCardList = index;
         modal.result
             .then()
             .catch();

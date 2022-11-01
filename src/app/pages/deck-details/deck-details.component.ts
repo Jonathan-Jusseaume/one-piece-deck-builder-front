@@ -5,6 +5,7 @@ import {Subscription, switchMap} from "rxjs";
 import {CardModalComponent} from "../../shared/component/card-modal/card-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LanguageService} from "../../shared/service/language.service";
+import {getDistinctCardsFromDeck} from "../../shared/model/utils/get-distinct-cards-from-deck";
 
 @Component({
     selector: 'opdb-deck-details',
@@ -49,8 +50,11 @@ export class DeckDetailsComponent implements OnInit, OnDestroy {
 
 
     openModal(card: Card): void {
+        const cardList = getDistinctCardsFromDeck(this.deck);
+        const indexCardClicked = cardList.map(card => card.id).indexOf(card?.id);
         const modal = this.dialog.open(CardModalComponent, {ariaLabelledBy: 'modal-basic-title'});
-        modal.componentInstance.card = card;
+        modal.componentInstance.cardList = cardList;
+        modal.componentInstance.indexInCardList = indexCardClicked;
         modal.result
             .then()
             .catch();

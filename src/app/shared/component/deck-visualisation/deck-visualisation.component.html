@@ -8,8 +8,8 @@
         </div>
     </div>
     <div class="all-results">
-        <div *ngFor="let card of getDistinctCardsFromDeck(deck)">
-            <opdb-card [enableEye]="isBuilding" (cardEyeIsClicked)="openModal(card)" (cardIsClicked)="clickCard($event)" [card]="card" [inDeck]="true"
+        <div *ngFor="let card of getDistinctCardsFromDeck(deck); let index = index">
+            <opdb-card [enableEye]="isBuilding" (cardEyeIsClicked)="openModal(index)" (cardIsClicked)="clickCard($event)" [card]="card" [inDeck]="true"
                        [countInDeck]="mapCardIdCountNumber.get(card.id)">
             </opdb-card>
         </div>
