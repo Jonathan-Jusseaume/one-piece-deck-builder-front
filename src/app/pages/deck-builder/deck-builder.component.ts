@@ -153,7 +153,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
 
     canCardBeAddedToDeck(cardSelected: Card, deck: Deck): boolean {
         if (deck?.cards?.length >= 50) {
-            this.showErrorMessage("Nombre max de cartes atteints");
+            this.showErrorMessage("MaxCards");
             return false;
         }
 
@@ -161,7 +161,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
             return false;
         }
         if (deck?.cards?.filter(card => card?.id === cardSelected?.id)?.length === 4) {
-            this.showErrorMessage("Impossible d'avoir plus de quatre fois la même carte");
+            this.showErrorMessage("4SameCards");
             return false;
         }
         return true;
@@ -170,7 +170,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     hasCardColorOfLeader(cardSelected: Card, deck: Deck, displayMessage: boolean): boolean {
         if (!deck?.leader) {
             if (displayMessage) {
-                this.showErrorMessage("Ajouter un leader au deck");
+                this.showErrorMessage("NoLeader");
             }
             return false;
         }
@@ -179,7 +179,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
             return true;
         }
         if (displayMessage) {
-            this.showErrorMessage("La carte doit être de la même couleur que votre leader");
+            this.showErrorMessage("CardSameColorLeader");
         }
         return false;
     }
@@ -210,17 +210,21 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
     }
 
     showErrorMessage(text): void {
-        $.notify({
-            icon: "pe-7s-attention",
-            message: text
-        }, {
-            type: 'danger',
-            timer: 100,
-            placement: {
-                from: 'top',
-                align: 'right'
-            }
-        });
+        this.subscriptions.push(
+            this._translateService.get([text]).subscribe(result => {
+                $.notify({
+                    icon: "pe-7s-attention",
+                    message: result[text]
+                }, {
+                    type: 'danger',
+                    timer: 100,
+                    placement: {
+                        from: 'top',
+                        align: 'right'
+                    }
+                });
+            }));
+
     }
 
     private checkDeckValidity(): boolean {

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {DeckService} from "../../service/deck.service";
 import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 declare var $: any;
 
@@ -23,7 +24,8 @@ export class SaveDeckComponent implements OnInit {
     heightTextArea: string = "";
     validatingForm: boolean = false;
 
-    constructor(private fb: FormBuilder, private _deckService: DeckService, private router: Router) {
+    constructor(private fb: FormBuilder, private _deckService: DeckService, private router: Router,
+                private _translateService: TranslateService) {
     }
 
     ngOnInit(): void {
@@ -36,10 +38,10 @@ export class SaveDeckComponent implements OnInit {
 
     validForm(): void {
         this.deck.description = this.deckForm.value.description;
-        this.deck.name =  this.deckForm.value.name;
+        this.deck.name = this.deckForm.value.name;
         this.validatingForm = true;
         this._deckService.create(this.deck).subscribe(result => {
-            this.showSuccessMessage('Deck ajouté avec succès');
+            this.showSuccessMessage('SuccessSave');
             this.validatingForm = false;
             this.router.navigate(["/my-decks"])
         });
@@ -54,16 +56,19 @@ export class SaveDeckComponent implements OnInit {
     }
 
     showSuccessMessage(text): void {
-        $.notify({
-            icon: "pe-7s-attention",
-            message: text
-        }, {
-            type: 'success',
-            timer: 100,
-            placement: {
-                from: 'top',
-                align: 'right'
-            }
-        });
+        this._translateService.get(['SuccessSave']).subscribe(result => {
+            $.notify({
+                icon: "pe-7s-medal",
+                message: result['SuccessSave']
+            }, {
+                type: 'success',
+                timer: 100,
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                }
+            });
+        })
+
     }
 }

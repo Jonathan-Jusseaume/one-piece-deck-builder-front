@@ -3,6 +3,7 @@
                                itemsPerPage: decks.size,
                                currentPage: decks.number + 1,
                                totalItems: decks.totalElements};" [routerLink]="'/decks/' + deck?.id">
+        <button class="pe-7s-close" *ngIf="deletable" (click)="deleteDeck($event, deck?.id)"></button>
         <opdb-deck-preview [deck]="deck"></opdb-deck-preview>
     </a>
 </div>

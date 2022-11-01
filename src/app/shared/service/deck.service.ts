@@ -57,4 +57,11 @@ export class DeckService {
     }
 
 
+    delete(id: string): Observable<void> {
+        return this._authService.authState.pipe(switchMap(authUser => {
+            const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
+            return this.httpClient.delete<void>(this._configurationService.getApiUrl() + 'decks/' + id,
+                {headers: httpHeaders});
+        }));
+    }
 }

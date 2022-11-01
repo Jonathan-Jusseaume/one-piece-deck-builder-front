@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="row  m30 justify-content-center d-flex">
-                    <opdb-deck-results [decks]="decksOfUser"></opdb-deck-results>
+                    <opdb-deck-results  (hasDeletedDeck)="launchSearch(0)" [deletable]="true" [decks]="decksOfUser"></opdb-deck-results>
                 </div>
                 <div class="row m30 text-center justify-content-center d-flex no-bs-gutter-x"
                      *ngIf="decksOfUser.totalElements > decksOfUser.size">
