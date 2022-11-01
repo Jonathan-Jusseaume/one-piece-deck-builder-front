@@ -15,14 +15,7 @@
                     </div>
                 </div>
                 <div class="row  m30 justify-content-center d-flex">
-                    <div class="decks-container">
-                        <a *ngFor="let deck of decksOfUser.content | paginate : {
-                               itemsPerPage: decksOfUser.size,
-                               currentPage: decksOfUser.number + 1,
-                               totalItems: decksOfUser.totalElements};" [routerLink]="'/decks/' + deck?.id">
-                            <opdb-deck-preview [deck]="deck"></opdb-deck-preview>
-                        </a>
-                    </div>
+                    <opdb-deck-results [decks]="decksOfUser"></opdb-deck-results>
                 </div>
                 <div class="row m30 text-center justify-content-center d-flex no-bs-gutter-x"
                      *ngIf="decksOfUser.totalElements > decksOfUser.size">

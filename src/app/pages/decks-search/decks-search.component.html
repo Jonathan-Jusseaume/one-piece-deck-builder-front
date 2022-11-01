@@ -1,0 +1,73 @@
+<div class="main-content" id="search">
+    <div class="container-fluid">
+        <div class="row m30">
+            <div class="col-md-12">
+                <mat-accordion class="card">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header class="header">
+                            <h4 class="title">{{'FilterTitle' | translate}}</h4>
+                            <p class="category">{{'FilterInformation' | translate}}</p>
+                        </mat-expansion-panel-header>
+                        <form class="content" [formGroup]="searchForm" (reset)="resetSearch()" (submit)="validForm()">
+                            <div class="select-container">
+                                <div class="form-group large-select">
+                                    <input type="text" class="form-control"
+                                           [placeholder]="keywordPlaceHolder" formControlName="keyword">
+                                </div>
+                                <div class="form-group large-select">
+                                    <ng-multiselect-dropdown *ngIf="colors && dropdownSettings"
+                                                             name="colors"
+                                                             [settings]="dropdownSettings"
+                                                             [placeholder]="colorPlaceHolder"
+                                                             [data]="colors"
+                                                             formControlName="colors">
+                                    </ng-multiselect-dropdown>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button type="reset" class="btn btn-default btn-fill">
+                                    {{'ClearButton' | translate}}
+                                </button>
+                                <button type="submit" class="btn background-blue border-blue btn-fill">
+                                    {{'SearchButton' | translate}}
+                                </button>
+                            </div>
+                        </form>
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+
+            </div>
+        </div>
+        <div class="row m30">
+            <div class="col-md-12" *ngIf="decks">
+                <div class="row justify-content-center d-flex no-bs-gutter-x">
+                    <div class="card">
+                        <div class="content control-pagination">
+                            <span class="number">{{decks.totalElements}} {{'DeckNumbers' | translate}} </span>
+                            <pagination-controls *ngIf="decks.totalElements > decks.size"
+                                                 (pageChange)="changePage($event)"
+                                                 [nextLabel]="'Next' | translate"
+                                                 [previousLabel]="'Previous' | translate"></pagination-controls>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row  m30 justify-content-center d-flex">
+                    <opdb-deck-results [decks]="decks"></opdb-deck-results>
+                </div>
+                <div class="row m30 text-center justify-content-center d-flex no-bs-gutter-x"
+                     *ngIf="decks.totalElements > decks.size">
+                    <div class="card">
+                        <div class="content">
+                            <pagination-controls (pageChange)="changePage($event)"
+                                                 [nextLabel]="'Next' | translate"
+                                                 [previousLabel]="'Previous' | translate"></pagination-controls>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

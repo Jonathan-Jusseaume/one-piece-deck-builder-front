@@ -46,6 +46,8 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatSelectModule} from "@angular/material/select";
 import {environment} from "../environments/environment";
+import { DeckResultsComponent } from './shared/component/deck-results/deck-results.component';
+import { DecksSearchComponent } from './pages/decks-search/decks-search.component';
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -122,7 +124,9 @@ export function markedOptionsFactory(): MarkedOptions {
         MyDecksComponent,
         DeckPreviewComponent,
         DeckDetailsComponent,
-        CardModalComponent
+        CardModalComponent,
+        DeckResultsComponent,
+        DecksSearchComponent
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

@@ -1,0 +1,9 @@
+<div class="decks-container">
+    <a *ngFor="let deck of decks.content | paginate : {
+                               itemsPerPage: decks.size,
+                               currentPage: decks.number + 1,
+                               totalItems: decks.totalElements};" [routerLink]="'/decks/' + deck?.id">
+        <opdb-deck-preview [deck]="deck"></opdb-deck-preview>
+    </a>
+</div>
+

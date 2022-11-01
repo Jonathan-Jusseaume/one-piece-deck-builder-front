@@ -7,6 +7,7 @@ import {DeckBuilderComponent} from "./pages/deck-builder/deck-builder.component"
 import {RouteGuard} from "./route.guard";
 import {MyDecksComponent} from "./pages/my-decks/my-decks.component";
 import {DeckDetailsComponent} from "./pages/deck-details/deck-details.component";
+import {DecksSearchComponent} from "./pages/decks-search/decks-search.component";
 
 export const ROUTES: RouteInfo[] = [
     {
@@ -30,6 +31,16 @@ export const ROUTES: RouteInfo[] = [
         visible: true
     },
     {
+        path: '/decks',
+        title: 'DeckSearch',
+        icon: 'pe-7s-filter',
+        class: '',
+        color: 'purple',
+        backgroundImage: 'assets/img/roger.jpg',
+        connected: false,
+        visible: true
+    },
+    {
         path: '/my-decks',
         title: 'YourDeck',
         icon: 'pe-7s-albums',
@@ -40,7 +51,7 @@ export const ROUTES: RouteInfo[] = [
         visible: true
     },
     {
-        path: '/decks',
+        path: '/decks/',
         title: 'DeckDetails',
         icon: '',
         class: '',
@@ -55,6 +66,7 @@ export const routes: Routes = [
     {path: 'search', component: SearchComponent},
     {path: 'deck-builder', component: DeckBuilderComponent},
     {path: 'my-decks', component: MyDecksComponent, canActivate: [RouteGuard]},
+    {path: 'decks', component: DecksSearchComponent},
     {path: 'decks/:id', component: DeckDetailsComponent},
     {path: '**', redirectTo: 'search'}
 ];

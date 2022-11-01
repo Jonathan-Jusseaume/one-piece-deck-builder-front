@@ -13,6 +13,15 @@ export class DeckService {
                 private _authService: SocialAuthService) {
     }
 
+    search(pageNumber: number, deckFilter: any): Observable<Page<Deck>> {
+        let httpParams = new HttpParams()
+            .set('page', pageNumber)
+            .set('size', 20)
+        httpParams = DeckService.addFilterParamsToSearchQuery(deckFilter, httpParams);
+        return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'decks',
+            {params: httpParams});
+    }
+
     public listMyDeck(pageNumber: number): Observable<Page<Deck>> {
         return this._authService.authState.pipe(switchMap(authUser => {
             const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
@@ -35,6 +44,16 @@ export class DeckService {
                 {headers: httpHeaders});
         }))
 
+    }
+
+    private static addFilterParamsToSearchQuery(deckFilter: any, httpParams: HttpParams): HttpParams {
+        if (deckFilter?.colors?.length) {
+            httpParams = httpParams.set('colorId', deckFilter.colors.map(color => color?.id).join(","));
+        }
+        if (deckFilter?.keyword && deckFilter?.keyword !== '') {
+            httpParams = httpParams.set('keyword', deckFilter.keyword);
+        }
+        return httpParams;
     }
 
 
