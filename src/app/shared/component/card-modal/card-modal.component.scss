@@ -1,9 +1,30 @@
+.modal-body {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  button.arrow {
+    background: var(--main-blue-color);
+    color: white;
+    font-weight: 800;
+    font-size: 40px;
+    border: none;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+  }
+}
+
 .info-container {
   display: flex;
   gap: 50px;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 20px 30px;
+  padding: 20px 0;
+  width: 100%;
 
   .image-container {
     display: flex;
@@ -13,25 +34,29 @@
     align-items: center;
 
     img {
-      max-width: 225px;
-      height: 314px;
+      max-width: 360px;
     }
 
     ::ng-deep .ngx-pagination {
       padding-left: 0 !important;
     }
 
-    max-width: 400px;
   }
 
   .power-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-    max-width: 500px;
-    min-width: 400px;
+    max-width: 350px;
 
+    .basic-info, .tags, .effect {
+      padding: 10px 0;
+      border-bottom: solid 1px lightgray;
+    }
+
+    .tags:last-of-type {
+      border-bottom: none;
+    }
 
     .info {
       span:first-of-type {
@@ -107,5 +132,29 @@
   }
 }
 
+@media screen and (max-width: 880px) {
+  .power-container {
+    max-width: 500px!important;
+    width: 100%;
+  }
+  .modal-body {
+    align-items: unset!important;
+    button.arrow {
+      margin-top: 250px;
+    }
+  }
+}
 
+@media screen and (max-width: 500px) {
+  .modal-body {
+    button.arrow {
+      margin-top: 167px!important;
+    }
+  }
+  .info-container {
+    img {
+      max-width: 240px!important;
+    }
+  }
+}
 

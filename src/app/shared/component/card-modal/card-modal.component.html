@@ -3,8 +3,8 @@
     <button type="button" class="btn-close pe-7s-close" (click)="close()"></button>
 </div>
 <div class="modal-body">
-    <div class="">
-        <button (click)="incrementIndex(-1)">ARRIERE</button>
+    <div class="" *ngIf="cardList?.length > 1">
+        <button (click)="incrementIndex(-1)" class="pe-7s-angle-left arrow"></button>
     </div>
     <div class="info-container">
         <div class="image-container">
@@ -17,6 +17,7 @@
                  [alt]="cardList[indexInCardList]?.label"/>
             <pagination-controls *ngIf="cardList[indexInCardList]?.images?.length > 1" (pageChange)="changePage($event)"
                                  id="card-image"
+                                 maxSize="5"
                                  [nextLabel]="'Next' | translate"
                                  [previousLabel]="'Previous' | translate"></pagination-controls>
         </div>
@@ -89,7 +90,7 @@
             </div>
         </div>
     </div>
-    <div class="">
-        <button (click)="incrementIndex(1)">AVANT</button>
+    <div class="" *ngIf="cardList?.length > 1">
+        <button (click)="incrementIndex(1)" class="pe-7s-angle-right arrow"></button>
     </div>
 </div>

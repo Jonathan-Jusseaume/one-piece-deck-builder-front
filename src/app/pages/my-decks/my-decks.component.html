@@ -22,6 +22,7 @@
                     <div class="card">
                         <div class="content">
                             <pagination-controls (pageChange)="changePage($event)"
+                                                 maxSize="5"
                                                  [nextLabel]="'Next' | translate"
                                                  [previousLabel]="'Previous' | translate"></pagination-controls>
                         </div>

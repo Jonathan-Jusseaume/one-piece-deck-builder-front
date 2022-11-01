@@ -9,6 +9,7 @@
             <div class="row text-center justify-content-center d-flex"
                  *ngIf="cardResult.totalElements > cardResult.size">
                 <pagination-controls (pageChange)="changePage($event)"
+                                     maxSize="5"
                                      [nextLabel]="'Next' | translate"
                                      [previousLabel]="'Previous' | translate"></pagination-controls>
             </div>
@@ -19,6 +20,7 @@
                                [enableEye]="inDeckBuilding"
                                (cardEyeIsClicked)="openCardModal(cardResult.content, index)"
                                *ngFor="let card of cardResult.content | paginate : {
+
                                itemsPerPage: cardResult.size,
                                currentPage: cardResult.number + 1,
                                totalItems: cardResult.totalElements}; let index = index" [card]="card">
@@ -28,6 +30,7 @@
             <div class="row text-center justify-content-center d-flex"
                  *ngIf="cardResult.totalElements > cardResult.size">
                 <pagination-controls (pageChange)="changePage($event)"
+                                     maxSize="5"
                                      [nextLabel]="'Next' | translate"
                                      [previousLabel]="'Previous' | translate"></pagination-controls>
             </div>

@@ -52,6 +52,8 @@ export class CardModalComponent implements OnInit {
             '<span class="effect-box effect-main">When Attacking</span>');
         effect = effect.replace('[Your Turn]',
             '<span class="effect-box effect-main">Your Turn</span>');
+        effect = effect.replace('[On K.O.]',
+            '<span class="effect-box effect-main">On K.O.</span>');
         effect = effect.replace('[On Block]',
             '<span class="effect-box effect-main">On Block</span>');
         effect = effect.replace('[On Play]',
@@ -74,16 +76,18 @@ export class CardModalComponent implements OnInit {
     }
 
     incrementIndex(number: number) {
-        let indexTemp = this.indexInCardList;
-        indexTemp = indexTemp + number;
-        if (indexTemp < 0) {
-            indexTemp = this.cardList.length - 1;
+        if (this.cardList?.length > 1) {
+            let indexTemp = this.indexInCardList;
+            indexTemp = indexTemp + number;
+            if (indexTemp < 0) {
+                indexTemp = this.cardList.length - 1;
+            }
+            if (indexTemp >= this.cardList.length) {
+                indexTemp = 0;
+            }
+            this.currentImageIndex = 0;
+            this.indexInCardList = indexTemp;
         }
-        if (indexTemp >= this.cardList.length) {
-            indexTemp = 0;
-        }
-        this.currentImageIndex = 0;
-        this.indexInCardList = indexTemp;
     }
 
     @HostListener('document:keydown', ['$event'])

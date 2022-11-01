@@ -450,6 +450,12 @@ p.category {
   }
 }
 
+@media screen and (max-width: 440px) {
+  .large-select {
+    min-width: 200px!important;
+  }
+}
+
 
 .copyright {
   display: flex;
