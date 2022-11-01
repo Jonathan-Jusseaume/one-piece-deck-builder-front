@@ -82,6 +82,7 @@ export class CardModalComponent implements OnInit {
         if (indexTemp >= this.cardList.length) {
             indexTemp = 0;
         }
+        this.currentImageIndex = 0;
         this.indexInCardList = indexTemp;
     }
 
