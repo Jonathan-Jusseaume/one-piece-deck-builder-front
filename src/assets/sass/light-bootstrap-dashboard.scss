@@ -48,6 +48,10 @@
   --font-color: white;
 }
 
+input, textarea, button {
+  -webkit-appearance: none;
+}
+
 .card {
   border: none;
   height: 100%;
@@ -463,5 +467,11 @@ p.category {
   span {
     text-align: right;
     font-style: italic;
+  }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  mat-sidenav[ng-reflect-opened='true'] {
+    transform: translate3d(0px, 0px, 0px);
   }
 }
