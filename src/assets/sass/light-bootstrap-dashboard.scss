@@ -48,6 +48,10 @@
   --font-color: white;
 }
 
+input, textarea, button {
+  -webkit-appearance: none;
+}
+
 .card {
   border: none;
   height: 100%;
@@ -259,13 +263,13 @@ span.mat-content {
   height: 100px;
 }
 
-@media screen and (max-width: 1048px) {
+@media screen and (max-width: 1310px) {
   .footer {
     height: 140px;
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 1110px) {
   .footer {
     height: 180px;
   }
@@ -463,5 +467,11 @@ p.category {
   span {
     text-align: right;
     font-style: italic;
+  }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  mat-sidenav[ng-reflect-opened='true'] {
+    transform: translate3d(0px, 0px, 0px);
   }
 }

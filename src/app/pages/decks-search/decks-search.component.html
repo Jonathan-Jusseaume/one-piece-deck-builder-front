@@ -47,6 +47,7 @@
                             <span class="number">{{decks.totalElements}} {{'DeckNumbers' | translate}} </span>
                             <pagination-controls *ngIf="decks.totalElements > decks.size"
                                                  maxSize="5"
+                                                 [responsive]="true"
                                                  (pageChange)="changePage($event)"
                                                  [nextLabel]="'Next' | translate"
                                                  [previousLabel]="'Previous' | translate"></pagination-controls>
@@ -64,6 +65,7 @@
                             <pagination-controls (pageChange)="changePage($event)"
                                                  [nextLabel]="'Next' | translate"
                                                  maxSize="5"
+                                                 [responsive]="true"
                                                  [previousLabel]="'Previous' | translate"></pagination-controls>
                         </div>
                     </div>

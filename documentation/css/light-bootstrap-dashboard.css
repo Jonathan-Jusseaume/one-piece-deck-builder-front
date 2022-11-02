@@ -264,7 +264,7 @@ input:focus {
   min-height: 100%;
   overflow: auto;
   width: 260px;
-  z-index: 4;
+  z-index: 1000;
   padding-bottom: 75px;
 }
 .sidebar .sidebar-wrapper .dropdown .dropdown-backdrop,

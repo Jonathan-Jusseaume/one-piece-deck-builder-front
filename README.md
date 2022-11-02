@@ -1,6 +1,6 @@
 # One Piece Card Game Deck Builder
 
-**Version: 1.0.0**
+**Version: 1.0.1**
 
 This application helps you to create One Piece Card Game Deck and to share it to 
 the community thanks to your Google Account.
