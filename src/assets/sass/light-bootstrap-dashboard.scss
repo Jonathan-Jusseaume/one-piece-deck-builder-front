@@ -475,3 +475,11 @@ p.category {
     transform: translate3d(0px, 0px, 0px);
   }
 }
+
+.sidebar, .main-panel, .sidebar-wrapper, .navbar-cmp-fixed .navbar {
+  -webkit-overflow-scrolling: auto!important;
+}
+
+button, input, img {
+  touch-action: manipulation;
+}
