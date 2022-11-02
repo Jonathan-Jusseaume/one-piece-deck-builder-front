@@ -18,6 +18,7 @@
             <pagination-controls *ngIf="cardList[indexInCardList]?.images?.length > 1" (pageChange)="changePage($event)"
                                  id="card-image"
                                  maxSize="5"
+                                 [responsive]="true"
                                  [nextLabel]="'Next' | translate"
                                  [previousLabel]="'Previous' | translate"></pagination-controls>
         </div>
