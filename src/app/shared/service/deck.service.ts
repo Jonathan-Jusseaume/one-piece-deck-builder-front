@@ -4,6 +4,7 @@ import {ConfigurationService} from "./configuration.service";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
 
+
 @Injectable({
     providedIn: 'root'
 })
@@ -13,7 +14,7 @@ export class DeckService {
                 private _authService: SocialAuthService) {
     }
 
-    search(pageNumber: number, deckFilter: any): Observable<Page<Deck>> {
+    public search(pageNumber: number, deckFilter: any): Observable<Page<Deck>> {
         let httpParams = new HttpParams()
             .set('page', pageNumber)
             .set('size', 20)
@@ -46,6 +47,14 @@ export class DeckService {
 
     }
 
+    public delete(id: string): Observable<void> {
+        return this._authService.authState.pipe(switchMap(authUser => {
+            const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
+            return this.httpClient.delete<void>(this._configurationService.getApiUrl() + 'decks/' + id,
+                {headers: httpHeaders});
+        }));
+    }
+
     private static addFilterParamsToSearchQuery(deckFilter: any, httpParams: HttpParams): HttpParams {
         if (deckFilter?.colors?.length) {
             httpParams = httpParams.set('colorId', deckFilter.colors.map(color => color?.id).join(","));
@@ -56,12 +65,33 @@ export class DeckService {
         return httpParams;
     }
 
-
-    delete(id: string): Observable<void> {
-        return this._authService.authState.pipe(switchMap(authUser => {
-            const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
-            return this.httpClient.delete<void>(this._configurationService.getApiUrl() + 'decks/' + id,
-                {headers: httpHeaders});
-        }));
+    public getColorOfDeck(deck: Deck): Color {
+        const countColorCards: Map<number, number> = new Map<number, number>();
+        deck?.leader?.colors?.forEach(color => {
+            DeckService.updateCountColorMap(countColorCards, color?.id);
+        })
+        deck?.cards?.forEach(card => {
+            card?.colors?.forEach(color => {
+                DeckService.updateCountColorMap(countColorCards, color?.id)
+            })
+        });
+        let maxColor = 0;
+        let maxColorValue = 0;
+        countColorCards?.forEach((value, key) => {
+            if (value > maxColorValue) {
+                maxColor = key;
+                maxColorValue = value;
+            }
+        })
+        return {id: maxColor, label: ""};
     }
+
+    private static updateCountColorMap(map: Map<number, number>, colorId: number): void {
+        if (map.has(colorId)) {
+            map.set(colorId, map.get(colorId) + 1);
+        } else {
+            map.set(colorId, 1);
+        }
+    }
+
 }

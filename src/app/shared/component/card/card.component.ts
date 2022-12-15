@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {ConfigurationService} from "../../service/configuration.service";
 import {TypeEnum} from "../../model/constant/TypeEnum";
 import {interval, Subscription} from "rxjs";
+import {ColorService} from "../../service/color.service";
 
 @Component({
     selector: 'opdb-card',
@@ -34,7 +35,7 @@ export class CardComponent implements OnInit, OnDestroy {
 
     private subscriptions: Subscription[] = [];
 
-    constructor(public _configurationService: ConfigurationService) {
+    constructor(public _configurationService: ConfigurationService, public _colorService: ColorService) {
     }
 
     ngOnInit(): void {

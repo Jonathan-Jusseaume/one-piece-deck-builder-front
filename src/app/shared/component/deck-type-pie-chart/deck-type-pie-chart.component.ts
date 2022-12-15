@@ -1,4 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ColorService} from "../../service/color.service";
+import {DeckService} from "../../service/deck.service";
 
 @Component({
     selector: 'opdb-deck-type-pie-chart',
@@ -13,16 +15,22 @@ export class DeckTypePieChartComponent implements OnInit, OnChanges {
     values: any[];
     @Input()
     view: number[] = [420, 400];
+    colorScheme = {
+        domain: ['#337ab7']
+    };
 
 
     ngOnInit(): void {
     }
 
-    constructor() {
+    constructor(private _colorService: ColorService, private _deckService: DeckService) {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         this.updatePieChart();
+        this.colorScheme = {
+            domain: this._colorService.getCssPieChartColorsFromCardColor(this._deckService.getColorOfDeck(this.deck))
+        };
     }
 
     updatePieChart(): void {

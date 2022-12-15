@@ -1,5 +1,7 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {fromEvent, Observable, Subscription} from "rxjs";
+import {DeckService} from "../../service/deck.service";
+import {ColorService} from "../../service/color.service";
 
 @Component({
     selector: 'opdb-deck-cost-bar-chart',
@@ -33,7 +35,7 @@ export class DeckCostBarChartComponent implements OnInit, OnChanges, OnDestroy {
     ngOnInit(): void {
     }
 
-    constructor() {
+    constructor(private _deckService: DeckService, private _colorService: ColorService) {
     }
 
     ngOnDestroy(): void {
@@ -41,6 +43,17 @@ export class DeckCostBarChartComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.updateCountChart();
+        this.colorScheme = {
+            domain: [this._colorService.getCssColorFromCardColor(this._deckService.getColorOfDeck(this.deck))]
+        };
+    }
+
+    tickFormatting(value: any) {
+        return value.toLocaleString()
+    }
+
+    updateCountChart(): void {
         const countCostCards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         this.showYAxis = false;
         this.deck?.cards?.forEach(card => {
@@ -54,11 +67,8 @@ export class DeckCostBarChartComponent implements OnInit, OnChanges, OnDestroy {
                 name: (index + 1),
                 value: cost
             })
-        })
+        });
     }
 
-    tickFormatting(value: any) {
-        return value.toLocaleString()
-    }
 
 }
