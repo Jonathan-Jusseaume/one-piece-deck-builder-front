@@ -1,13 +1,13 @@
 <mat-sidenav-container class="wrapper">
-    <mat-sidenav mode="side" [opened]="sidebarOpened" [class]="'sidebar ' + getColor()" data-image="">
+    <mat-sidenav mode="side" [opened]="sidebarOpened" [class]="'sidebar ' + currentBackgroundSidebar" data-image="">
         <opdb-sidebar></opdb-sidebar>
-        <div class="sidebar-background" [style]="'background-image: url(' + getBackground() + ')'"></div>
+        <div class="sidebar-background" [style]="'background-image: url(' + currentImageSidebar + ')'"></div>
 
     </mat-sidenav>
 
 
     <mat-sidenav-content class="main-panel" [class]="{'w-100': !sidebarOpened}">
-        <button *ngIf="!isMobileMenu()" class="sidebar-button" [style]="'background:' + getHexaColorByName(getColor())" type="button"
+        <button *ngIf="!isMobileMenu()" class="sidebar-button" [style]="'background:' + getHexaColorByName(currentBackgroundSidebar)" type="button"
                 (click)="switchSideBarMode()">
             {{sidebarOpened ? '<<' : '>>'}}
         </button>

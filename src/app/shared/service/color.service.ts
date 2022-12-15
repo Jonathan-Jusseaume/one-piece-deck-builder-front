@@ -50,4 +50,18 @@ export class ColorService {
         }
     }
 
+    getCssColorNameFromCardColor(cardColor: Color) {
+        switch (cardColor?.id) {
+            case ColorEnum.RED:
+                return 'red';
+            case ColorEnum.GREEN:
+                return 'green';
+            case ColorEnum.BLUE:
+                return 'blue';
+            case ColorEnum.PURPLE:
+                return 'purple';
+            case ColorEnum.BLACK:
+                return 'black';
+        }
+    }
 }
