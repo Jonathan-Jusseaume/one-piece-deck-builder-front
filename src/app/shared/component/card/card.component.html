@@ -1,10 +1,19 @@
 <div class="card-img" [class]="{'has-eye-button': enableEye}">
     <ng-container *ngFor="let img of card.images; let index = index">
-        <img [class]="{'leader-in-deck': inDeck && card.type.id === TypeEnum.LEADER,
+        <div class="img card"
+             [style]="'background-image: url(' + _configurationService.getApiUrl() + 'cards/image/' + img + ');'
+             + (movementTest !== '' ? movementTest + ';' : '')"
+             [class]="{'visible': index === currentImageIndex}"
+             (click)="isClicked(card)"
+             (mousemove)="cardAnimation($event)"
+             (mouseout)="cardAnimationEnd($event)">
+            <img [id]="card?.id" [src]="_configurationService.getApiUrl() + 'cards/image/' + img"
+                 style="visibility: hidden !important;"
+                 [class]="{'leader-in-deck': inDeck && card.type.id === TypeEnum.LEADER,
                 'card-in-deck': inDeck && card.type.id !== TypeEnum.LEADER,
-                 'visible': index === currentImageIndex}"
-             [src]="_configurationService.getApiUrl() + 'cards/image/' + img" (click)="isClicked(card)"
-             [alt]="card?.label"/>
+                 'visible': index === currentImageIndex}"/>
+
+        </div>
     </ng-container>
     <button class="eye-button pe-7s-info"
             [style]="'background:' + _colorService.getCssColorFromCardColor(card?.colors[0])"

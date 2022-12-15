@@ -4,6 +4,57 @@
   justify-content: center;
   position: relative;
 
+  .img {
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+  }
+
+  .img:before,
+  .img:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: .5;
+    mix-blend-mode: color-dodge;
+    transition: all .33s ease;
+  }
+
+  .img:before {
+    background-position: 50% 50%;
+    background-size: 300% 300%;
+    background-image: linear-gradient(
+                    115deg,
+                    transparent 0%,
+                    var(--color1) 25%,
+                    transparent 47%,
+                    transparent 53%,
+                    var(--color2) 75%,
+                    transparent 100%
+    );
+    opacity: .5;
+    filter: brightness(.5) contrast(1);
+    z-index: 1;
+  }
+
+  .img:after {
+    opacity: 1;
+    background-image: url("https://assets.codepen.io/13471/sparkles.gif"),
+    url(https://assets.codepen.io/13471/holo.png),
+    linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
+    background-position: 50% 50%;
+    background-size: 160%;
+    background-blend-mode: overlay;
+    z-index: 2;
+    filter: brightness(1) contrast(1);
+    transition: all .33s ease;
+    mix-blend-mode: color-dodge;
+    opacity: .75;
+  }
+
   img {
     max-width: 225px;
     width: 100%;
