@@ -7,6 +7,7 @@ import {InterfaceService} from "./shared/service/interface.service";
 import PerfectScrollbar from "perfect-scrollbar";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
 import {LanguageService} from "./shared/service/language.service";
+import {DeckService} from "./shared/service/deck.service";
 
 @Component({
     selector: 'app-root',
@@ -27,12 +28,13 @@ export class AppComponent implements OnInit {
         ['green', '#87CB16'],
         ['orange', '#FFA534'],
         ['blue', '#1F77D0'],
-        ['black', '5e5e5e']
+        ['black', '#5e5e5e']
     ])
 
     constructor(public location: Location, private _translateService: TranslateService,
                 private router: Router, private _interfaceService: InterfaceService,
-                private _authService: SocialAuthService, private _languageService: LanguageService) {
+                private _authService: SocialAuthService, private _languageService: LanguageService,
+                private _deckService: DeckService) {
         const languagesAvailable = ['en', 'fr'];
         this._translateService.addLangs(languagesAvailable);
         if (sessionStorage.getItem('lang')) {
@@ -69,6 +71,7 @@ export class AppComponent implements OnInit {
         });
         this.router.events.subscribe((event: any) => {
             if (event instanceof NavigationStart) {
+                this._deckService.currentDeckChange.next(null);
                 if (event.url != this.lastPoppedUrl)
                     this.yScrollStack.push(window.scrollY);
             } else if (event instanceof NavigationEnd) {
@@ -118,6 +121,7 @@ export class AppComponent implements OnInit {
     }
 
     getBackground() {
+        this._deckService.currentDeckChange.subscribe(deck => console.log(deck));
         return this._interfaceService.getCurrentRouteInfo()?.backgroundImage || 'assets/img/luffy.jpg';
     }
 

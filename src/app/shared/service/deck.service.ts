@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, switchMap} from "rxjs";
+import {BehaviorSubject, Observable, Subject, switchMap, tap} from "rxjs";
 import {ConfigurationService} from "./configuration.service";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
@@ -9,6 +9,8 @@ import {SocialAuthService} from "@abacritt/angularx-social-login";
     providedIn: 'root'
 })
 export class DeckService {
+
+    public currentDeckChange: BehaviorSubject<Deck> = new BehaviorSubject(null);
 
     constructor(private _configurationService: ConfigurationService, private httpClient: HttpClient,
                 private _authService: SocialAuthService) {
@@ -35,7 +37,10 @@ export class DeckService {
     }
 
     public read(id: string): Observable<Deck> {
-        return this.httpClient.get<Deck>(this._configurationService.getApiUrl() + 'decks/' + id);
+        return this.httpClient.get<Deck>(this._configurationService.getApiUrl() + 'decks/' + id)
+            .pipe(tap(deck => {
+                this.currentDeckChange.next(deck)
+            }));
     }
 
     public create(deck: Deck): Observable<Deck> {
