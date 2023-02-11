@@ -1,7 +1,7 @@
 # Utilisez une image Node.js en tant que base
 FROM node:14-alpine AS build
 WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
+COPY package.json ./
 RUN npm install
 COPY . .
 RUN npm run build
