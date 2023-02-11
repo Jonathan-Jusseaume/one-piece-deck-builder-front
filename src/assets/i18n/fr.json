@@ -1,10 +1,12 @@
 {
   "4SameCards": "Vous ne pouvez pas avoir une carte plus de quatre fois",
   "Attribute": "Attribut",
+  "BackUnavailable": "Il est impossible d'accéder au serveur",
   "CardFound": "carte(s) trouvée(s)",
   "CardList": "Liste des cartes",
   "CardSameColorLeader": "Vos cartes doivent être de même couleur que votre leader",
   "ClearButton": "Réinitialiser",
+  "ClientError": "Erreur au niveau du client",
   "Color": "Couleur(s)",
   "ColorFilterPlaceHolder": "Couleur",
   "ConfirmDelete": "Êtes-vous sûr de vouloir supprimer ce deck ?",
