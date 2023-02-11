@@ -1,0 +1,17 @@
+name: ONE_PIECE_DECK_BUILDER_API_PIPELINE
+on:
+  push:
+    branches:
+      - master
+      - '*'
+jobs:
+  build:
+    name: Build
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+
