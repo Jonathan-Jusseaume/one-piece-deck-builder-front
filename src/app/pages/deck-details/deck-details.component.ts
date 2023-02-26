@@ -6,6 +6,8 @@ import {CardModalComponent} from "../../shared/component/card-modal/card-modal.c
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LanguageService} from "../../shared/service/language.service";
 import {getDistinctCardsFromDeck} from "../../shared/model/utils/get-distinct-cards-from-deck";
+import {Card} from "../../shared/model/class/Card";
+import {Deck} from "../../shared/model/class/Deck";
 
 @Component({
     selector: 'opdb-deck-details',

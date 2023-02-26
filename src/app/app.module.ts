@@ -1,7 +1,7 @@
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpErrorResponse} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppRoutingModule} from './app.routing';
@@ -48,6 +48,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {environment} from "../environments/environment";
 import { DeckResultsComponent } from './shared/component/deck-results/deck-results.component';
 import { DecksSearchComponent } from './pages/decks-search/decks-search.component';
+import {HttpErrorInterceptorService} from "./shared/service/http-error-interceptor.service";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -148,6 +149,11 @@ export function markedOptionsFactory(): MarkedOptions {
             useClass: HttpAcceptLanguageInterceptor,
             multi: true,
         },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptorService,
+            multi: true,
+        }
 
     ],
     bootstrap: [AppComponent]

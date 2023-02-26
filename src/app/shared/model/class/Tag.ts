@@ -1,4 +1,4 @@
-declare interface Color {
+export class Tag {
     id: number;
     label: string;
 }

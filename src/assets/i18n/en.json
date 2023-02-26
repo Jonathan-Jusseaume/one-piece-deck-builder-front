@@ -1,10 +1,12 @@
 {
   "4SameCards": "You can't have a card more than four times",
   "Attribute": "Attribute",
+  "BackUnavailable": "It is impossible to connect to the server",
   "CardFound": "card(s) found",
   "CardList": "List of cards",
   "CardSameColorLeader": "Cards need to have the color of the leader",
   "ClearButton": "Reset",
+  "ClientError": "Client error",
   "Color": "Color(s)",
   "ColorFilterPlaceHolder": "Color",
   "ConfirmDelete": "Are you sure you want to delete this deck ?",

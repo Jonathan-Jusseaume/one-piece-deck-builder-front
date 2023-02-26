@@ -8,6 +8,7 @@ import {RouteGuard} from "./route.guard";
 import {MyDecksComponent} from "./pages/my-decks/my-decks.component";
 import {DeckDetailsComponent} from "./pages/deck-details/deck-details.component";
 import {DecksSearchComponent} from "./pages/decks-search/decks-search.component";
+import {RouteInfo} from "./shared/model/class/RouteInfo";
 
 export const ROUTES: RouteInfo[] = [
     {

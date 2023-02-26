@@ -11,6 +11,9 @@ import {TypeEnum} from "../../shared/model/constant/TypeEnum";
 import {SearchFilterComponent} from "../../shared/component/search-filter/search-filter.component";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
 import {compareToCard} from "../../shared/model/utils/compare-to-card";
+import {Card} from "../../shared/model/class/Card";
+import {Deck} from "../../shared/model/class/Deck";
+import {Page} from "../../shared/model/class/Page";
 
 
 declare var $: any;

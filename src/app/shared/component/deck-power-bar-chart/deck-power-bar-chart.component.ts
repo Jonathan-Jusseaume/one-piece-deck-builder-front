@@ -1,5 +1,8 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {fromEvent, Observable, Subscription} from "rxjs";
+import {ColorService} from "../../service/color.service";
+import {DeckService} from "../../service/deck.service";
+import {Deck} from "../../model/class/Deck";
 
 @Component({
     selector: 'opdb-deck-power-bar-chart',
@@ -36,7 +39,7 @@ export class DeckPowerBarChartComponent implements OnInit, OnChanges, OnDestroy 
         })
     }
 
-    constructor() {
+    constructor(private _colorService: ColorService, private _deckService: DeckService) {
     }
 
     ngOnDestroy(): void {
@@ -44,6 +47,17 @@ export class DeckPowerBarChartComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.updatePowerChart();
+        this.colorScheme = {
+            domain: [this._colorService.getCssColorFromCardColor(this._deckService.getColorOfDeck(this.deck))]
+        };
+    }
+
+    tickFormatting(value: any) {
+        return value.toLocaleString()
+    }
+
+    updatePowerChart(): void {
         const countPowerCards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         this.showYAxis = false;
         countPowerCards[this.deck?.leader?.power / 1000] += 1;
@@ -61,10 +75,6 @@ export class DeckPowerBarChartComponent implements OnInit, OnChanges, OnDestroy 
                 value: numberPower
             })
         })
-    }
-
-    tickFormatting(value: any) {
-        return value.toLocaleString()
     }
 
 }

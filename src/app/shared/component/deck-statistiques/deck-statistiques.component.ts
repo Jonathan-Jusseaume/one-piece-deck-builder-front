@@ -1,4 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Deck} from "../../model/class/Deck";
 
 @Component({
     selector: 'opdb-deck-statistiques',

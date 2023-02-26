@@ -8,6 +8,11 @@ import {TagService} from "../../service/tag.service";
 import {TypeService} from "../../service/type.service";
 import {RarityService} from "../../service/rarity.service";
 import {ProductService} from "../../service/product.service";
+import {Color} from "../../model/class/Color";
+import {Tag} from "../../model/class/Tag";
+import {Type} from "../../model/class/Type";
+import {Rarity} from "../../model/class/Rarity";
+import {Product} from "../../model/class/Product";
 
 @Component({
     selector: 'opdb-search-filter',

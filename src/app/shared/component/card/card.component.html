@@ -6,7 +6,11 @@
              [src]="_configurationService.getApiUrl() + 'cards/image/' + img" (click)="isClicked(card)"
              [alt]="card?.label"/>
     </ng-container>
-    <button class="eye-button pe-7s-info" (click)="eyeClick(card)"></button>
-    <span class="count" *ngIf="inDeck && countInDeck > 1">{{countInDeck}}</span>
+    <button class="eye-button pe-7s-info"
+            [style]="'background:' + _colorService.getCssColorFromCardColor(card?.colors[0])"
+            (click)="eyeClick(card)"></button>
+    <span class="count"
+          [style]="'background:' + _colorService.getCssColorFromCardColor(card?.colors[0])"
+          *ngIf="inDeck && countInDeck > 1">{{countInDeck}}</span>
 </div>
 

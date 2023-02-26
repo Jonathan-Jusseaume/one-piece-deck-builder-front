@@ -7,6 +7,10 @@ import {InterfaceService} from "./shared/service/interface.service";
 import PerfectScrollbar from "perfect-scrollbar";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
 import {LanguageService} from "./shared/service/language.service";
+import {DeckService} from "./shared/service/deck.service";
+import {ColorService} from "./shared/service/color.service";
+import {ConfigurationService} from "./shared/service/configuration.service";
+import {Deck} from "./shared/model/class/Deck";
 
 @Component({
     selector: 'app-root',
@@ -27,12 +31,17 @@ export class AppComponent implements OnInit {
         ['green', '#87CB16'],
         ['orange', '#FFA534'],
         ['blue', '#1F77D0'],
-        ['black', '5e5e5e']
+        ['black', '#5e5e5e']
     ])
+
+    public currentImageSidebar: string = 'red';
+    public currentBackgroundSidebar: string = 'assets/img/luffy.jpg';
 
     constructor(public location: Location, private _translateService: TranslateService,
                 private router: Router, private _interfaceService: InterfaceService,
-                private _authService: SocialAuthService, private _languageService: LanguageService) {
+                private _authService: SocialAuthService, private _languageService: LanguageService,
+                private _deckService: DeckService, private _colorService: ColorService,
+                private _configurationService: ConfigurationService) {
         const languagesAvailable = ['en', 'fr'];
         this._translateService.addLangs(languagesAvailable);
         if (sessionStorage.getItem('lang')) {
@@ -69,6 +78,7 @@ export class AppComponent implements OnInit {
         });
         this.router.events.subscribe((event: any) => {
             if (event instanceof NavigationStart) {
+                this._deckService.currentDeckChange.next(null);
                 if (event.url != this.lastPoppedUrl)
                     this.yScrollStack.push(window.scrollY);
             } else if (event instanceof NavigationEnd) {
@@ -77,6 +87,9 @@ export class AppComponent implements OnInit {
                     window.scrollTo(0, this.yScrollStack.pop());
                 } else
                     window.scrollTo(0, 0);
+                this._deckService.currentDeckChange.subscribe(deck => {
+                    this.updateSidebar(deck);
+                });
             }
         });
         this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
@@ -113,13 +126,6 @@ export class AppComponent implements OnInit {
         return bool;
     }
 
-    getColor() {
-        return this._interfaceService.getCurrentRouteInfo()?.color || 'red';
-    }
-
-    getBackground() {
-        return this._interfaceService.getCurrentRouteInfo()?.backgroundImage || 'assets/img/luffy.jpg';
-    }
 
     switchSideBarMode(): void {
         this.clickedOnceOnRetract = true;
@@ -142,5 +148,16 @@ export class AppComponent implements OnInit {
 
     isMobileMenu() {
         return window.innerWidth <= 991;
+    }
+
+    private updateSidebar(deck: Deck) {
+        this.currentBackgroundSidebar = this._interfaceService.getCurrentRouteInfo()?.color || 'red';
+        this.currentImageSidebar = this._interfaceService.getCurrentRouteInfo()?.backgroundImage || 'assets/img/luffy.jpg';
+        if (deck) {
+            this.currentBackgroundSidebar = this._colorService.getCssColorNameFromCardColor(this._deckService.getColorOfDeck(deck));
+            this.currentImageSidebar = this._configurationService.getApiUrl() + 'cards/image/'
+                + deck?.leader?.images[deck?.leader?.images?.length - 1];
+        }
+
     }
 }

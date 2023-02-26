@@ -1,4 +1,4 @@
-declare interface Rarity {
+export class Color {
     id: number;
     label: string;
 }
