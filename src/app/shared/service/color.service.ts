@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ConfigurationService} from "./configuration.service";
 import {TranslateService} from "@ngx-translate/core";
 import {Observable} from "rxjs";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {LanguageService} from "./language.service";
 import {ColorEnum} from "../model/constant/ColorEnum";
 import {Color} from "../model/class/Color";
@@ -33,6 +33,8 @@ export class ColorService {
                 return '#843180';
             case ColorEnum.BLACK:
                 return '#808080';
+            case ColorEnum.YELLOW:
+                return '#CBC946'
         }
     }
 
@@ -48,6 +50,8 @@ export class ColorService {
                 return ['#EE82EE', '#843180', '#FF00FF', '#BA55D3'];
             case ColorEnum.BLACK:
                 return ['#808080', '#D3D3D3', '#A9A9A9', '#696969'];
+            case ColorEnum.YELLOW:
+                return ['#edc810', '#ede346', '#ffc820', '#ffc880'];
         }
     }
 
@@ -63,6 +67,8 @@ export class ColorService {
                 return 'purple';
             case ColorEnum.BLACK:
                 return 'black';
+            case ColorEnum.YELLOW:
+                return 'orange';
         }
     }
 }

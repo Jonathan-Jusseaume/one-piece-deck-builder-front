@@ -55,17 +55,17 @@ export class DeckCostBarChartComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     updateCountChart(): void {
-        const countCostCards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        const countCostCards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         this.showYAxis = false;
         this.deck?.cards?.forEach(card => {
-            countCostCards[card.cost - 1] += 1;
+            countCostCards[card.cost] += 1;
             this.showYAxis = true;
         })
         this.maxNumberCardAtCost = Math.max(10, Math.max(...countCostCards));
         this.dataCost = [];
         countCostCards.forEach((cost, index) => {
             this.dataCost.push({
-                name: (index + 1),
+                name: (index),
                 value: cost
             })
         });

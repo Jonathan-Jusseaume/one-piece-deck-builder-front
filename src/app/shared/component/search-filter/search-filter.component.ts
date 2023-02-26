@@ -39,8 +39,8 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     public types: Type[];
     public rarities: Rarity[];
     public products: Product[];
-    public costs: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    public powers: number[] = [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
+    public costs: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    public powers: number[] = [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000];
     public dropdownSettings: any;
     @Input()
     public inSearchPlace: boolean = false;
