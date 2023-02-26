@@ -62,16 +62,20 @@ export class DeckPowerBarChartComponent implements OnInit, OnChanges, OnDestroy 
         this.showYAxis = false;
         countPowerCards[this.deck?.leader?.power / 1000] += 1;
         this.deck?.cards?.forEach(card => {
-            if (card.power) {
-                countPowerCards[card.power / 1000] += 1;
+            if (card?.power) {
+                countPowerCards[Math.min(card.power / 1000, 10)] += 1;
             }
             this.showYAxis = true;
         })
         this.maxNumberCardAtPower = Math.max(10, Math.max(...countPowerCards));
         this.dataPower = [];
         countPowerCards.forEach((numberPower, index) => {
+            let label_name = (index * 1000).toString();
+            if (index === 10) {
+                label_name = "> 10000";
+            }
             this.dataPower.push({
-                name: (index * 1000),
+                name: label_name,
                 value: numberPower
             })
         })
