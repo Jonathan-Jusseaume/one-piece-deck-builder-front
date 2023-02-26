@@ -1,4 +1,6 @@
-declare interface Deck {
+import {Card} from "./Card";
+
+export class Deck {
     id: string;
     leader: Card;
     cards: Card[];

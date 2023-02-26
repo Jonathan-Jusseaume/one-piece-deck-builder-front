@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CardModalComponent} from "../card-modal/card-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Card} from "../../model/class/Card";
+import {Deck} from "../../model/class/Deck";
 
 @Component({
     selector: 'opdb-deck-preview',

@@ -1,4 +1,4 @@
-declare interface Page<T> {
+export class Page<T> {
     content: T[];
     empty: boolean;
     first: boolean;

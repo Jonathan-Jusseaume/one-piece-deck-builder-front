@@ -3,6 +3,7 @@ import {ConfigurationService} from "../../service/configuration.service";
 import {TypeEnum} from "../../model/constant/TypeEnum";
 import {interval, Subscription} from "rxjs";
 import {ColorService} from "../../service/color.service";
+import {Card} from "../../model/class/Card";
 
 @Component({
     selector: 'opdb-card',

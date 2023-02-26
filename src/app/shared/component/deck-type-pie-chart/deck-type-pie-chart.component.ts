@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ColorService} from "../../service/color.service";
 import {DeckService} from "../../service/deck.service";
+import {Deck} from "../../model/class/Deck";
 
 @Component({
     selector: 'opdb-deck-type-pie-chart',

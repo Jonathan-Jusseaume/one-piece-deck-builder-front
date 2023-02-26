@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {LanguageService} from "./language.service";
 import {ColorEnum} from "../model/constant/ColorEnum";
+import {Color} from "../model/class/Color";
 
 @Injectable({
     providedIn: 'root'

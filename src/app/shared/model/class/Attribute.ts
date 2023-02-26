@@ -1,4 +1,4 @@
-declare interface Tag {
+export class Attribute {
     id: number;
     label: string;
 }

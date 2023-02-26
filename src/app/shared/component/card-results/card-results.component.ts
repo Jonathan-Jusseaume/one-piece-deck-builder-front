@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {CardModalComponent} from "../card-modal/card-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Card} from "../../model/class/Card";
+import {Page} from "../../model/class/Page";
 
 @Component({
     selector: 'opdb-card-results',

@@ -1,4 +1,4 @@
-declare interface Attribute {
+export class Rarity {
     id: number;
     label: string;
 }

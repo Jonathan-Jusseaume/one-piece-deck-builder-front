@@ -5,6 +5,9 @@ import {LanguageService} from "../../shared/service/language.service";
 import {FormBuilder} from "@angular/forms";
 import {ColorService} from "../../shared/service/color.service";
 import {TranslateService} from "@ngx-translate/core";
+import {Color} from "../../shared/model/class/Color";
+import {Deck} from "../../shared/model/class/Deck";
+import {Page} from "../../shared/model/class/Page";
 
 @Component({
     selector: 'opdb-decks-search',

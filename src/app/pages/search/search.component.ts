@@ -9,6 +9,8 @@ import {TypeService} from "../../shared/service/type.service";
 import {CardService} from "../../shared/service/card.service";
 import {CardModalComponent} from "../../shared/component/card-modal/card-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Card} from "../../shared/model/class/Card";
+import {Page} from "../../shared/model/class/Page";
 
 @Component({
     selector: 'opdb-search',
