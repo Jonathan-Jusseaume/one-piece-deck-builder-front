@@ -25,8 +25,8 @@ jobs:
         run: |
           echo "export const environment = {" > src/environments/environment.ts
           echo "production: true," >> src/environments/environment.ts
-          echo "apiUrl: 'http://localhost:8080/api/'" >> src/environments/environment.ts
-          echo "clientId: '${{ secrets.GOOGLE_CLIENT_ID }}'" >> src/environments/environment.ts
+          echo "apiUrl: 'https://one-piece-card-game-deck-builder.com/api/'" >> src/environments/environment.ts
+          echo "clientId: '${{ secrets.OAUTH_CLIENT_ID }}'" >> src/environments/environment.ts
           echo "};" >> src/environments/environment.ts
       - uses: actions/checkout@v3
       - name: Login to DockerHub
