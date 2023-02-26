@@ -29,7 +29,6 @@ jobs:
           echo "apiUrl: 'https://one-piece-card-game-deck-builder.com/api/'," >> src/environments/environment.prod.ts
           echo "clientId: '${{ secrets.OAUTH_CLIENT_ID }}'" >> src/environments/environment.prod.ts
           echo "};" >> src/environments/environment.prod.ts
-      - uses: actions/checkout@v3
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
