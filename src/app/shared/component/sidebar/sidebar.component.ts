@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
 import {ROUTES} from "../../../app.routing";
 import {LanguageService} from "../../service/language.service";
-import {SocialUser} from "angularx-social-login";
-import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 
 declare const $: any;
 

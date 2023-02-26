@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CardModalComponent} from "../card-modal/card-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Card} from "../../model/class/Card";
+import {Deck} from "../../model/class/Deck";
+import {compareToCard} from "../../model/utils/compare-to-card";
 
 @Component({
     selector: 'opdb-deck-visualisation',
@@ -27,6 +30,7 @@ export class DeckVisualisationComponent implements OnInit {
     }
 
     getDistinctCardsFromDeck(deck: Deck): Card[] {
+        this.deck?.cards?.sort((card, card2) => compareToCard(card, card2));
         this.mapCardIdCountNumber = new Map<string, number>();
         const alreadySeenCards: Map<string, boolean> = new Map<string, boolean>();
         const distinctCards: Card[] = [];

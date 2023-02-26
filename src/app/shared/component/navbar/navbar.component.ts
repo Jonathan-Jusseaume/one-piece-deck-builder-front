@@ -4,7 +4,7 @@ import {InterfaceService} from "../../service/interface.service";
 import {ROUTES} from "../../../app.routing";
 import {LanguageService} from "../../service/language.service";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
-import {SocialUser} from "angularx-social-login";
+import {SocialUser} from "@abacritt/angularx-social-login";
 
 
 declare const $: any;

@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild
 import {fromEvent, Observable, Subscription} from "rxjs";
 import {DeckService} from "../../service/deck.service";
 import {ColorService} from "../../service/color.service";
+import {Deck} from "../../model/class/Deck";
 
 @Component({
     selector: 'opdb-deck-cost-bar-chart',

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Location} from '@angular/common';
 import {ROUTES} from "../../app.routing";
+import {RouteInfo} from "../model/class/RouteInfo";
 
 @Injectable({
     providedIn: 'root'

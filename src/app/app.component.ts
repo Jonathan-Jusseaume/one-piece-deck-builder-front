@@ -10,6 +10,7 @@ import {LanguageService} from "./shared/service/language.service";
 import {DeckService} from "./shared/service/deck.service";
 import {ColorService} from "./shared/service/color.service";
 import {ConfigurationService} from "./shared/service/configuration.service";
+import {Deck} from "./shared/model/class/Deck";
 
 @Component({
     selector: 'app-root',

@@ -1,8 +1,11 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subject, switchMap, tap} from "rxjs";
+import {BehaviorSubject, Observable, switchMap, tap} from "rxjs";
 import {ConfigurationService} from "./configuration.service";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {Deck} from "../model/class/Deck";
+import {Page} from "../model/class/Page";
+import {Color} from "../model/class/Color";
 
 
 @Injectable({

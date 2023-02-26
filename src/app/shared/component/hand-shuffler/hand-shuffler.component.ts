@@ -1,6 +1,8 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CardModalComponent} from "../card-modal/card-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { Card } from 'app/shared/model/class/Card';
+import { Deck } from 'app/shared/model/class/Deck';
 
 @Component({
     selector: 'opdb-hand-shuffler',

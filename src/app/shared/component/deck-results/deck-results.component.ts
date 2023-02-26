@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DeckService} from "../../service/deck.service";
 import {Subscription} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
+import {Page} from "../../model/class/Page";
+import {Deck} from "../../model/class/Deck";
 
 @Component({
     selector: 'opdb-deck-results',

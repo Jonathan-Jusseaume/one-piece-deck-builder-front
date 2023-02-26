@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DeckService} from "../../shared/service/deck.service";
 import {Subscription} from "rxjs";
+import {Deck} from "../../shared/model/class/Deck";
+import {Page} from "../../shared/model/class/Page";
 
 @Component({
     selector: 'opdb-my-decks',

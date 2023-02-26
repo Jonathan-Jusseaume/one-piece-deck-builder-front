@@ -1,3 +1,5 @@
+import {Card} from "../class/Card";
+
 export function compareToCard(card: Card, card2: Card): number {
     if (card?.type?.id !== card2?.type?.id) {
         // If the card is a stage, we increase the id of type because we want stages in last

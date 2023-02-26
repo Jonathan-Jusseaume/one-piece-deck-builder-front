@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {DeckService} from "../../service/deck.service";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
+import {Deck} from "../../model/class/Deck";
 
 declare var $: any;
 

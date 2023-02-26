@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {LanguageService} from "./language.service";
-import {HttpEvent, HttpHandler, HttpRequest} from "@angular/common/http";
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
-export class HttpAcceptLanguageInterceptor {
+export class HttpAcceptLanguageInterceptor implements HttpInterceptor {
 
     constructor(private languageService: LanguageService) {
     }

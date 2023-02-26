@@ -4,6 +4,8 @@ import {TranslateService} from "@ngx-translate/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {LanguageService} from "./language.service";
 import {Observable} from "rxjs";
+import {Page} from "../model/class/Page";
+import {Card} from "../model/class/Card";
 
 @Injectable({
     providedIn: 'root'

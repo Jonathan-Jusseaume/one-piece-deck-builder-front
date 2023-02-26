@@ -14,4 +14,45 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: false
+  build_push:
+    name: Build and Push
+    runs-on: self-hosted
+    needs: build
+    environment: PROD
+    steps:
+      - uses: actions/checkout@v2
+      - name: Modify environment.prod.ts
+        run: |
+          echo "export const environment = {" > src/environments/environment.ts
+          echo "production: true," >> src/environments/environment.ts
+          echo "apiUrl: 'http://localhost:8080/api/'" >> src/environments/environment.ts
+          echo "clientId: '${{ secrets.GOOGLE_CLIENT_ID }}'" >> src/environments/environment.ts
+          echo "};" >> src/environments/environment.ts
+      - uses: actions/checkout@v3
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: jonathanjusseaume/one-piece-deck-builder-front:latest
+  deploy_prod:
+    name: Deploy Prod
+    runs-on: self-hosted
+    needs: build_push
+    environment: PROD
+    steps:
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            sudo docker stop front || true && sudo docker rm front || true
+            sudo docker pull jonathanjusseaume/one-piece-deck-builder-front:latest
+            sudo docker run -d -p 4200:4200 --name front --network=host jonathanjusseaume/one-piece-deck-builder-front:latest
 

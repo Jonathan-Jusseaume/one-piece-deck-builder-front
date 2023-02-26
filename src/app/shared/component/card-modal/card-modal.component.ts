@@ -1,6 +1,8 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {ConfigurationService} from "../../service/configuration.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { Card } from 'app/shared/model/class/Card';
+import {Color} from "../../model/class/Color";
 
 @Component({
     selector: 'opdb-card-modal',

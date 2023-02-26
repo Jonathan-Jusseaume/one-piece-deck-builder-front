@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@an
 import {fromEvent, Observable, Subscription} from "rxjs";
 import {ColorService} from "../../service/color.service";
 import {DeckService} from "../../service/deck.service";
+import {Deck} from "../../model/class/Deck";
 
 @Component({
     selector: 'opdb-deck-power-bar-chart',
