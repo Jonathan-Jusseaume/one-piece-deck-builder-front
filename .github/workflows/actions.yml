@@ -1,4 +1,4 @@
-name: ONE_PIECE_DECK_BUILDER_API_PIPELINE
+name: ONE_PIECE_DECK_BUILDER_FRONT_PIPELINE
 on:
   push:
     branches:
