@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     name: Build
+    if: github.ref != 'refs/heads/master'
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
@@ -17,7 +18,7 @@ jobs:
   build_push:
     name: Build and Push
     runs-on: self-hosted
-    needs: build
+    if: github.ref == 'refs/heads/master'
     environment: PROD
     steps:
       - uses: actions/checkout@v2
@@ -43,6 +44,7 @@ jobs:
   deploy_prod:
     name: Deploy Prod
     runs-on: self-hosted
+    if: github.ref == 'refs/heads/master'
     needs: build_push
     environment: PROD
     steps:
