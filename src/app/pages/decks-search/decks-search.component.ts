@@ -38,7 +38,8 @@ export class DecksSearchComponent implements OnInit {
     ngOnInit(): void {
         this.searchForm = this.fb.group({
             keyword: "",
-            colors: []
+            colors: [],
+            onlyFavorite: false
         });
         this.subscriptions.push(this._languageService.languageSelectedChanged.subscribe(() => {
             this.initComponents();
