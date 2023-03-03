@@ -7,4 +7,24 @@
 .details {
   padding: 15px 0;
 }
+.content {
+  align-items: center;
+}
+.favorite {
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  position: relative;
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  .star-count {
+    position: absolute;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
 

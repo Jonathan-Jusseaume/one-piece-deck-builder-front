@@ -24,8 +24,18 @@ export class DeckService {
             .set('page', pageNumber)
             .set('size', 20)
         httpParams = DeckService.addFilterParamsToSearchQuery(deckFilter, httpParams);
-        return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'decks',
-            {params: httpParams});
+        return this._authService.authState.pipe(switchMap(authUser => {
+            if (authUser) {
+                const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
+                return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'decks',
+                    {
+                        params: httpParams,
+                        headers: httpHeaders
+                    });
+            }
+            return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'decks',
+                {params: httpParams});
+        }));
     }
 
     public listMyDeck(pageNumber: number): Observable<Page<Deck>> {
@@ -34,16 +44,20 @@ export class DeckService {
             const httpParams = new HttpParams()
                 .set('page', pageNumber)
                 .set('size', 20)
+                .set('onlyUserDeck', true)
             return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'decks',
                 {params: httpParams, headers: httpHeaders});
         }));
     }
 
     public read(id: string): Observable<Deck> {
-        return this.httpClient.get<Deck>(this._configurationService.getApiUrl() + 'decks/' + id)
-            .pipe(tap(deck => {
-                this.currentDeckChange.next(deck)
-            }));
+        return this._authService.authState.pipe(switchMap(authUser => {
+            if (authUser) {
+                const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
+                return this.httpClient.get<Deck>(this._configurationService.getApiUrl() + 'decks/' + id, {headers: httpHeaders})
+            }
+            return this.httpClient.get<Deck>(this._configurationService.getApiUrl() + 'decks/' + id);
+        }), tap(deck => this.currentDeckChange.next(deck)));
     }
 
     public create(deck: Deck): Observable<Deck> {
@@ -53,6 +67,15 @@ export class DeckService {
                 {headers: httpHeaders});
         }))
 
+    }
+
+    public favoriteAction(deck: Deck): Observable<Deck> {
+        return this._authService.authState.pipe(switchMap(authUser => {
+            const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
+            return this.httpClient.post<Deck>(this._configurationService.getApiUrl() + 'decks/' + deck?.id +
+                (deck?.favorite ? '/unfavorite' : '/favorite'), deck,
+                {headers: httpHeaders});
+        }))
     }
 
     public delete(id: string): Observable<void> {
@@ -101,5 +124,6 @@ export class DeckService {
             map.set(colorId, 1);
         }
     }
+
 
 }

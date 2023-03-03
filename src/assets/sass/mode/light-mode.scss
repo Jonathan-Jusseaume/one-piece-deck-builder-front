@@ -147,4 +147,15 @@ body.light {
       fill: black;
     }
   }
+
+  .favorite {
+    background-color: white;
+    color: #202020;
+    border: none;
+
+    &.is-favorite {
+      color: green;
+    }
+  }
+
 }

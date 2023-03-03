@@ -145,4 +145,13 @@ body {
     }
   }
 
+  .favorite {
+    background-color: #202020;
+    color: white;
+    border: none;
+    &.is-favorite {
+      color: 	#FFD700;
+    }
+  }
+
 }
