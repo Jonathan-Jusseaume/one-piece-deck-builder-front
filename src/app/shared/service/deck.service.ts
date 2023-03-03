@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, switchMap, tap} from "rxjs";
+import {BehaviorSubject, map, Observable, switchMap, tap} from "rxjs";
 import {ConfigurationService} from "./configuration.service";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {SocialAuthService} from "@abacritt/angularx-social-login";
@@ -24,8 +24,18 @@ export class DeckService {
             .set('page', pageNumber)
             .set('size', 20)
         httpParams = DeckService.addFilterParamsToSearchQuery(deckFilter, httpParams);
-        return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'decks',
-            {params: httpParams});
+        return this._authService.authState.pipe(switchMap(user => {
+            let httpHeaders = new HttpHeaders();
+            if (user !== null) {
+                httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + user?.idToken)
+            }
+            return this.httpClient.get<Page<Deck>>(this._configurationService.getApiUrl() + 'decks',
+                {
+                    params: httpParams,
+                    headers: httpHeaders
+                });
+        }));
+
     }
 
     public listMyDeck(pageNumber: number): Observable<Page<Deck>> {
@@ -52,7 +62,15 @@ export class DeckService {
             return this.httpClient.post<Deck>(this._configurationService.getApiUrl() + 'decks', deck,
                 {headers: httpHeaders});
         }))
+    }
 
+    public favoriteAction(deck: Deck, makeFavorite: boolean): Observable<Deck> {
+        return this._authService.authState.pipe(switchMap(authUser => {
+            const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + authUser?.idToken)
+            return this.httpClient.post<Deck>(this._configurationService.getApiUrl() + 'decks/' + deck?.id
+                + (makeFavorite ? '/favorite' : '/unfavorite'), deck,
+                {headers: httpHeaders});
+        }))
     }
 
     public delete(id: string): Observable<void> {
@@ -69,6 +87,9 @@ export class DeckService {
         }
         if (deckFilter?.keyword && deckFilter?.keyword !== '') {
             httpParams = httpParams.set('keyword', deckFilter.keyword);
+        }
+        if (deckFilter?.onlyFavorite) {
+            httpParams = httpParams.set('onlyFavorite', deckFilter.onlyFavorite);
         }
         return httpParams;
     }
