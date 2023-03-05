@@ -41,4 +41,5 @@ export class DeckResultsComponent implements OnInit {
             })
         );
     }
+
 }

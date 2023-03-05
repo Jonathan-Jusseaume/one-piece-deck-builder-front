@@ -18,13 +18,13 @@ body {
     background-color: #202020;
     border: 1px solid #E3E3E3;
     color: white;
+
     &:focus {
       background-color: #202020;
       border: 1px solid white;
       color: white;
     }
   }
-
 
 
   .card .category, .card label {
@@ -35,7 +35,7 @@ body {
     color: white;
 
     &.active {
-      color: white!important;
+      color: white !important;
       background: #202020;
     }
   }
@@ -86,7 +86,7 @@ body {
   }
 
   .ngx-charts .axis, .ngx-charts .pie-label {
-    fill: white!important;
+    fill: white !important;
   }
 
   .markdown-preview {
@@ -96,10 +96,12 @@ body {
       color: white;
     }
   }
+
   .footer {
     a, p {
       color: white !important;
     }
+
     background: #202020;
   }
 
@@ -116,7 +118,7 @@ body {
 
   .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     background-color: #F5F5F5;
-    color: #333333!important;
+    color: #333333 !important;
   }
 
   .no-leader {
@@ -134,6 +136,7 @@ body {
   .modal-content {
     background: #404040;
     color: white;
+
     .modal-header {
       background: #202020;
     }
@@ -143,6 +146,27 @@ body {
     svg {
       fill: white;
     }
+  }
+
+  .favorite {
+    background-color: #202020;
+    color: white;
+    border: none;
+
+    &.is-favorite {
+      color: #FFD700;
+    }
+  }
+
+  mat-checkbox {
+    .mdc-checkbox__background {
+      border-color: white !important;
+    }
+
+    label {
+      color: white !important;
+    }
+
   }
 
 }

@@ -1,15 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {CardModalComponent} from "../card-modal/card-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Card} from "../../model/class/Card";
 import {Deck} from "../../model/class/Deck";
+import {Subscription} from "rxjs";
+import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
+import {DeckService} from "../../service/deck.service";
 
 @Component({
     selector: 'opdb-deck-preview',
     templateUrl: './deck-preview.component.html',
     styleUrls: ['./deck-preview.component.scss']
 })
-export class DeckPreviewComponent implements OnInit {
+export class DeckPreviewComponent implements OnInit, OnDestroy {
 
     @Input()
     deck: Deck;
@@ -19,11 +22,15 @@ export class DeckPreviewComponent implements OnInit {
 
     isDescription: boolean = false;
     panelOpenState: boolean = true;
+    private subscriptions: Subscription[] = [];
+    private user: SocialUser;
 
-    constructor(private dialog: NgbModal) {
+    constructor(private dialog: NgbModal, private _authService: SocialAuthService,
+                private _deckService: DeckService) {
     }
 
     ngOnInit(): void {
+        this.subscriptions.push(this._authService.authState.subscribe(user => this.user = user))
     }
 
     changeDescription($event: MouseEvent): void {
@@ -43,4 +50,17 @@ export class DeckPreviewComponent implements OnInit {
         }
     }
 
+    ngOnDestroy(): void {
+        this.subscriptions.forEach(subscription => subscription?.unsubscribe());
+    }
+
+    changeFavoriteStatus($event: MouseEvent, deck: Deck): void {
+        $event.preventDefault();
+        $event.stopPropagation();
+        this.subscriptions.push(
+            this._deckService.favoriteAction(deck).subscribe(returnedDeck => {
+                this.deck = returnedDeck;
+            })
+        )
+    }
 }

@@ -22,6 +22,9 @@ export class CardComponent implements OnInit, OnDestroy {
     public countInDeck: number = 0;
 
     @Input()
+    public inHandShuffler: boolean = false;
+
+    @Input()
     public enableEye: boolean = false;
 
     @Output()

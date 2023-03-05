@@ -15,6 +15,10 @@
             <ng-container *ngIf="!isDescription; else description">
                 <div class="content" [class]="{'justify-content-sm-between': !inSearchResults}">
                     <opdb-card [card]="deck?.leader" (cardIsClicked)="openModal($event)"></opdb-card>
+                    <button class="pe-7s-star favorite" [disabled]="!user" (click)="changeFavoriteStatus($event, deck)"
+                            [class]="{'is-favorite': deck?.favorite}">
+                        <span class="star-count">{{deck?.countFavorites}}</span>
+                    </button>
                     <div class="details">
                         <button *ngIf="!inSearchResults" type="action" class="background-blue btn btn-fill border-blue"
                                 (click)="changeDescription($event)">

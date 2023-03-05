@@ -30,6 +30,10 @@
     object-fit: contain;
   }
 
+  .in-hand-shuffler {
+    max-width: 150px;
+  }
+
   .count {
     position: absolute;
     background: var(--main-blue-color);

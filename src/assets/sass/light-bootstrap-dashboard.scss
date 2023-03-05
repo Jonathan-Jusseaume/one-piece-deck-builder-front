@@ -384,7 +384,7 @@ span.mat-content {
   margin-top: 1.5rem;
 }
 
-.mat-accordion>.mat-expansion-panel-spacing {
+.mat-accordion > .mat-expansion-panel-spacing {
   overflow: inherit;
 }
 
@@ -404,21 +404,27 @@ span.mat-content {
   border-radius: 3px;
   font-weight: 600;
   padding: 2px;
+
   &.effect-main {
     border-color: rgb(3, 111, 173)
   }
+
   &.effect-once {
     border-color: rgb(219, 59, 91)
   }
+
   &.effect-don {
     border-color: black;
   }
+
   &.effect-blocker {
     border-color: rgb(229, 121, 32)
   }
+
   &.effect-counter {
     border-color: rgb(223, 1, 17)
   }
+
   &.effect-trigger {
     border-color: rgb(255, 234, 38)
   }
@@ -441,8 +447,46 @@ p.category {
   flex-wrap: wrap;
   width: 100%;
 
+
+  mat-checkbox {
+    .mdc-form-field {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mdc-checkbox {
+      width: 24px;
+      height: 24px;
+    }
+
+    .mdc-checkbox__background {
+      width: 24px;
+      height: 24px;
+      border: 1px solid !important;
+    }
+
+
+    .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__background {
+      top: calc((var(--mdc-checkbox-state-layer-size, 40px) - 24px) / 2) !important;
+      left: calc((var(--mdc-checkbox-state-layer-size, 40px) - 24px) / 2) !important;
+    }
+
+    &.mat-mdc-checkbox-checked .mdc-checkbox__background {
+      background: var(--main-blue-color) !important;
+    }
+
+    label {
+      font-size: 16px !important;
+      margin-bottom: 0 !important;
+      text-transform: none !important;
+    }
+
+  }
+
   .small-select {
-    min-width: 200px!important;
+    min-width: 200px !important;
     flex-basis: auto;
     flex-grow: 1;
   }
@@ -456,7 +500,7 @@ p.category {
 
 @media screen and (max-width: 440px) {
   .large-select {
-    min-width: 200px!important;
+    min-width: 200px !important;
   }
 }
 
@@ -464,6 +508,7 @@ p.category {
 .copyright {
   display: flex;
   flex-direction: column;
+
   span {
     text-align: right;
     font-style: italic;
@@ -476,8 +521,8 @@ p.category {
   }
 }
 
-.sidebar, .main-panel, .sidebar-wrapper, .navbar-cmp-fixed .navbar, .mat-drawer-inner-container  {
-  -webkit-overflow-scrolling: auto!important;
+.sidebar, .main-panel, .sidebar-wrapper, .navbar-cmp-fixed .navbar, .mat-drawer-inner-container {
+  -webkit-overflow-scrolling: auto !important;
 }
 
 button, input, img {

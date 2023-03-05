@@ -147,4 +147,25 @@ body.light {
       fill: black;
     }
   }
+
+  .favorite {
+    background-color: white;
+    color: #202020;
+    border: none;
+
+    &.is-favorite {
+      color: green;
+    }
+  }
+
+  mat-checkbox {
+    .mdc-checkbox__background {
+      border-color: black!important;
+    }
+    label {
+      color: black !important;
+    }
+
+  }
+
 }

@@ -2,7 +2,8 @@
     <ng-container *ngFor="let img of card.images; let index = index">
         <img [class]="{'leader-in-deck': inDeck && card.type.id === TypeEnum.LEADER,
                 'card-in-deck': inDeck && card.type.id !== TypeEnum.LEADER,
-                 'visible': index === currentImageIndex}"
+                 'visible': index === currentImageIndex,
+                 'in-hand-shuffler': inHandShuffler}"
              [src]="_configurationService.getApiUrl() + 'cards/image/' + img" (click)="isClicked(card)"
              [alt]="card?.label"/>
     </ng-container>

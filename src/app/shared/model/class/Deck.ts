@@ -7,4 +7,6 @@ export class Deck {
     name: string;
     description: string;
     creationDate: Date;
+    favorite: boolean;
+    countFavorites: number;
 }

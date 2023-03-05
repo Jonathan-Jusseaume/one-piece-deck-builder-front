@@ -65,9 +65,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         if (sessionStorage.getItem('deck')) {
             this.deck = JSON.parse(sessionStorage.getItem('deck'))
         } else {
-            this.deck = {
-                creationDate: undefined, description: "", name: "", id: null, leader: null, cards: []
-            }
+            this.deck = this.initDeck();
         }
         this.updateLanguage()
         this.subscriptions.push(this._languageService.languageSelectedChanged.subscribe(() => {
@@ -189,14 +187,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
 
     eraseDeck(): void {
         sessionStorage.removeItem('deck');
-        this.deck = {
-            creationDate: undefined,
-            description: "",
-            name: "",
-            id: null,
-            leader: null,
-            cards: []
-        };
+        this.deck = this.initDeck();
     }
 
 
@@ -255,5 +246,18 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
         sessionStorage.setItem('deck', JSON.stringify(this.deck));
         this.deck = JSON.parse(sessionStorage.getItem('deck'))
         this.isDeckValid = this.checkDeckValidity();
+    }
+
+    private initDeck(): Deck {
+        return {
+            creationDate: undefined,
+            description: "",
+            name: "",
+            id: null,
+            leader: null,
+            cards: [],
+            favorite: true,
+            countFavorites: 0
+        }
     }
 }
