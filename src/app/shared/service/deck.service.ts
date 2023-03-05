@@ -93,6 +93,9 @@ export class DeckService {
         if (deckFilter?.keyword && deckFilter?.keyword !== '') {
             httpParams = httpParams.set('keyword', deckFilter.keyword);
         }
+        if (deckFilter?.onlyFavorite) {
+            httpParams = httpParams.set('onlyFavorite', deckFilter.onlyFavorite);
+        }
         return httpParams;
     }
 

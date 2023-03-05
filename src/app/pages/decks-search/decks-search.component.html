@@ -23,6 +23,11 @@
                                                              formControlName="colors">
                                     </ng-multiselect-dropdown>
                                 </div>
+                                <div class="form-group large-select" *ngIf="user">
+                                    <mat-checkbox formControlName="onlyFavorite" name="onlyFavorite">
+                                        {{'OnlyFavorite' | translate}}
+                                    </mat-checkbox>
+                                </div>
                             </div>
                             <div class="actions">
                                 <button type="reset" class="btn btn-default btn-fill">

@@ -49,6 +49,7 @@ import {environment} from "../environments/environment";
 import { DeckResultsComponent } from './shared/component/deck-results/deck-results.component';
 import { DecksSearchComponent } from './pages/decks-search/decks-search.component';
 import {HttpErrorInterceptorService} from "./shared/service/http-error-interceptor.service";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -103,7 +104,8 @@ export function markedOptionsFactory(): MarkedOptions {
         MatSidenavModule,
         MatSlideToggleModule,
         NgbModule,
-        MatSelectModule
+        MatSelectModule,
+        MatCheckboxModule
     ],
     declarations: [
         AppComponent,

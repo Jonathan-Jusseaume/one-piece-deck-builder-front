@@ -8,6 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {Color} from "../../shared/model/class/Color";
 import {Deck} from "../../shared/model/class/Deck";
 import {Page} from "../../shared/model/class/Page";
+import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 
 @Component({
     selector: 'opdb-decks-search',
@@ -30,9 +31,11 @@ export class DecksSearchComponent implements OnInit {
 
     public dropdownSettings: any;
 
+    private user: SocialUser;
 
     constructor(private _deckService: DeckService, private _languageService: LanguageService,
-                private fb: FormBuilder, private _colorService: ColorService, private _translateService: TranslateService) {
+                private _authService: SocialAuthService, private fb: FormBuilder, private _colorService: ColorService,
+                private _translateService: TranslateService) {
     }
 
     ngOnInit(): void {
@@ -44,6 +47,7 @@ export class DecksSearchComponent implements OnInit {
         this.subscriptions.push(this._languageService.languageSelectedChanged.subscribe(() => {
             this.initComponents();
         }))
+        this.subscriptions.push(this._authService.authState.subscribe(user => this.user = user))
         this.launchSearch(0);
     }
 
