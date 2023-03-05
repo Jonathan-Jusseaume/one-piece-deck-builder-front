@@ -31,7 +31,7 @@ export class DecksSearchComponent implements OnInit {
 
     public dropdownSettings: any;
 
-    private user: SocialUser;
+    public user: SocialUser;
 
     constructor(private _deckService: DeckService, private _languageService: LanguageService,
                 private _authService: SocialAuthService, private fb: FormBuilder, private _colorService: ColorService,
