@@ -1,11 +1,11 @@
 <div class="card-img" [class]="{'has-eye-button': enableEye}">
-    <ng-container *ngFor="let img of card.images; let index = index">
-        <img [class]="{'leader-in-deck': inDeck && card.type.id === TypeEnum.LEADER,
-                'card-in-deck': inDeck && card.type.id !== TypeEnum.LEADER,
+    <ng-container *ngFor="let cardImage of cardShowed.images; let index = index">
+        <img [class]="{'leader-in-deck': inDeck && cardShowed.type.id === TypeEnum.LEADER,
+                'card-in-deck': inDeck && cardShowed.type.id !== TypeEnum.LEADER,
                  'visible': index === currentImageIndex,
                  'in-hand-shuffler': inHandShuffler}"
-             [src]="_configurationService.getApiUrl() + 'cards/image/' + img" (click)="isClicked(card)"
-             [alt]="card?.label"/>
+             [src]="_configurationService.getApiUrl() + 'cards/image/' + cardImage.filename" (click)="isClicked(card)"
+             [alt]="cardShowed?.label"/>
     </ng-container>
     <button class="eye-button pe-7s-info"
             [style]="'background:' + _colorService.getCssColorFromCardColor(card?.colors[0])"

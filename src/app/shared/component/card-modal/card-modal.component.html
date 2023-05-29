@@ -8,12 +8,12 @@
     </div>
     <div class="info-container">
         <div class="image-container">
-            <img *ngFor="let image of cardList[indexInCardList]?.images | paginate : {
+            <img *ngFor="let cardImage of cardList[indexInCardList]?.images | paginate : {
                                id: 'card-image',
                                itemsPerPage: 1,
                                currentPage: currentImageIndex,
                                totalItems: cardList[indexInCardList].images.length}; let index = index"
-                 [src]="_configurationService.getApiUrl() + 'cards/image/' + image"
+                 [src]="_configurationService.getApiUrl() + 'cards/image/' + cardImage.filename"
                  [alt]="cardList[indexInCardList]?.label"/>
             <pagination-controls *ngIf="cardList[indexInCardList]?.images?.length > 1" (pageChange)="changePage($event)"
                                  id="card-image"
@@ -36,9 +36,9 @@
 
             </div>
             <div class="basic-info">
-                <div class="info" *ngIf="cardList[indexInCardList]?.rarity?.label">
+                <div class="info" *ngIf="cardList[indexInCardList]?.images[currentImageIndex - 1]?.rarity?.label">
                     <span>{{'Rarity'|translate}} </span>
-                    <span>{{cardList[indexInCardList]?.rarity?.label || '-'}}</span>
+                    <span>{{cardList[indexInCardList]?.images[currentImageIndex - 1]?.rarity?.label || '-'}}</span>
                 </div>
                 <div class="info" *ngIf="cardList[indexInCardList]?.cost">
                     <span>{{'Cost'|translate}} </span>
@@ -79,12 +79,12 @@
                 </div>
 
             </div>
-            <div class="tags" *ngIf="cardList[indexInCardList]?.products?.length">
+            <div class="tags" *ngIf="cardList[indexInCardList]?.images[currentImageIndex - 1]?.product">
                 <div class="info d-flex flex-column">
                     <span>{{'Product'|translate}} </span>
                     <ul>
-                        <li *ngFor="let product of cardList[indexInCardList]?.products">
-                            {{product?.label}}
+                        <li *ngIf="cardList[indexInCardList]?.images[currentImageIndex - 1]?.product">
+                            {{cardList[indexInCardList]?.images[currentImageIndex - 1]?.product?.label}}
                         </li>
                     </ul>
                 </div>
