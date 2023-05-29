@@ -156,7 +156,7 @@ export class AppComponent implements OnInit {
         if (deck) {
             this.currentBackgroundSidebar = this._colorService.getCssColorNameFromCardColor(this._deckService.getColorOfDeck(deck));
             this.currentImageSidebar = this._configurationService.getApiUrl() + 'cards/image/'
-                + deck?.leader?.images[deck?.leader?.images?.length - 1];
+                + deck?.leader?.images[deck?.leader?.images?.length - 1]?.filename;
         }
 
     }

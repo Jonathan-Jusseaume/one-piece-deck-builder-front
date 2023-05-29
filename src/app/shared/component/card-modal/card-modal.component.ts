@@ -16,7 +16,7 @@ export class CardModalComponent implements OnInit {
     @Input()
     public indexInCardList: number;
 
-    public currentImageIndex: number = 0;
+    public currentImageIndex: number = 1;
 
     constructor(public _configurationService: ConfigurationService, private _ngbModalService: NgbModal) {
     }

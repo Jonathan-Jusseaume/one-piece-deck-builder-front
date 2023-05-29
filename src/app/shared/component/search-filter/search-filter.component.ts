@@ -13,6 +13,7 @@ import {Tag} from "../../model/class/Tag";
 import {Type} from "../../model/class/Type";
 import {Rarity} from "../../model/class/Rarity";
 import {Product} from "../../model/class/Product";
+import {FilterService} from "../../service/filter.service";
 
 @Component({
     selector: 'opdb-search-filter',
@@ -46,11 +47,13 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     public inSearchPlace: boolean = false;
     panelOpenState: boolean = true;
 
+    public searchFilter: any;
+
 
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
                 private _typeService: TypeService, private _rarityService: RarityService,
-                private _productService: ProductService) {
+                private _productService: ProductService, private _filterService: FilterService) {
     }
 
     ngOnInit(): void {
@@ -114,14 +117,17 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     resetSearch() {
         this.searchForm.reset();
         this.formValueChanged.emit(null);
+        this._filterService.setFilter(this.searchForm);
         document.getElementById("top")?.scrollIntoView();
     }
 
     validForm() {
         this.formValueChanged.emit(this.searchForm);
+        this._filterService.setFilter(this.searchForm);
     }
 
     ngOnDestroy() {
+        this._filterService.setFilter(null);
         this.subscriptions?.forEach(subscription => subscription.unsubscribe());
     }
 }
