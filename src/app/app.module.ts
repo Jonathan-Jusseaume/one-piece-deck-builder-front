@@ -25,7 +25,6 @@ import {DeckVisualisationComponent} from './shared/component/deck-visualisation/
 import {MatTabsModule} from "@angular/material/tabs";
 import {DeckStatistiquesComponent} from './shared/component/deck-statistiques/deck-statistiques.component';
 import {BrowserModule} from "@angular/platform-browser";
-import {NgxTabsModule} from "@ngx-lite/tabs";
 import {DeckCostBarChartComponent} from './shared/component/deck-cost-bar-chart/deck-cost-bar-chart.component';
 import {BarChartModule, PieChartModule} from "@swimlane/ngx-charts";
 import {DeckTypePieChartComponent} from './shared/component/deck-type-pie-chart/deck-type-pie-chart.component';
@@ -50,6 +49,7 @@ import { DeckResultsComponent } from './shared/component/deck-results/deck-resul
 import { DecksSearchComponent } from './pages/decks-search/decks-search.component';
 import {HttpErrorInterceptorService} from "./shared/service/http-error-interceptor.service";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {TabViewModule} from "primeng/tabview";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -97,7 +97,6 @@ export function markedOptionsFactory(): MarkedOptions {
         SocialLoginModule,
         MatTabsModule,
         BrowserModule,
-        NgxTabsModule,
         BarChartModule,
         PieChartModule,
         MatExpansionModule,
@@ -105,7 +104,8 @@ export function markedOptionsFactory(): MarkedOptions {
         MatSlideToggleModule,
         NgbModule,
         MatSelectModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        TabViewModule
     ],
     declarations: [
         AppComponent,

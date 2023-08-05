@@ -11,8 +11,11 @@
             </div>
         </div>
         <div class="row m30" *ngIf="!needRenderer">
-            <ngx-tabs>
-                <ngx-tab name="Deck" [active]="true">
+            <p-tabView [(activeIndex)]="activeTab">
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        <span class="tab-header" [class.active]="activeTab === 0">Deck</span>
+                    </ng-template>
                     <div class="col-12">
                         <div class="card card-tab" [class]="{'card-not-valid': deckIsNotValid}">
                             <div class="header">
@@ -30,8 +33,11 @@
                             </div>
                         </div>
                     </div>
-                </ngx-tab>
-                <ngx-tab [name]="statisticsText">
+                </p-tabPanel>
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        <span class="tab-header" [class.active]="activeTab === 1">{{statisticsText}}</span>
+                    </ng-template>
                     <div class="col-12">
                         <div class="card card-tab card-no-background" [class]="{'card-not-valid': deckIsNotValid}">
                             <div class="dashboard-card-content">
@@ -39,8 +45,11 @@
                             </div>
                         </div>
                     </div>
-                </ngx-tab>
-                <ngx-tab [name]="handText">
+                </p-tabPanel>
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        <span class="tab-header" [class.active]="activeTab === 2">{{handText}}</span>
+                    </ng-template>
                     <div class="col-12">
                         <div class="card card-tab" [class]="{'card-not-valid': deckIsNotValid}">
                             <div class="content">
@@ -48,8 +57,11 @@
                             </div>
                         </div>
                     </div>
-                </ngx-tab>
-                <ngx-tab [name]="saveText" *ngIf="isUserConnected">
+                </p-tabPanel>
+                <p-tabPanel *ngIf="isUserConnected">
+                    <ng-template pTemplate="header">
+                        <span class="tab-header" [class.active]="activeTab === 3">{{saveText}}</span>
+                    </ng-template>
                     <div class="col-12">
                         <div class="card card-tab" [class]="{'card-not-valid': deckIsNotValid}">
                             <div class="header">
@@ -61,8 +73,8 @@
                             </div>
                         </div>
                     </div>
-                </ngx-tab>
-            </ngx-tabs>
+                </p-tabPanel>
+            </p-tabView>
         </div>
     </div>
 </div>
