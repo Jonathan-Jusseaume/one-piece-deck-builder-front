@@ -31,12 +31,16 @@ body {
     color: #E3E3E3;
   }
 
-  .ngx-tabs button {
-    color: white;
+  .tab-header {
+    color: #E3E3E3;
+    padding: 10px 15px;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 1px;
 
     &.active {
-      color: white !important;
       background: #202020;
+      color: white;
+      border: solid 1px rgb(63 63 68 / 10%);
     }
   }
 

@@ -29,6 +29,7 @@ export class DeckBuilderComponent implements OnInit, OnDestroy {
      * The deck
      */
     public deck: Deck;
+    public activeTab: number = 0;
 
     /**
      * Information about searchForm

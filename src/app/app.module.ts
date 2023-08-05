@@ -50,6 +50,7 @@ import { DeckResultsComponent } from './shared/component/deck-results/deck-resul
 import { DecksSearchComponent } from './pages/decks-search/decks-search.component';
 import {HttpErrorInterceptorService} from "./shared/service/http-error-interceptor.service";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {TabViewModule} from "primeng/tabview";
 
 export function httpTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -105,7 +106,8 @@ export function markedOptionsFactory(): MarkedOptions {
         MatSlideToggleModule,
         NgbModule,
         MatSelectModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        TabViewModule
     ],
     declarations: [
         AppComponent,
