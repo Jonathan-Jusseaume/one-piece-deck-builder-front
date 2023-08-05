@@ -25,7 +25,6 @@ import {DeckVisualisationComponent} from './shared/component/deck-visualisation/
 import {MatTabsModule} from "@angular/material/tabs";
 import {DeckStatistiquesComponent} from './shared/component/deck-statistiques/deck-statistiques.component';
 import {BrowserModule} from "@angular/platform-browser";
-import {NgxTabsModule} from "@ngx-lite/tabs";
 import {DeckCostBarChartComponent} from './shared/component/deck-cost-bar-chart/deck-cost-bar-chart.component';
 import {BarChartModule, PieChartModule} from "@swimlane/ngx-charts";
 import {DeckTypePieChartComponent} from './shared/component/deck-type-pie-chart/deck-type-pie-chart.component';
@@ -98,7 +97,6 @@ export function markedOptionsFactory(): MarkedOptions {
         SocialLoginModule,
         MatTabsModule,
         BrowserModule,
-        NgxTabsModule,
         BarChartModule,
         PieChartModule,
         MatExpansionModule,
