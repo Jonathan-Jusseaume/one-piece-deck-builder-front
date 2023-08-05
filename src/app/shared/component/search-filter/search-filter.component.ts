@@ -14,6 +14,8 @@ import {Type} from "../../model/class/Type";
 import {Rarity} from "../../model/class/Rarity";
 import {Product} from "../../model/class/Product";
 import {FilterService} from "../../service/filter.service";
+import {CompetitiveStatus} from "../../model/class/CompetitiveStatus";
+import {CompetitiveStatusService} from "../../service/competitive-status.service";
 
 @Component({
     selector: 'opdb-search-filter',
@@ -35,11 +37,13 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     public powerPlaceHolder: string;
     public productPlaceHolder: string;
     public keywordPlaceHolder: string;
+    public tournamentStatusPlaceHolder: string;
     public colors: Color[];
     public tags: Tag[];
     public types: Type[];
     public rarities: Rarity[];
     public products: Product[];
+    public competitiveStatus: CompetitiveStatus[];
     public costs: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     public powers: number[] = [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000];
     public dropdownSettings: any;
@@ -53,7 +57,8 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     constructor(private _colorService: ColorService, private fb: FormBuilder, private _languageService: LanguageService,
                 private _translateService: TranslateService, private _tagService: TagService,
                 private _typeService: TypeService, private _rarityService: RarityService,
-                private _productService: ProductService, private _filterService: FilterService) {
+                private _productService: ProductService, private _filterService: FilterService,
+                private _competitiveStatusService: CompetitiveStatusService) {
     }
 
     ngOnInit(): void {
@@ -65,18 +70,18 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
             types: [],
             rarities: [],
             costs: [],
-            powers: []
+            powers: [],
+            competitiveStatus: []
         });
-        this.subscriptions.push(this._languageService.languageSelectedChanged.subscribe(language => {
-            this.initComponents();
-        }))
+        this.subscriptions.push(this._languageService.languageSelectedChanged
+            .subscribe(() => this.initComponents()))
 
     }
 
     initComponents() {
         this._translateService.get(['SelectAll', 'UnselectAll', 'ColorFilterPlaceHolder', 'SearchButton',
             'TagFilterPlaceHolder', 'TypeFilterPlaceHolder', 'RarityFilterPlaceHolder', 'CostFilterPlaceHolder',
-            'PowerFilterPlaceHolder', 'ProductFilterPlaceHolder', 'KeywordFilterPlaceHolder'])
+            'PowerFilterPlaceHolder', 'ProductFilterPlaceHolder', 'KeywordFilterPlaceHolder', 'TournamentStatusPlaceHolder'])
             .subscribe(translations => {
                 this.colorPlaceHolder = translations['ColorFilterPlaceHolder'];
                 this.productPlaceHolder = translations['ProductFilterPlaceHolder'];
@@ -86,6 +91,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
                 this.costsPlaceHolder = translations['CostFilterPlaceHolder'];
                 this.powerPlaceHolder = translations['PowerFilterPlaceHolder'];
                 this.keywordPlaceHolder = translations['KeywordFilterPlaceHolder'];
+                this.tournamentStatusPlaceHolder = translations['TournamentStatusPlaceHolder'];
                 this.dropdownSettings = {
                     singleSelection: false,
                     idField: 'id',
@@ -110,6 +116,12 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
         }))
         this.subscriptions.push(this._productService.list().subscribe(products => {
             this.products = products;
+        }))
+        this.subscriptions.push(this._productService.list().subscribe(products => {
+            this.products = products;
+        }))
+        this.subscriptions.push(this._competitiveStatusService.list().subscribe(competitiveStatus => {
+            this.competitiveStatus = competitiveStatus;
         }))
 
     }

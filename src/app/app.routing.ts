@@ -9,8 +9,19 @@ import {MyDecksComponent} from "./pages/my-decks/my-decks.component";
 import {DeckDetailsComponent} from "./pages/deck-details/deck-details.component";
 import {DecksSearchComponent} from "./pages/decks-search/decks-search.component";
 import {RouteInfo} from "./shared/model/class/RouteInfo";
+import {HomeComponent} from "./pages/home/home.component";
 
 export const ROUTES: RouteInfo[] = [
+    {
+        path: '/home',
+        title: 'Home',
+        icon: 'fa fa-home',
+        class: '',
+        color: 'red',
+        backgroundImage: 'assets/img/luffy.jpg',
+        connected: false,
+        visible: true
+    },
     {
         path: '/search',
         title: 'Search',
@@ -64,6 +75,7 @@ export const ROUTES: RouteInfo[] = [
 ];
 
 export const routes: Routes = [
+    {path: 'home', component: HomeComponent},
     {path: 'search', component: SearchComponent},
     {path: 'deck-builder', component: DeckBuilderComponent},
     {path: 'my-decks', component: MyDecksComponent, canActivate: [RouteGuard]},

@@ -43,6 +43,9 @@ export class CardService {
         if (cardFilter?.products?.length) {
             httpParams = httpParams.set('productId', cardFilter.products.map(product => product?.id).join(","));
         }
+        if (cardFilter?.competitiveStatus?.length) {
+            httpParams = httpParams.set('competitiveStatusId', cardFilter.competitiveStatus.map(status => status?.id).join(","));
+        }
         if (cardFilter?.costs?.length) {
             httpParams = httpParams.set('cost', cardFilter.costs.join(","));
         }

@@ -75,6 +75,15 @@
                                              formControlName="tags">
                     </ng-multiselect-dropdown>
                 </div>
+                <div class="form-group large-select" [class]="{'small-select': !inSearchPlace}">
+                    <ng-multiselect-dropdown *ngIf="competitiveStatus && dropdownSettings"
+                                             name="competitiveStatus"
+                                             [settings]="dropdownSettings"
+                                             [placeholder]="tournamentStatusPlaceHolder"
+                                             [data]="competitiveStatus"
+                                             formControlName="competitiveStatus">
+                    </ng-multiselect-dropdown>
+                </div>
             </div>
             <div class="actions">
                 <button type="reset" class="btn btn-default btn-fill">
